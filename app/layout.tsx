@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
-import hero from "@/public/images/shaiandadam.png";
+import hero from "@/public/images/shaiandadam.webp";
 
 const googleFont = DM_Sans({
   weight: ["400", "700"],
