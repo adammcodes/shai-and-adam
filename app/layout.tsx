@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Custom wedding website for Shai & Adam",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
