@@ -25,15 +25,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={googleFont.className}>
-        <nav className="flex flex-col sm:flex-row mb-10">
-          <Image
-            src={hero}
-            alt="Shai and Adam"
-            width={200}
-            height={200}
-            className="min-h-[200px] min-w-[200px]"
-            priority
-          />
+        <nav className="flex flex-col sm:flex-row">
+          <div className="h-[200px] w-[200px]">
+            <Image
+              src={hero}
+              alt="Shai and Adam"
+              width={200}
+              height={200}
+              priority
+            />
+          </div>
           <ul className="flex space-x-4 text-blue p-5">
             <li>
               <Link href="/">About</Link>
