@@ -33,6 +33,7 @@ export default async function RootLayout({
               width={200}
               height={200}
               priority
+              loading="eager"
             />
           </div>
           <ul className="flex space-x-4 text-blue p-5">
