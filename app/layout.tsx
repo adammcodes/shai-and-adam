@@ -36,7 +36,7 @@ export default async function RootLayout({
               loading="eager"
             />
           </div>
-          <ul className="flex space-x-4 text-blue p-5">
+          <ul className="flex space-x-4 text-blue p-5 mt-10 sm:mt-0">
             <li>
               <Link href="/">About</Link>
             </li>
