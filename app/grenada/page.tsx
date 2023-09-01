@@ -8,12 +8,13 @@ export default function Grenada() {
         <p className="italic">May 9, 2024</p>
         <br />
         <strong>Location:</strong>
-        <p>True Blue Bay Resort, St. George&apos;s, Grenada</p>
+        <p className="text-center">St. George's, Grenada</p>
         <br />
         <strong>Details:</strong>
-        <p>
-          We&apos;re still working out the details, but we&apos;ll be sharing
-          more information as we get closer to the date!
+        <p className="text-center">
+          We&apos;re still working out the details.
+          <br /> We&apos;ll be sharing more information as we get closer to the
+          date!
         </p>
       </Card>
     </main>

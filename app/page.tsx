@@ -10,7 +10,7 @@ export default function Home() {
         <strong>We will be hosting two events:</strong>
         <ol className="list-disc p-5">
           <li>
-            <Link href="/mehendi">Mehendi</Link> (date TBD)
+            <Link href="/mehendi">Mehendi</Link> (date to be determined)
           </li>
           <li>
             True Blue Bay in <Link href="/grenada">Grenada</Link> on May 9, 2024

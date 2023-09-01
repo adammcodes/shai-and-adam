@@ -10,7 +10,7 @@ export default withPageAuthRequired(function Dashboard() {
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Card title="Dashboard">
-        <p className="italic">Welcome to the dashboard!</p>
+        <p className="italic">Manage the invites here!</p>
         <br />
         {!isLoading && !error && !user && (
           <>
