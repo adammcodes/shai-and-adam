@@ -40,10 +40,34 @@ export default function GuestList() {
     getGuests();
   }, []);
 
+  const sendSaveTheDate = async (email: string) => {
+    // try {
+    //   console.log("Sending save-the-date to:", email);
+    //   const response = await fetch("/api/email", {
+    //     method: "POST",
+    //     body: JSON.stringify({ email }),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    // } catch (e: unknown) {
+    //   if (e instanceof Error) {
+    //     console.error(e.message);
+    //     if (e.message && typeof e.message === "string") {
+    //       setErrorMessage(e.message);
+    //     }
+    //   }
+    // }
+  };
+
   return (
     <section className="flex min-h-screen flex-col items-center mt-[2em] text-black">
       <div className="text-center">
-        <h1 className="text-center font-bold text-2xl py-5">Guest List</h1>
+        <h1 className="text-center font-bold text-2xl py-5">
+          Guest List ({guests.length} people)
+        </h1>
 
         {errorMessage && <p className="text-red-500">Error: {errorMessage}</p>}
 
@@ -84,6 +108,7 @@ export default function GuestList() {
                       {guest.attending_grenada ? "Yes" : "No"}
                     </td>
                     <td className="border border-black p-5 flex flex-col">
+                      {guest.email ? "Send Invite" : "No Email"}
                       <button
                         className={`${
                           guest.email
@@ -91,7 +116,7 @@ export default function GuestList() {
                             : ""
                         } py-2 px-4 rounded-lg`}
                         onClick={() => {
-                          console.log("send email to", guest.email);
+                          sendSaveTheDate(guest.email);
                         }}
                         disabled={!guest.email}
                       >
