@@ -249,7 +249,7 @@ class="" style="vertical-align:top;width:600px;"
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
 <tbody><tr>
 <td align="center" class="font-20" style="font-size:0px;padding:30px 10px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#4FB2D1;">Join us in Toronto for our Mehendi celebration before we fly out to Grenada for our wedding 🥂<br>
+<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#4FB2D1;">Join us in Toronto for our mehndi celebration before we fly out to Grenada for our wedding 🥂<br>
 <br>
 Invitation with details to follow.</div>
 </td>

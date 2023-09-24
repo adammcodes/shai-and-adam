@@ -7,8 +7,8 @@ interface Guest {
   name: string;
   email: string;
   group_number: number;
-  invite_to_mehendi: Boolean;
-  attending_mehendi: Boolean;
+  invite_to_mehndi: Boolean;
+  attending_mehndi: Boolean;
   invite_to_grenada: Boolean;
   attending_grenada: Boolean;
 }
@@ -78,8 +78,8 @@ export default function GuestList() {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Group Number</th>
-                <th className="px-10">Invite to Mehendi</th>
-                <th className="px-10">Attending Mehendi</th>
+                <th className="px-10">Invite to mehndi</th>
+                <th className="px-10">Attending mehndi</th>
                 <th className="px-10">Invite to Grenada</th>
                 <th className="px-10">Attending Grenada</th>
                 <th>Send Email</th>
@@ -96,10 +96,10 @@ export default function GuestList() {
                       {guest.group_number}
                     </td>
                     <td className="border border-black">
-                      {guest.invite_to_mehendi ? "Yes" : "No"}
+                      {guest.invite_to_mehndi ? "Yes" : "No"}
                     </td>
                     <td className="border border-black">
-                      {guest.attending_mehendi ? "Yes" : "No"}
+                      {guest.attending_mehndi ? "Yes" : "No"}
                     </td>
                     <td className="border border-black">
                       {guest.invite_to_grenada ? "Yes" : "No"}

@@ -1,10 +1,10 @@
-// Mehendi page
+// mehndi page
 import Card from "@/components/Card";
 
-export default function Mehendi() {
+export default function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <Card title="Mehendi">
+      <Card title="Mehndi">
         <p className="italic">date to be determined</p>
         <br />
         <strong>Location:</strong>

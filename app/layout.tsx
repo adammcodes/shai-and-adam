@@ -38,19 +38,34 @@ export default async function RootLayout({
                 loading="eager"
               />
             </div>
-            <ul className="flex space-x-4 text-blue p-5 mt-10 sm:mt-0">
+            <ul className="flex space-x-4 text-blue p-5 mt-10 sm:mt-0 text-xl">
               <li>
                 <Link href="/">About</Link>
               </li>
               <li>
-                <Link href="/mehendi">Mehendi</Link>
+                <Link href="/mehndi">Mehndi</Link>
               </li>
               <li>
                 <Link href="/grenada">Grenada</Link>
               </li>
             </ul>
           </nav>
+
           {children}
+
+          <footer className="m-10">
+            <p className="text-center text-sm">
+              Made with ❤️ by{" "}
+              <a
+                href="https://adamm.ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                Adam
+              </a>
+            </p>
+          </footer>
         </body>
       </UserProvider>
     </html>

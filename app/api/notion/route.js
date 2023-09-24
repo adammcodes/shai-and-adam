@@ -29,8 +29,8 @@ export async function GET() {
         name: columns.Name.title[0].plain_text,
         email: columns.Email.email,
         group_number: columns["Group Number"].number,
-        invite_to_mehendi: columns["Invite to Mehendi"].checkbox,
-        attending_mehendi: columns["Attending Mehendi"].checkbox,
+        invite_to_mehndi: columns["Invite to mehndi"].checkbox,
+        attending_mehndi: columns["Attending mehndi"].checkbox,
         invite_to_grenada: columns["Invite to Grenada"].checkbox,
         attending_grenada: columns["Attending Grenada"].checkbox,
       };
