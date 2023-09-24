@@ -11,8 +11,14 @@ const config: Config = {
       colors: {
         disabled: "#BDBDBD",
         blue: "#418BCA",
+        "blue-500": "#3f83f8",
         "blue-dark": "#2C6A9C",
         "white-500": "#EAF4FD",
+        "cyan-500": "#06b6d4",
+        "pink-500": "#e74694",
+        "orange-500": "#ff8a4c",
+        "teal-500": "#afecef",
+        "lime-500": "#d9f99d",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
