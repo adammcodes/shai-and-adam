@@ -1,7 +1,30 @@
+"use client";
 // Grenada page
 import Card from "@/components/Card";
+// google maps
+import { useLoadScript } from "@react-google-maps/api";
+import { Marker, InfoWindow, GoogleMap } from "@react-google-maps/api";
+import { libraries } from "@/helpers/mapLibraries";
+import { mapMarkers } from "@/helpers/mapMarkers";
+// react
+import { useState } from "react";
+
+const containerStyle = {
+  width: "680px",
+  height: "600px",
+};
 
 export default function Grenada() {
+  // state for the selected marker id to open the info window
+  const [selectedMarkerId, setSelectedMarkerId] = useState(0);
+
+  // begin loading google maps
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY!,
+    libraries,
+    language: "en",
+  });
+
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Card title="Grenada">
@@ -17,6 +40,80 @@ export default function Grenada() {
           date!
         </p>
       </Card>
+
+      {/* Display Error for loading map */}
+      {loadError && (
+        <div className="my-10 w-full flex justify-center">
+          <Card title="">
+            <p className="text-[#E53E34] text-center">
+              An error has occurred loading the map.
+            </p>
+          </Card>
+        </div>
+      )}
+
+      {/* Display map if loaded */}
+      {isLoaded && (
+        <div className="my-10 w-full flex justify-center text-center py-5 mb-5 lg:h-[600px] lg:w-[994px]">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={{ lat: 12.011048958021288, lng: -61.76749576836825 }}
+            zoom={14}
+            options={{
+              zoomControl: true, // Enable zoom control (you can adjust this as needed)
+              mapTypeControl: false, // Hide the map type toggle
+              streetViewControl: false, // Hide the pegman button (Street View)
+            }}
+            onClick={(e) => {
+              // console.log the lat/lng of the click
+              console.log(e.latLng.lat(), e.latLng.lng());
+            }}
+          >
+            {/* map markers defined in helpers/mapMarkers */}
+            {mapMarkers.map((marker) => (
+              <Marker
+                key={marker.id}
+                position={marker.position}
+                onClick={() => {
+                  setSelectedMarkerId(marker.id);
+                }}
+                icon={{
+                  url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+                    marker.svg
+                  )}`,
+                }}
+              >
+                {/* display info window if marker is selected */}
+                {selectedMarkerId === marker.id && (
+                  <InfoWindow
+                    position={marker.position}
+                    onCloseClick={() => {
+                      setSelectedMarkerId(0);
+                    }}
+                  >
+                    <div>
+                      <h1 className="font-bold text-[#002F6C]">
+                        {marker.title}
+                      </h1>
+
+                      <br />
+                      <p className="text-[#002F6C]">
+                        {marker.email}
+                        <br />
+                        {marker.phone}
+                        <br />
+                        {marker.website}
+                      </p>
+                    </div>
+                  </InfoWindow>
+                )}
+
+                {/* open info window on click */}
+              </Marker>
+            ))}
+          </GoogleMap>
+        </div>
+      )}
     </main>
   );
 }
