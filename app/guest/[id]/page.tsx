@@ -8,14 +8,14 @@ import { GuestData } from "@/helpers/guestData";
 // import components
 import Guest from "../_components/Guest";
 
-type GuestRequest = NextRequest & {
+interface GuestRequest extends NextRequest {
   params: {
     id: string;
   };
   searchParams: {
     group: string;
   };
-};
+}
 
 export default async function GuestsInGroup(request: GuestRequest) {
   let guests;
