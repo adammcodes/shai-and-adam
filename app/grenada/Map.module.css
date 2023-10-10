@@ -1,0 +1,11 @@
+.map > div:last-child {
+  width: 90vw !important;
+  height: 50vh !important;
+}
+
+@media screen and (min-width: 1024px) {
+  .map > div:last-child {
+    width: 680px !important;
+    height: 600px !important;
+  }
+}
