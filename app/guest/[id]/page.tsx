@@ -1,21 +1,11 @@
 // Server component page for guest/[id]?group=[number]
 // Retrieves all the guests in a group and renders the Guest component for each guest
-// import type { NextRequest } from "next/server";
 
 // import types
 import { GuestData } from "@/helpers/guestData";
 
 // import components
 import Guest from "../_components/Guest";
-
-// interface GuestRequest extends NextRequest {
-//   params: {
-//     id: string;
-//   };
-//   searchParams: {
-//     group: string;
-//   };
-// }
 
 export default async function GuestsInGroup(request: any) {
   let guests;
