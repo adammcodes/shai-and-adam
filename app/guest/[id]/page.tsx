@@ -1,5 +1,6 @@
 // Server component page for guest/[id]?group=[number]
-import { type NextRequest } from "next/server";
+// Retrieves all the guests in a group and renders the Guest component for each guest
+import type { NextRequest } from "next/server";
 
 // import types
 import { GuestData } from "@/helpers/guestData";
@@ -65,7 +66,9 @@ export default async function GuestsInGroup(request: GuestRequest) {
 
           <div className="flex flex-col w-full items-center justify-center">
             {guests && guests.length > 0 ? (
-              guests.map((guest: GuestData) => <Guest guest={guest} />)
+              guests.map((guest: GuestData, index: number) => (
+                <Guest key={index} guest={guest} />
+              ))
             ) : (
               <p>No guests found.</p>
             )}
