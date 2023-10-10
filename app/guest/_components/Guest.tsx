@@ -28,6 +28,28 @@ const Guest = ({ guest }: { guest: GuestData }) => {
       setErrorModalOpen(true);
       return;
     }
+
+    try {
+      // submit data to API
+      fetch(`/api/guest/${guest.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          attending_mehndi: attendingMehndi,
+          attending_grenada: attendingGrenada,
+          diet,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
