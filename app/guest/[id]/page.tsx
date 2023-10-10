@@ -31,10 +31,16 @@ export default async function GuestsInGroup(request: GuestRequest) {
   }
 
   try {
-    const res = await fetch(`${process.env.AUTH0_BASE_URL}/api/group/${group}`);
+    const res = await fetch(
+      `${process.env.AUTH0_BASE_URL}/api/group/${group}`,
+      {
+        cache: "no-store",
+      }
+    );
     guests = await res.json();
     // check if id is in group
     const guest = guests.find((guest: GuestData) => guest.id === id);
+
     if (!guest) {
       console.log("guest not found");
       error = true;

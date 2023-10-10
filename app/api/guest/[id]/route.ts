@@ -1,6 +1,8 @@
 import notion from "@/config/notion";
 import { NextRequest } from "next/server";
 
+// This route updates a guest's RSVP status
+// It is called from the RSVP form on the client page /guest/[id]?group=[number]
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -76,10 +78,17 @@ export async function PUT(
 
   // Return a response
   if (response.properties && response.properties["Submitted RSVP"]) {
-    return new Response(`Guest ${id} updated`, {
-      status: 200,
-      headers: { "Content-Type": "text/plain" },
-    });
+    return new Response(
+      JSON.stringify({
+        message: `RSVP for ${body.name} was recieved.`,
+        attending_mehndi: body.attending_mehndi,
+        attending_grenada: body.attending_grenada,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } else {
     // something went wrong
     console.log("Something went wrong - Notion update response: ", response);

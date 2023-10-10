@@ -1,7 +1,9 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+// confetti animation
+import ConfettiExplosion from "react-confetti-explosion";
+// components & types
 import { GuestData } from "@/helpers/guestData";
-// components
 import Card from "@/components/Card";
 import Modal from "@/components/Modal";
 import TextInput from "./TextInput";
@@ -9,8 +11,15 @@ import RadioSelect from "./RadioSelect";
 
 // Component for rending each guest in the group
 const Guest = ({ guest }: { guest: GuestData }) => {
-  // state for confirmation/error modal
-  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  // state for loading
+  const [loading, setLoading] = useState(false);
+  // state for error modal
+  const [errorModalText, setErrorModalText] = useState("");
+  // state for confirmation modal
+  const [confirmationModalText, setConfirmationModalText] = useState("");
+  // state for confetti
+  const [confetti, setConfetti] = useState(false);
+  // state for form data
   const [name, setName] = useState(guest.name);
   const [attendingMehndi, setAttendingMehndi] = useState(
     guest.submitted_rsvp ? guest.attending_mehndi : undefined
@@ -21,16 +30,20 @@ const Guest = ({ guest }: { guest: GuestData }) => {
   const [diet, setDiet] = useState(guest.diet);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     // if they haven't said yes or no to either event, don't submit
     if (attendingMehndi === undefined || attendingGrenada === undefined) {
       // open error modal
-      setErrorModalOpen(true);
+      setErrorModalText(
+        "Please let us know if you are coming to both events before submitting 😄"
+      );
+      setLoading(false);
       return;
     }
 
     try {
-      // submit data to API
+      // submit RSVP form data to API
       fetch(`/api/guest/${guest.id}`, {
         method: "PUT",
         headers: {
@@ -43,14 +56,77 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           diet,
         }),
       })
-        .then((res) => res.json())
+        .then(async (res) => {
+          if (res.ok) {
+            const data = await res.json(); // Parse response body as JSON
+            return data; // Return the parsed data
+          } else {
+            setLoading(false);
+            throw new Error("Network response was not ok");
+          }
+        })
         .then((data) => {
-          console.log(data);
+          // open confirmation modal
+          setLoading(false);
+          const attending = data.attending_mehndi || data.attending_grenada;
+          if (attending) {
+            // run the confetti animation
+            setConfetti(true);
+            setTimeout(() => {
+              setConfetti(false);
+            }, 5000);
+          }
+          const message = attending
+            ? "We will see you there! 🎉"
+            : data.message;
+          setConfirmationModalText(message);
         });
     } catch (err) {
       console.log(err);
+      // open error modal
+      setErrorModalText(
+        "Something went wrong. Please refresh the page and try again. If you continue to have issues please email your RSVP responses to wedding@shaileenandadam.rsvp"
+      );
     }
   };
+
+  const handleAttendingMehndi = (value: boolean) => {
+    setAttendingMehndi(value);
+  };
+  const handleAttendingGrenada = (value: boolean) => {
+    setAttendingGrenada(value);
+  };
+
+  // workaround for Next.js issue with broken radio buttons: https://github.com/vercel/next.js/issues/49499
+  useEffect(() => {
+    // use the dom to set the value of the radio buttons
+    const yesMehndi = document.getElementById(
+      `yes-mehndi-attending-${guest.id}`
+    ) as HTMLInputElement;
+    const noMehndi = document.getElementById(
+      `no-mehndi-attending-${guest.id}`
+    ) as HTMLInputElement;
+    const yesGrenada = document.getElementById(
+      `yes-grenada-attending-${guest.id}`
+    ) as HTMLInputElement;
+    const noGrenada = document.getElementById(
+      `no-grenada-attending-${guest.id}`
+    ) as HTMLInputElement;
+
+    // if the guest has already submitted their RSVP, set the radio buttons to their response
+    if (guest.submitted_rsvp) {
+      if (guest.attending_mehndi) {
+        yesMehndi.checked = true;
+      } else {
+        noMehndi.checked = true;
+      }
+      if (guest.attending_grenada) {
+        yesGrenada.checked = true;
+      } else {
+        noGrenada.checked = true;
+      }
+    }
+  }, [guest]);
 
   return (
     <Fragment key={guest.id}>
@@ -72,7 +148,7 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           <RadioSelect
             label="Attending Mehndi"
             value={attendingMehndi}
-            onChange={(value: boolean | undefined) => setAttendingMehndi(value)}
+            onChange={handleAttendingMehndi}
             id={`mehndi-attending-${guest.id}`}
             name="mehndi-attending"
           />
@@ -81,9 +157,7 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           <RadioSelect
             label="Attending Grenada"
             value={attendingGrenada}
-            onChange={(value: boolean | undefined) =>
-              setAttendingGrenada(value)
-            }
+            onChange={handleAttendingGrenada}
             id={`grenada-attending-${guest.id}`}
             name="grenada-attending"
           />
@@ -98,25 +172,45 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           />
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[#06b6d4] text-white rounded-md p-2 m-2 hover:bg-[#d9f99d] hover:text-black"
-          >
-            Submit RSVP
-          </button>
+          {!loading && (
+            <button
+              type="submit"
+              className="bg-[#06b6d4] text-white rounded-md p-2 m-2 hover:bg-[#d9f99d] hover:text-black"
+            >
+              Submit RSVP
+            </button>
+          )}
+          {loading && (
+            <button
+              type="submit"
+              className="bg-[#EEE] text-black rounded-md p-2 m-2"
+              disabled
+            >
+              Submitting...
+            </button>
+          )}
         </form>
       </Card>
-      {errorModalOpen && (
+      {errorModalText && (
         <Modal
           title="Error"
-          isOpen={errorModalOpen}
-          handleClose={() => setErrorModalOpen(false)}
+          isOpen={Boolean(errorModalText)}
+          handleClose={() => setErrorModalText("")}
         >
-          <p className="text-2xl text-center">
-            Please let us know if you are coming to both events before
-            submitting 😄
-          </p>
+          <p className="text-2xl text-center">{errorModalText}</p>
         </Modal>
+      )}
+      {confirmationModalText && (
+        <Modal
+          title="RSVP Submitted"
+          isOpen={Boolean(confirmationModalText)}
+          handleClose={() => setConfirmationModalText("")}
+        >
+          <p className="text-2xl text-center">{confirmationModalText}</p>
+        </Modal>
+      )}
+      {(guest.attending_grenada || guest.attending_mehndi) && confetti && (
+        <ConfettiExplosion />
       )}
     </Fragment>
   );
