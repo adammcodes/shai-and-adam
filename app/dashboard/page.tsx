@@ -2,7 +2,7 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Card from "@/components/Card";
-import GuestList from "./GuestList";
+import GuestList from "./_components/GuestList";
 
 export default withPageAuthRequired(function Dashboard() {
   const { user, error, isLoading } = useUser();

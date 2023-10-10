@@ -1,8 +1,6 @@
-const { Client } = require("@notionhq/client");
+import notion from "@/config/notion";
 import { NextResponse } from "next/server";
-
-// Initialize Notion client
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+import guestData from "@/helpers/guestData";
 
 // Retrieve pages from the database
 export async function GET() {
@@ -21,20 +19,7 @@ export async function GET() {
     } while (cursor);
 
     // Map pages to guests
-    const guests = pages.map((page) => {
-      // database columns
-      const columns = page.properties;
-      return {
-        id: columns.id.formula.string,
-        name: columns.Name.title[0].plain_text,
-        email: columns.Email.email,
-        group_number: columns["Group Number"].number,
-        invite_to_mehndi: columns["Invite to mehndi"].checkbox,
-        attending_mehndi: columns["Attending mehndi"].checkbox,
-        invite_to_grenada: columns["Invite to Grenada"].checkbox,
-        attending_grenada: columns["Attending Grenada"].checkbox,
-      };
-    });
+    const guests = pages.filter(filterGuests).map(guestData);
 
     const data = {
       guests: guests,
@@ -45,4 +30,14 @@ export async function GET() {
     console.error("Error:", error);
     return JSON.stringify({ error: "An error occurred" });
   }
+}
+
+// Filter out guest if they don't have a valid name
+function filterGuests(page) {
+  // takes a single page.properties object (columns)
+  // returns true if guest has a valid name
+  const columns = page.properties;
+  const name =
+    columns.Name.title.length > 0 ? columns.Name.title[0].plain_text : "";
+  return name;
 }

@@ -29,12 +29,12 @@ export default function Grenada() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Grenada">
         <p className="italic">May 9, 2024</p>
         <br />
-        <strong>Location:</strong>
-        <p className="text-center">St. George's, Grenada</p>
+        <strong>Location of the Ceremony & Reception:</strong>
+        <p className="text-center">The Dodgy Dock, True Blue Bay, Grenada</p>
         <br />
         <strong>Details:</strong>
         <p className="text-center">
