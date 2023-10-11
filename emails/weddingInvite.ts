@@ -832,8 +832,8 @@ We would be absolutely delighted if you could join us for either or both of thes
 More information on each event can be found on our website at <a target="_blank" href="https://shaileenandadam.rsvp" style="color:#FFF;">shaileenandadam.rsvp</a>.<br>
 <br>
 We have a limited number of rooms held at <b>Coyaba Beach Resort</b><br>
-If you decide to stay at this resort please book using this reservation code before <strong style="font-family: Arial;text-decoration:none;">December<span> </span>21st, 2023</strong>:<br>
-Code:
+If you decide to stay at this resort please book using this confirmation code before <strong style="font-family: Arial;text-decoration:none;">December<span> </span>21st, 2023</strong>:<br>
+<span style="font-family: Arial;">CBR75805</span>
 <br>
 <br>
 Kindly RSVP to each event using the link below before:<br>

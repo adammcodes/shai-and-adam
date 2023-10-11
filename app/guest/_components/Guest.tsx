@@ -72,9 +72,6 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           if (attending) {
             // run the confetti animation
             setConfetti(true);
-            setTimeout(() => {
-              setConfetti(false);
-            }, 5000);
           }
           const message = attending
             ? "We will see you there! 🎉"
@@ -206,11 +203,21 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           isOpen={Boolean(confirmationModalText)}
           handleClose={() => setConfirmationModalText("")}
         >
-          <p className="text-2xl text-center">{confirmationModalText}</p>
+          {(guest.attending_grenada || guest.attending_mehndi) && confetti && (
+            <div className="w-full flex justify-center items-center">
+              <ConfettiExplosion
+                width={1600}
+                zIndex={1000}
+                onComplete={() => {
+                  setConfetti(false);
+                }}
+              />
+            </div>
+          )}
+          <p className="text-center text-xl lg:text-3xl">
+            {confirmationModalText}
+          </p>
         </Modal>
-      )}
-      {(guest.attending_grenada || guest.attending_mehndi) && confetti && (
-        <ConfettiExplosion />
       )}
     </Fragment>
   );
