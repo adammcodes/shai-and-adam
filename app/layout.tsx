@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import hero from "@/public/images/600px.webp";
+import github_small from "@/public/images/github_small.png";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const googleFont = DM_Sans({
@@ -15,7 +16,8 @@ const googleFont = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Shai & Adam",
-  description: "Custom wedding website for Shai & Adam",
+  description:
+    "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",
 };
 
 export default async function RootLayout({
@@ -54,9 +56,21 @@ export default async function RootLayout({
 
             <div className="flex flex-col min-h-screen items-center">
               <div className="flex-grow">{children}</div>
-              <footer className="mt-auto py-10">
-                <p className="text-center text-sm">
-                  Made with ❤️ by{" "}
+              <footer className="mt-auto py-10 flex flex-col justify-center items-center">
+                <a
+                  href="https://github.com/MagicMark5/shai-and-adam"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={github_small}
+                    alt="GitHub Logo"
+                    width={25}
+                    height={25}
+                  />
+                </a>
+                <p className="text-center text-sm pt-2">
+                  Custom build from code and ❤️ by{" "}
                   <a
                     href="https://adamm.ca"
                     target="_blank"
@@ -65,6 +79,17 @@ export default async function RootLayout({
                   >
                     Adam
                   </a>
+                  .<br />
+                  Do you need a website as special as this?{" "}
+                  <a
+                    href="mailto:adammarsala@hotmail.com?subject=Custom Website Inquiry&body=Hi Adam, I'm interested in a custom website."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                  >
+                    Email me
+                  </a>
+                  .
                 </p>
               </footer>
             </div>

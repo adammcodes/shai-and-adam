@@ -1,5 +1,5 @@
 import { Marker, InfoWindow } from "@react-google-maps/api";
-import InfoWindowContent from "@/components/InfoWindowContent";
+import InfoWindowContent from "@/app/grenada/_components/InfoWindowContent";
 
 type MapMarkersProps = {
   filteredMarkers: any[];

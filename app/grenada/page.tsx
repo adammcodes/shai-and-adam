@@ -24,6 +24,11 @@ export default function Grenada() {
 
   // sort markers by distance from venue or couple
   const sortMarkers = (a: MapMarker, b: MapMarker) => {
+    // only sort markers when the selected filter is "Places to Stay"
+    if (selectedFilter !== "stay") {
+      return 0;
+    }
+
     if (selectedSort === "distanceFromVenue") {
       return a.distanceFromVenue - b.distanceFromVenue;
     } else if (selectedSort === "distanceFromCouple") {
@@ -48,9 +53,9 @@ export default function Grenada() {
         <br />
         <strong>Details:</strong>
         <p className="text-center">
-          There will be a pool! We&apos;re still working out the rest of the
-          details. We&apos;ll be sharing more information as we get closer to
-          the date!
+          There will be a pool, live entertainment, a bar, apps/snacks, and
+          dinner! We&apos;re still working out the rest of the details.
+          We&apos;ll be sharing more information as we get closer to the date!
           <br />
           <br />
           Please reach out to us if you have any questions!

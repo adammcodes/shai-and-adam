@@ -9,6 +9,27 @@ import styles from "./Map.module.css";
 // components
 import Map from "./Map";
 import FilterRadioButton from "@/components/FilterRadioButton";
+// things to do images (png)
+import choco from "@/public/images/things_to_do_icons/choco.png";
+import food from "@/public/images/things_to_do_icons/food.png";
+import hiking from "@/public/images/things_to_do_icons/hiking.png";
+import spices from "@/public/images/things_to_do_icons/spices.png";
+import rum from "@/public/images/things_to_do_icons/rum.png";
+import turtle from "@/public/images/things_to_do_icons/turtle.png";
+import waterfall from "@/public/images/things_to_do_icons/waterfall.png";
+import fort from "@/public/images/things_to_do_icons/fort.png";
+
+const pngs = [
+  turtle,
+  food,
+  hiking,
+  choco,
+  fort,
+  spices,
+  waterfall,
+  rum,
+  hiking,
+];
 
 type MapContainerProps = {
   selectedFilter: string;
@@ -57,20 +78,22 @@ export default function MapContainer({
 
       <div className="lg:w-full flex flex-col-reverse lg:flex-row justify-center items-center">
         {/* Render list of markers beside the map */}
-        <div className="border-2 border-[#002F6C] rounded-lg overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px]">
-          <div className="text-[#3f83f8] flex justify-center items-center py-5">
-            Sort By:
-            <select
-              className="ml-2 text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none rounded-[20px] px-3 py-2 cursor-pointer"
-              value={selectedSort}
-              onChange={(e) => {
-                setSelectedSort(e.target.value);
-              }}
-            >
-              <option value="distanceFromVenue">Distance from Venue</option>
-              <option value="distanceFromCouple">Distance from Couple</option>
-            </select>
-          </div>
+        <div className="border-2 border-[#002F6C] rounded-lg overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px] pt-5">
+          {selectedFilter === "stay" && (
+            <div className="text-[#3f83f8] flex justify-center items-center pb-5">
+              Sort By:
+              <select
+                className="ml-2 text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none rounded-[20px] px-3 py-2 cursor-pointer"
+                value={selectedSort}
+                onChange={(e) => {
+                  setSelectedSort(e.target.value);
+                }}
+              >
+                <option value="distanceFromVenue">Distance from Venue</option>
+                <option value="distanceFromCouple">Distance from Couple</option>
+              </select>
+            </div>
+          )}
           {filteredMarkers.sort(sortMarkers).map((marker) => (
             <div key={marker.id} className="flex items-center mb-5">
               <div
@@ -80,14 +103,24 @@ export default function MapContainer({
                 }}
               >
                 {/* Render the marker svg here: parse svg string into Next Image component */}
-                <Image
-                  src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
-                    marker.svg
-                  )}`}
-                  alt={marker.title}
-                  width={20}
-                  height={20}
-                />
+                {marker.svg && (
+                  <Image
+                    src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+                      marker.svg
+                    )}`}
+                    alt={marker.title}
+                    width={20}
+                    height={20}
+                  />
+                )}
+                {(marker.png === 0 || marker.png) && (
+                  <Image
+                    src={pngs[marker.png]}
+                    alt={marker.title}
+                    width={25}
+                    height={25}
+                  />
+                )}
               </div>
               <p
                 className="text-[#002F6C] cursor-pointer max-w-[300px]"
@@ -96,13 +129,17 @@ export default function MapContainer({
                 }}
               >
                 {marker.title}
-                <br />
-                <span className="text-[#3f83f8]">
-                  {selectedSort === "distanceFromVenue"
-                    ? marker.distanceFromVenue
-                    : marker.distanceFromCouple}{" "}
-                  km
-                </span>
+                {selectedFilter === "stay" && (
+                  <>
+                    <br />
+                    <span className="text-[#3f83f8]">
+                      {selectedSort === "distanceFromVenue"
+                        ? marker.distanceFromVenue
+                        : marker.distanceFromCouple}{" "}
+                      km
+                    </span>
+                  </>
+                )}
               </p>
             </div>
           ))}
@@ -111,6 +148,7 @@ export default function MapContainer({
         {/* Render the map */}
         <div className={styles.map}>
           <Map
+            selectedFilter={selectedFilter}
             filteredMarkers={filteredMarkers}
             selectedMarkerId={selectedMarkerId}
             setSelectedMarkerId={setSelectedMarkerId}

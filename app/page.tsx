@@ -14,14 +14,13 @@ export default function Home() {
             <Link href="/mehndi" className="underline">
               Mehndi
             </Link>{" "}
-            (date and location to be determined)
+            - May 4, 2024 in Markham
           </li>
           <li>
-            Wedding Ceremony & Reception in{" "}
+            Wedding Party - May 9, 2024 in{" "}
             <Link href="/grenada" className="underline">
               Grenada
             </Link>{" "}
-            on May 9, 2024
           </li>
         </ol>
       </Card>
