@@ -2,26 +2,41 @@
 // Grenada page
 import Card from "@/components/Card";
 // helpers for google maps, data, and styles
-import { useLoadScript } from "@react-google-maps/api";
+import { useLoadScript, GoogleMap } from "@react-google-maps/api";
 import { libraries } from "@/helpers/mapLibraries";
-import { mapMarkers } from "@/helpers/mapMarkers";
+import { mapMarkers, MapMarker } from "@/helpers/mapMarkers";
 // react
-import { useState } from "react";
+import { useState, useCallback } from "react";
 // components
 import MapContainer from "./MapContainer";
 
 export default function Grenada() {
-  // state for the selected marker id to open the info window
-  const [selectedMarkerId, setSelectedMarkerId] = useState(0);
-  // state for the selected filter
-  const [selectedFilter, setSelectedFilter] = useState("stay");
-
   // begin loading google maps
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY!,
     libraries,
     language: "en",
   });
+
+  // state for the map
+  const [map, setMap] = useState<GoogleMap | null>(null);
+  // state for the selected filter
+  const [selectedFilter, setSelectedFilter] = useState("stay");
+  // state for the selected sort option
+  const [selectedSort, setSelectedSort] = useState("distanceFromVenue");
+  // state for the selected marker id to open the info window
+  // const [selectedMarkerId, setSelectedMarkerId] = useState(0);
+
+  // sort markers by distance from venue or couple
+  const sortMarkers = (a: MapMarker, b: MapMarker) => {
+    if (selectedSort === "distanceFromVenue") {
+      return a.distanceFromVenue - b.distanceFromVenue;
+    } else if (selectedSort === "distanceFromCouple") {
+      return a.distanceFromCouple - b.distanceFromCouple;
+    } else {
+      return 0;
+    }
+  };
 
   // markers to display on the map
   const filteredMarkers = mapMarkers.filter(
@@ -59,10 +74,11 @@ export default function Grenada() {
       {isLoaded && (
         <MapContainer
           filteredMarkers={filteredMarkers}
-          selectedMarkerId={selectedMarkerId}
-          setSelectedMarkerId={setSelectedMarkerId}
           selectedFilter={selectedFilter}
+          selectedSort={selectedSort}
           setSelectedFilter={setSelectedFilter}
+          sortMarkers={sortMarkers}
+          setSelectedSort={setSelectedSort}
         />
       )}
     </main>

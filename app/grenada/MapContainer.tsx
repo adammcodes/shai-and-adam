@@ -1,35 +1,42 @@
-import { Marker, InfoWindow, GoogleMap } from "@react-google-maps/api";
-import { mapStyle } from "@/helpers/mapStyle.js";
-import { mapFilters } from "@/helpers/mapFilters";
-
+import { useState } from "react";
 // next
 import Image from "next/image";
-// components
-import InfoWindowContent from "@/components/InfoWindowContent";
+
 import FilterRadioButton from "@/components/FilterRadioButton";
+import { mapFilters } from "@/helpers/mapFilters";
 // css module
 import styles from "./Map.module.css";
-
-const containerStyle = {
-  width: "680px",
-  height: "600px",
-};
+import Map from "./Map";
 
 type MapContainerProps = {
   selectedFilter: string;
   filteredMarkers: any[];
-  selectedMarkerId: number;
-  setSelectedMarkerId: React.Dispatch<React.SetStateAction<number>>;
+  selectedSort: string;
   setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
+  sortMarkers: (a: any, b: any) => number;
 };
 
 export default function MapContainer({
   selectedFilter,
   filteredMarkers,
-  selectedMarkerId,
-  setSelectedMarkerId,
+  selectedSort,
   setSelectedFilter,
+  setSelectedSort,
+  sortMarkers,
 }: MapContainerProps) {
+  // state for the selected marker id to open the info window
+  const [selectedMarkerId, setSelectedMarkerId] = useState(0);
+
+  const openInfoWindow = (id: number) => {
+    setSelectedMarkerId(id);
+    // check if current viewport is mobile
+    if (window.innerWidth < 1024) {
+      // scroll to the top of the map
+      window.scrollTo(0, 1280);
+    }
+  };
+
   return (
     <>
       {/* Filters for markers: "Places to stay", "Things to do", "Where the couple will be" */}
@@ -48,13 +55,26 @@ export default function MapContainer({
 
       <div className="lg:w-full flex flex-col-reverse lg:flex-row justify-center items-center">
         {/* Render list of markers beside the map */}
-        <div className="my-10 py-5 mb-5 flex flex-col w-[90vw] lg:max-w-[400px] lg:h-[600px]">
-          {filteredMarkers.map((marker) => (
+        <div className="border-2 border-[#002F6C] rounded-lg overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px]">
+          <div className="text-[#3f83f8] flex justify-center items-center py-5">
+            Sort By:
+            <select
+              className="ml-2 text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none rounded-[20px] px-3 py-2 cursor-pointer"
+              value={selectedSort}
+              onChange={(e) => {
+                setSelectedSort(e.target.value);
+              }}
+            >
+              <option value="distanceFromVenue">Distance from Venue</option>
+              <option value="distanceFromCouple">Distance from Couple</option>
+            </select>
+          </div>
+          {filteredMarkers.sort(sortMarkers).map((marker) => (
             <div key={marker.id} className="flex items-center mb-5">
               <div
                 className="w-10 h-10 m-3 rounded-full bg-[#FFF] flex justify-center items-center cursor-pointer"
                 onClick={() => {
-                  setSelectedMarkerId(marker.id);
+                  openInfoWindow(marker.id);
                 }}
               >
                 {/* Render the marker svg here: parse svg string into Next Image component */}
@@ -70,59 +90,29 @@ export default function MapContainer({
               <p
                 className="text-[#002F6C] cursor-pointer max-w-[300px]"
                 onClick={() => {
-                  setSelectedMarkerId(marker.id);
+                  openInfoWindow(marker.id);
                 }}
               >
                 {marker.title}
+                <br />
+                <span className="text-[#3f83f8]">
+                  {selectedSort === "distanceFromVenue"
+                    ? marker.distanceFromVenue
+                    : marker.distanceFromCouple}{" "}
+                  km
+                </span>
               </p>
             </div>
           ))}
         </div>
 
         {/* Render the map */}
-        <div
-          //className="my-10 w-[90%] flex justify-center text-center py-5 mb-5 lg:h-[600px] lg:w-[994px]"
-          className={styles.map}
-        >
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={{ lat: 12.011048958021288, lng: -61.76749576836825 }}
-            zoom={14}
-            options={{
-              styles: mapStyle, // Set the custom map style here
-              zoomControl: true, // Enable zoom control (you can adjust this as needed)
-              mapTypeControl: false, // Hide the map type toggle
-              streetViewControl: false, // Hide the pegman button (Street View)
-            }}
-          >
-            {/* map markers defined in helpers/mapMarkers */}
-            {filteredMarkers.map((marker) => (
-              <Marker
-                key={marker.id}
-                position={marker.position}
-                onClick={() => {
-                  setSelectedMarkerId(marker.id);
-                }}
-                icon={{
-                  url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
-                    marker.svg
-                  )}`,
-                }}
-              >
-                {/* display info window if marker is selected */}
-                {selectedMarkerId === marker.id && (
-                  <InfoWindow
-                    position={marker.position}
-                    onCloseClick={() => {
-                      setSelectedMarkerId(0);
-                    }}
-                  >
-                    <InfoWindowContent {...marker} />
-                  </InfoWindow>
-                )}
-              </Marker>
-            ))}
-          </GoogleMap>
+        <div className={styles.map}>
+          <Map
+            filteredMarkers={filteredMarkers}
+            selectedMarkerId={selectedMarkerId}
+            setSelectedMarkerId={setSelectedMarkerId}
+          />
         </div>
       </div>
     </>
