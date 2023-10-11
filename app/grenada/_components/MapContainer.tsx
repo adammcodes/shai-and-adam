@@ -1,12 +1,14 @@
 import { useState } from "react";
 // next
 import Image from "next/image";
-
-import FilterRadioButton from "@/components/FilterRadioButton";
-import { mapFilters } from "@/helpers/mapFilters";
+// helpers & types
+import { mapFilters } from "@/app/grenada/_helpers/mapFilters";
+import { MapMarker } from "@/app/grenada/_helpers/mapMarkers";
 // css module
 import styles from "./Map.module.css";
+// components
 import Map from "./Map";
+import FilterRadioButton from "@/components/FilterRadioButton";
 
 type MapContainerProps = {
   selectedFilter: string;
@@ -14,7 +16,7 @@ type MapContainerProps = {
   selectedSort: string;
   setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
   setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
-  sortMarkers: (a: any, b: any) => number;
+  sortMarkers: (a: MapMarker, b: MapMarker) => number;
 };
 
 export default function MapContainer({

@@ -1,6 +1,6 @@
 // A single Filter Radio Button component that contains a radio button and a label.
 
-import { MapFilter } from "@/helpers/mapFilters";
+import { MapFilter } from "@/app/grenada/_helpers/mapFilters";
 import React from "react";
 
 type MapFilterProps = MapFilter & {

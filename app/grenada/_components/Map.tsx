@@ -1,5 +1,5 @@
 import { GoogleMap } from "@react-google-maps/api";
-import { mapStyle } from "@/helpers/mapStyle.js";
+import { mapStyle } from "../_helpers/mapStyle.js";
 import MapMarkers from "./MapMarkers";
 
 const containerStyle = {

@@ -49,10 +49,13 @@ export default function Home() {
         </Paragraph>
         <h2 className="m-5 font-bold underline">The Mehndi Ceremony</h2>
         <Paragraph>
-          &emsp;The Mehndi will be held in Toronto. The Mehndi tab on the
-          website will provide you will all the information you will need.
-          Please check the website periodically for updates if you wish to stay
-          well informed.
+          &emsp;The Mehndi will be held in Toronto. The{" "}
+          <Link href="/mehndi" className="underline">
+            Mehndi
+          </Link>{" "}
+          page on the website will provide you with all the information you will
+          need. Please check the website periodically for updates if you wish to
+          stay well informed.
         </Paragraph>
         <h2 className="m-5 font-bold underline">
           The Wedding Ceremony and Reception

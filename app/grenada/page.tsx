@@ -2,13 +2,13 @@
 // Grenada page
 import Card from "@/components/Card";
 // helpers for google maps, data, and styles
-import { useLoadScript, GoogleMap } from "@react-google-maps/api";
-import { libraries } from "@/helpers/mapLibraries";
-import { mapMarkers, MapMarker } from "@/helpers/mapMarkers";
+import { useLoadScript } from "@react-google-maps/api";
+import { libraries } from "@/app/grenada/_helpers/mapLibraries";
+import { mapMarkers, MapMarker } from "@/app/grenada/_helpers/mapMarkers";
 // react
-import { useState, useCallback } from "react";
-// components
-import MapContainer from "./MapContainer";
+import { useState } from "react";
+// components for this page
+import MapContainer from "./_components/MapContainer";
 
 export default function Grenada() {
   // begin loading google maps
@@ -17,15 +17,10 @@ export default function Grenada() {
     libraries,
     language: "en",
   });
-
-  // state for the map
-  const [map, setMap] = useState<GoogleMap | null>(null);
   // state for the selected filter
   const [selectedFilter, setSelectedFilter] = useState("stay");
   // state for the selected sort option
   const [selectedSort, setSelectedSort] = useState("distanceFromVenue");
-  // state for the selected marker id to open the info window
-  // const [selectedMarkerId, setSelectedMarkerId] = useState(0);
 
   // sort markers by distance from venue or couple
   const sortMarkers = (a: MapMarker, b: MapMarker) => {
@@ -46,16 +41,19 @@ export default function Grenada() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Grenada">
-        <p className="italic">May 9, 2024</p>
+        <p className="italic">Thursday May 9, 2024</p>
         <br />
         <strong>Location of the Ceremony & Reception:</strong>
         <p className="text-center">The Dodgy Dock, True Blue Bay, Grenada</p>
         <br />
         <strong>Details:</strong>
         <p className="text-center">
-          We&apos;re still working out the details.
-          <br /> We&apos;ll be sharing more information as we get closer to the
-          date!
+          There will be a pool! We&apos;re still working out the rest of the
+          details. We&apos;ll be sharing more information as we get closer to
+          the date!
+          <br />
+          <br />
+          Please reach out to us if you have any questions!
         </p>
       </Card>
 

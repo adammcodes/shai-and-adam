@@ -5,7 +5,7 @@ type ParagraphProps = {
 };
 
 const Paragraph = ({ children }: ParagraphProps) => {
-  return <p className="m-3 text-justify">{children}</p>;
+  return <p className="m-3 lg:text-justify">{children}</p>;
 };
 
 export default Paragraph;
