@@ -1,8 +1,10 @@
 // mehndi page
+"use client";
 import Card from "@/components/Card";
 import Link from "next/link";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default function Mehndi() {
+export default withPageAuthRequired(function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Mehndi">
@@ -22,11 +24,10 @@ export default function Mehndi() {
         <br />
         <strong>Details:</strong>
         <p className="text-center">
-          There will be Indian food and Italian food! We&apos;re still working
-          out the rest of the details. We&apos;ll be sharing more information as
-          we get closer to the date!
+          We&apos;re still working out the details. We&apos;ll be sharing more
+          information as we get closer to the date.
         </p>
       </Card>
     </main>
   );
-}
+});

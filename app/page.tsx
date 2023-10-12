@@ -1,8 +1,10 @@
+"use client";
 import Link from "next/link";
 import Card from "@/components/Card";
 import Paragraph from "@/components/Paragraph";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default function Home() {
+export default withPageAuthRequired(function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Shai & Adam">
@@ -46,7 +48,7 @@ export default function Home() {
           attend one or both events. We will feel blessed to share in this
           milestone with you in any capacity.
         </Paragraph>
-        <h2 className="m-5 font-bold underline">The Mehndi Ceremony</h2>
+
         <Paragraph>
           &emsp;The Mehndi will be held in Toronto. The{" "}
           <Link href="/mehndi" className="underline">
@@ -56,9 +58,7 @@ export default function Home() {
           need. Please check the website periodically for updates if you wish to
           stay well informed.
         </Paragraph>
-        <h2 className="m-5 font-bold underline">
-          The Wedding Ceremony and Reception
-        </h2>
+
         <Paragraph>
           &emsp;The ceremony and reception will be held in St. George's,
           Grenada, West Indies, at the True Blue Bay Resort. We have chosen this
@@ -96,4 +96,4 @@ export default function Home() {
       </Card>
     </main>
   );
-}
+});

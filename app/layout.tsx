@@ -51,6 +51,11 @@ export default async function RootLayout({
                 <li>
                   <Link href="/grenada">Grenada</Link>
                 </li>
+                {process.env.NODE_ENV === "development" && (
+                  <li>
+                    <a href="/api/auth/logout">Logout</a>
+                  </li>
+                )}
               </ul>
             </nav>
 

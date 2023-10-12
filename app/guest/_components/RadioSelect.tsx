@@ -52,7 +52,7 @@ CheckboxProps) {
           className="border-2 border-[#d9f99d] rounded-md p-2 m-2"
           onChange={handleNo}
         />
-        No, I don't like joy or happiness
+        No, I don't like love
       </label>
     </label>
   );

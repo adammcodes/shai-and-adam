@@ -9,8 +9,9 @@ import { mapMarkers, MapMarker } from "@/app/grenada/_helpers/mapMarkers";
 import { useState } from "react";
 // components for this page
 import MapContainer from "./_components/MapContainer";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default function Grenada() {
+export default withPageAuthRequired(function Grenada() {
   // begin loading google maps
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY!,
@@ -53,12 +54,11 @@ export default function Grenada() {
         <br />
         <strong>Details:</strong>
         <p className="text-center">
-          There will be a pool, live entertainment, a bar, apps/snacks, and
-          dinner! We&apos;re still working out the rest of the details.
-          We&apos;ll be sharing more information as we get closer to the date!
+          We&apos;re still working out the details. We&apos;ll be sharing more
+          information as we get closer to the date.
           <br />
           <br />
-          Please reach out to us if you have any questions!
+          Please reach out to us if you have any questions.
         </p>
       </Card>
 
@@ -86,4 +86,4 @@ export default function Grenada() {
       )}
     </main>
   );
-}
+});
