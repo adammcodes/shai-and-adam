@@ -3,11 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Card from "@/components/Card";
 import Paragraph from "@/components/Paragraph";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 // import images from "public/images";
 import us from "public/images/us.jpg";
 
-export default withPageAuthRequired(function Home() {
+export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Shai & Adam">
@@ -106,4 +106,4 @@ export default withPageAuthRequired(function Home() {
       />
     </main>
   );
-});
+}

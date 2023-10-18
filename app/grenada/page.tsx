@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 // Grenada page
 import Card from "@/components/Card";
 // helpers for google maps, data, and styles
@@ -9,9 +10,9 @@ import { mapMarkers, MapMarker } from "@/app/grenada/_helpers/mapMarkers";
 import { useState } from "react";
 // components for this page
 import MapContainer from "./_components/MapContainer";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default withPageAuthRequired(function Grenada() {
+export default function Grenada() {
   // begin loading google maps
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY!,
@@ -60,7 +61,15 @@ export default withPageAuthRequired(function Grenada() {
           information as we get closer to the date.
           <br />
           <br />
-          Please reach out to us if you have any questions.
+          Please{" "}
+          <Link
+            href="mailto:pineappleshirt473@gmail.com"
+            target="_blank"
+            className="underline"
+          >
+            reach out to us
+          </Link>{" "}
+          if you have any questions.
         </p>
       </Card>
 
@@ -88,4 +97,4 @@ export default withPageAuthRequired(function Grenada() {
       )}
     </main>
   );
-});
+}

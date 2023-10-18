@@ -3,10 +3,10 @@
 import Card from "@/components/Card";
 import Link from "next/link";
 import Image from "next/image";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import stpeters from "public/images/stpeters.jpeg";
 
-export default withPageAuthRequired(function Mehndi() {
+export default function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Mehndi">
@@ -40,4 +40,4 @@ export default withPageAuthRequired(function Mehndi() {
       />
     </main>
   );
-});
+}
