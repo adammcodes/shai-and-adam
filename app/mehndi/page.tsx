@@ -2,7 +2,9 @@
 "use client";
 import Card from "@/components/Card";
 import Link from "next/link";
+import Image from "next/image";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import stpeters from "public/images/stpeters.jpeg";
 
 export default withPageAuthRequired(function Mehndi() {
   return (
@@ -28,6 +30,14 @@ export default withPageAuthRequired(function Mehndi() {
           information as we get closer to the date.
         </p>
       </Card>
+
+      <Image
+        src={stpeters}
+        alt="Shai and Adam at the Vatican"
+        width={600}
+        height={400}
+        className="rounded-[30px] drop-shadow-lg mt-5"
+      />
     </main>
   );
 });

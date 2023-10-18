@@ -50,7 +50,9 @@ export default withPageAuthRequired(function Grenada() {
         <p className="italic">Thursday May 9, 2024</p>
         <br />
         <strong>Location of the Ceremony & Reception:</strong>
-        <p className="text-center">The Dodgy Dock, True Blue Bay, Grenada</p>
+        <p className="text-center">
+          True Blue Bay Resort, True Blue Bay, Grenada
+        </p>
         <br />
         <strong>Details:</strong>
         <p className="text-center">

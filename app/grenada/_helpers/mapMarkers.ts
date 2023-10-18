@@ -5,6 +5,7 @@ export type MapMarker = {
   svg?: string;
   png?: number;
   title: string;
+  desc?: string;
   position: Coordinates;
   website: string;
   email: string;
@@ -346,6 +347,82 @@ export const mapMarkers: MapMarker[] = [
     email: "info@puregrenda.com",
     mapUrl: "https://maps.app.goo.gl/NCdU4ixLUriZQJay5",
     filterId: "do",
+    get distanceFromVenue() {
+      return calculateDistance(venuePosition, this.position);
+    },
+    get distanceFromCouple() {
+      return calculateDistance(coyabaPosition, this.position);
+    },
+  },
+  // Where the couple will be
+  {
+    id: 18,
+    png: 0, // monday
+    title: "Coyaba Beach Resort",
+    desc: "We are staying here Monday the 6th to Monday the 13th of May.",
+    position: coyabaPosition,
+    website: "https://www.coyaba.com",
+    email: "reservations@coyaba.com",
+    mapUrl: "",
+    filterId: "couple",
+    get distanceFromVenue() {
+      return calculateDistance(venuePosition, this.position);
+    },
+    get distanceFromCouple() {
+      return calculateDistance(coyabaPosition, this.position);
+    },
+  },
+  {
+    id: 19,
+    png: 1, // tuesday
+    title: "Coyaba Beach Resort",
+    desc: "May 7th: relaxing",
+    position: coyabaPosition,
+    website: "https://www.coyaba.com",
+    email: "reservations@coyaba.com",
+    mapUrl: "",
+    filterId: "couple",
+    get distanceFromVenue() {
+      return calculateDistance(venuePosition, this.position);
+    },
+    get distanceFromCouple() {
+      return calculateDistance(coyabaPosition, this.position);
+    },
+  },
+  {
+    id: 20,
+    png: 2, // wednesday
+    title: "Street Food Wednesday at the Dodgy Dock",
+    desc: "May 8th: eating, drinking & partying",
+    position: {
+      lat: 12.00042635320048,
+      lng: -61.7687359033394,
+    },
+    website:
+      "https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar",
+    email: "reservations@truebluebay.com",
+    mapUrl: "https://maps.app.goo.gl/nAWL2BK3Fn7QK5gP8",
+    filterId: "couple",
+    get distanceFromVenue() {
+      return calculateDistance(venuePosition, this.position);
+    },
+    get distanceFromCouple() {
+      return calculateDistance(coyabaPosition, this.position);
+    },
+  },
+  {
+    id: 21,
+    png: 3, // thursday
+    title: "Ceremony & Reception at True Blue Bay Resort",
+    desc: "May 9th: getting married",
+    position: {
+      lat: 12.000312492233384,
+      lng: -61.768568271488,
+    },
+    website: "https://www.truebluebay.com",
+    email: "reservations@truebluebay.com",
+    mapUrl: "",
+    filterId: "couple",
     get distanceFromVenue() {
       return calculateDistance(venuePosition, this.position);
     },

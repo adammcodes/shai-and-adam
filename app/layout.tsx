@@ -43,7 +43,10 @@ export default async function RootLayout({
               </div>
               <ul className="flex space-x-4 text-blue p-5 mt-10 sm:mt-0 text-xl">
                 <li>
-                  <Link href="/">About</Link>
+                  <Link href="/">Us</Link>
+                </li>
+                <li>
+                  <Link href="/about">About</Link>
                 </li>
                 <li>
                   <Link href="/mehndi">Mehndi</Link>

@@ -45,9 +45,6 @@ p { display:block;margin:13px 0; }
 
 @media only screen and (min-width:630px) {
 .mj-column-per-100 { width:100% !important; max-width: 100%; }
-.mj-column-per-20 { width:20% !important; max-width: 20%; }
-.mj-column-per-50 { width:50% !important; max-width: 50%; }
-.mj-column-px-50 { width:50px !important; max-width: 50px; }
 }
 </style>
 <style type="text/css">
@@ -150,11 +147,14 @@ width: 100px !important;
 @media (max-width:520px){.eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
 }
 body[data-outlook-cycle] .eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
+@media (max-width:520px){.eb-1i9x0hp{padding:20px 0px 20px !important;}
+}
+body[data-outlook-cycle] .eb-1i9x0hp{padding:20px 0px 20px !important;}
 </style>
 </head>
 <body style="background-color:#4FB2D1;">
 <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-Hi ${name}, Join us for a Mehndi in Markham and our Wedding ceremony &#x26; reception in Grenada. RSVP inside!
+Hi ${name}, please RSVP inside.
 ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌
 </div>
 <div class="bg-main" style="background-color:#4FB2D1;">
@@ -309,252 +309,12 @@ class="" style="vertical-align:top;width:600px;"
 7850<span> </span>Woodbine Ave<br>
 Markham, ON L3R<span> </span>4S1</a>
 <br><br>
-Parking can be found in front or the side of the building. Simply Delicious is the first unit on the right hand side after entering the front door facing Woobine Avenue.
-<br><br>
-Add to Calendar:</div>
-</td>
-</tr>
-<tr>
-<td style="font-size:0px;padding:0px;word-break:break-word;">
-<!--[if mso | IE]>
-<table
-align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:560px;" width="560"
->
-<tr>
-<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-<![endif]-->
-<div style="margin:0px auto;max-width:560px;">
-<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-<tbody>
-<tr>
-<td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
-<!--[if mso | IE]>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td
-class="mobile-col-outlook" style=""
->
-<table
-align="center" border="0" cellpadding="0" cellspacing="0" class="mobile-col-outlook" style="width:560px;" width="560"
->
-<tr>
-<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-<![endif]-->
-<div class="mobile-col" style="margin:0px auto;max-width:560px;">
-<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-<tbody>
-<tr>
-<td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
-<!--[if mso | IE]>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td
-class="" style="width:112px;"
->
-<![endif]-->
-<div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-<!--[if mso | IE]>
-<table
-border="0" cellpadding="0" cellspacing="0" role="presentation"
->
-<tr>
-<td
-style="vertical-align:top;width:56px;"
->
-<![endif]-->
-<div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&#x26;dates=20240504T220000Z%2F20240505T050000Z&#x26;details=Indian%20Mehndi%20Ceremony%20with%20Indian%20%2B%20Italian%20catering%21&#x26;location=7850%20Woodbine%20Ave%20Markham%2C%20ON%20%20L3R%204S1&#x26;text=Shai%20%26%20Adam%27s%20Mehndi%20%40%20Simply%20Delicious" target="_blank">
-<img alt="Add to Google Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/googlecal-MW0Rqw-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-<tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://outlook.live.com/calendar/0/action/compose?allday=false&#x26;body=Indian%20Mehndi%20Ceremony%20with%20Indian%20%2B%20Italian%20catering%21&#x26;enddt=2024-05-05T05%3A00%3A00%2B00%3A00&#x26;location=7850%20Woodbine%20Ave%20Markham%2C%20ON%20%20L3R%204S1&#x26;path=%2Fcalendar%2Faction%2Fcompose&#x26;rru=addevent&#x26;startdt=2024-05-04T22%3A00%3A00%2B00%3A00&#x26;subject=Shai%20%26%20Adam%27s%20Mehndi%20%40%20Simply%20Delicious" target="_blank">
-<img alt="Add to Microsoft Outlook Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/outlookcal-rql_Qg-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-<td
-style="vertical-align:top;width:56px;"
->
-<![endif]-->
-<div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://outlook.office.com/calendar/action/compose?allday=false&#x26;body=Indian%20Mehndi%20Ceremony%20with%20Indian%20%2B%20Italian%20catering%21&#x26;enddt=2024-05-05T05%3A00%3A00%2B00%3A00&#x26;location=7850%20Woodbine%20Ave%20Markham%2C%20ON%20%20L3R%204S1&#x26;path=%2Fcalendar%2Faction%2Fcompose&#x26;rru=addevent&#x26;startdt=2024-05-04T22%3A00%3A00%2B00%3A00&#x26;subject=Shai%20%26%20Adam%27s%20Mehndi%20%40%20Simply%20Delicious" target="_blank">
-<img alt="Add to Office 365 Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/office365cal-uuIl2A-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-<tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://calendar.yahoo.com/?desc=Indian%20Mehndi%20Ceremony%20with%20Indian%20%2B%20Italian%20catering%21&#x26;dur=&#x26;et=20240505T050000Z&#x26;in_loc=7850%20Woodbine%20Ave%20Markham%2C%20ON%20%20L3R%204S1&#x26;st=20240504T220000Z&#x26;title=Shai%20%26%20Adam%27s%20Mehndi%20%40%20Simply%20Delicious&#x26;v=60" target="_blank">
-<img alt="Add to Yahoo! Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/yahoocal-pl9cmg-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<![endif]-->
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
+Details coming soon.</div>
 </td>
 </tr>
 <tr>
 <td align="center" class="font-30" style="font-size:0px;padding:0px;padding-top:50px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:30px;font-weight:bold;line-height:34px;text-align:center;color:#FFFFFF;">Wedding</div>
+<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:30px;font-weight:bold;line-height:34px;text-align:center;color:#FFFFFF;">Ceremony &#x26; Reception</div>
 </td>
 </tr>
 <tr>
@@ -574,7 +334,7 @@ style="vertical-align:top;width:56px;"
 <td align="center" class="font-20" style="font-size:0px;padding:0px 10px;word-break:break-word;">
 <div style="font-family:Arial;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;"><strong><a href="" style="color:#fff;text-decoration:none;">Thursday May<span> </span>9th,<span> </span>2024</a></strong><br>
 <span>@</span><br>
-<a href="https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">The Dodgy Dock</a><br></div>
+<a href="https://www.truebluebay.com" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">True Blue Bay Resort</a><br></div>
 </td>
 </tr>
 <tr>
@@ -582,262 +342,21 @@ style="vertical-align:top;width:56px;"
 <div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;"><a href="https://maps.app.goo.gl/NKYNnu423SPJdNET7" target="_blank" style="color:#fff;text-decoration:underline;">
 True Blue, St George's, Grenada</a>
 <br><br>
-Add to Calendar:</div>
+Details coming soon.</div>
 </td>
 </tr>
 <tr>
-<td style="font-size:0px;padding:0px;word-break:break-word;">
-<!--[if mso | IE]>
-<table
-align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:560px;" width="560"
->
-<tr>
-<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-<![endif]-->
-<div style="margin:0px auto;max-width:560px;">
-<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-<tbody>
-<tr>
-<td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
-<!--[if mso | IE]>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td
-class="mobile-col-outlook" style=""
->
-<table
-align="center" border="0" cellpadding="0" cellspacing="0" class="mobile-col-outlook" style="width:560px;" width="560"
->
-<tr>
-<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-<![endif]-->
-<div class="mobile-col" style="margin:0px auto;max-width:560px;">
-<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-<tbody>
-<tr>
-<td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
-<!--[if mso | IE]>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td
-class="" style="width:112px;"
->
-<![endif]-->
-<div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-<!--[if mso | IE]>
-<table
-border="0" cellpadding="0" cellspacing="0" role="presentation"
->
-<tr>
-<td
-style="vertical-align:top;width:56px;"
->
-<![endif]-->
-<div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&#x26;dates=20240509T200000Z%2F20240510T030000Z&#x26;details=Wedding%20ceremony%20%26%20reception%20at%20True%20Blue%20Bay%20Resort%27s%20restaurant%20The%20Dodgy%20Dock%20in%20Grenada.%0A%0AThere%20will%20be%20a%20pool%2C%20live%20entertainment%2C%20open%20bar%2C%20and%20snacks%2Fappetizers%2C%20and%20dinner.%20&#x26;location=https%3A%2F%2Fmaps.app.goo.gl%2FNKYNnu423SPJdNET7&#x26;text=Shai%20%26%20Adam%27s%20Wedding%20Reception%20%40%20The%20Dodgy%20Dock" target="_blank">
-<img alt="Add to Google Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/googlecal-MW0Rqw-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-<tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://outlook.live.com/calendar/0/action/compose?allday=false&#x26;body=Wedding%20ceremony%20%26%20reception%20at%20True%20Blue%20Bay%20Resort%27s%20restaurant%20The%20Dodgy%20Dock%20in%20Grenada.%0A%0AThere%20will%20be%20a%20pool%2C%20live%20entertainment%2C%20open%20bar%2C%20and%20snacks%2Fappetizers%2C%20and%20dinner.%20&#x26;enddt=2024-05-10T03%3A00%3A00%2B00%3A00&#x26;location=https%3A%2F%2Fmaps.app.goo.gl%2FNKYNnu423SPJdNET7&#x26;path=%2Fcalendar%2Faction%2Fcompose&#x26;rru=addevent&#x26;startdt=2024-05-09T20%3A00%3A00%2B00%3A00&#x26;subject=Shai%20and%20Adam%27s%20Wedding%20Reception%20%40%20The%20Dodgy%20Dock" target="_blank">
-<img alt="Add to Microsoft Outlook Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/outlookcal-rql_Qg-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-<td
-style="vertical-align:top;width:56px;"
->
-<![endif]-->
-<div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://outlook.office.com/calendar/action/compose?allday=false&#x26;body=Wedding%20ceremony%20%26%20reception%20at%20True%20Blue%20Bay%20Resort%27s%20restaurant%20The%20Dodgy%20Dock%20in%20Grenada.%0A%0AThere%20will%20be%20a%20pool%2C%20live%20entertainment%2C%20open%20bar%2C%20and%20snacks%2Fappetizers%2C%20and%20dinner.%20&#x26;enddt=2024-05-10T03%3A00%3A00%2B00%3A00&#x26;location=https%3A%2F%2Fmaps.app.goo.gl%2FNKYNnu423SPJdNET7&#x26;path=%2Fcalendar%2Faction%2Fcompose&#x26;rru=addevent&#x26;startdt=2024-05-09T20%3A00%3A00%2B00%3A00&#x26;subject=Shai%20and20Adam%27s%20Wedding%20Reception%20%40%20The%20Dodgy%20Dock" target="_blank">
-<img alt="Add to Office 365 Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/office365cal-uuIl2A-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-<tr>
-<td vertical-align="top" style="font-size:0px;padding:0px;word-break:break-word;">
-<div class="mj-column-px-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-<tbody>
-<tr>
-<td style="vertical-align:top;padding:0px;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-<tbody><tr>
-<td align="center" style="font-size:0px;padding:0px;padding-bottom:20px;word-break:break-word;">
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-<tbody>
-<tr>
-<td style="width:25px;">
-<a href="https://calendar.yahoo.com/?desc=Wedding%20ceremony%20%26%20reception%20at%20True%20Blue%20Bay%20Resort%27s%20restaurant%20The%20Dodgy%20Dock%20in%20Grenada.%0A%0AThere%20will%20be%20a%20pool%2C%20live%20entertainment%2C%20open%20bar%2C%20and%20snacks%2Fappetizers%2C%20and%20dinner.%20&#x26;dur=&#x26;et=20240510T030000Z&#x26;in_loc=https%3A%2F%2Fmaps.app.goo.gl%2FNKYNnu423SPJdNET7&#x26;st=20240509T200000Z&#x26;title=Shai%20%26%20Adam%27s%20Wedding%20Reception%20%40%20The%20Dodgy%20Dock&#x26;v=60" target="_blank">
-<img alt="Add to Yahoo! Calendar" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/yahoocal-pl9cmg-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="25">
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</td>
-</tr>
-</tbody></table>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<![endif]-->
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!--[if mso | IE]>
-</td>
-</tr>
-</table>
-<![endif]-->
-</td>
-</tr>
-<tr>
-<td align="center" class="font-16" style="font-size:0px;padding:50px 0px 20px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;">We're thrilled to invite you to these two special events.<br>
+<td align="center" class="eb-1i9x0hp" style="font-size:0px;padding:50px 30px 20px;word-break:break-word;">
+<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;">We would be thrilled if you could join us for one or both of these events. Your presence is the best gift we could ask for, and your support means the world to<span> </span>us.<br>
 <br>
-We would be absolutely delighted if you could join us for either or both of these occasions. Your presence is the best gift we could ask for, and your support means the world to us.<br>
+More information on each event can be found at our website at <a target="_blank" href="https://shaileenandadam.rsvp" style="color:#FFF;">shaileenandadam.rsvp</a>. Please look out for updates.<br>
 <br>
-More information on each event can be found on our website at <a target="_blank" href="https://shaileenandadam.rsvp" style="color:#FFF;">shaileenandadam.rsvp</a>.<br>
-<br>
-We have a limited number of rooms held at <b>Coyaba Beach Resort</b><br>
-If you decide to stay at this resort please book using this confirmation code before <strong style="font-family: Arial;text-decoration:none;">December<span> </span>21st, 2023</strong>:<br>
+We have a limited number of rooms held at <b>Coyaba Beach Resort</b>.<br>
+If you choose to stay here, feel free to use this confirmation number before <strong style="font-family: Arial;text-decoration:none;">December<span> </span>21st, 2023</strong>:<br>
 <span style="font-family: Arial;">CBR75805</span>
 <br>
 <br>
-Kindly RSVP to each event using the link below before:<br>
-<br>
+Kindly RSVP to each event using the link below before<br>
 <span style="font-family: Arial;"><b>February<span> </span>1st, 2023.</b></span><br></div>
 </td>
 </tr>
@@ -850,7 +369,7 @@ Kindly RSVP to each event using the link below before:<br>
 </tr>
 <tr>
 <td align="center" class="font-16" style="font-size:0px;padding:20px 0px 0px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;">Looking forward to sharing these unforgettable moments with you!<br></div>
+<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;">We look forward to sharing these unforgettable moments with you!<br></div>
 </td>
 </tr>
 <tr>

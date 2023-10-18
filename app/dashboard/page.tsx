@@ -39,6 +39,12 @@ export default withPageAuthRequired(function Dashboard() {
         )}
       </Card>
 
+      {/* {user && (
+        <Card title="Send Invites">
+          <button onClick={}>Send wedding invite to everyone</button>
+        </Card>
+      )} */}
+
       {user && <GuestList />}
     </main>
   );
