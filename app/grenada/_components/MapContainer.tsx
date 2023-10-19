@@ -99,8 +99,18 @@ export default function MapContainer({
                   setSelectedSort(e.target.value);
                 }}
               >
-                <option value="distanceFromVenue">Distance from Venue</option>
-                <option value="distanceFromCouple">Distance from Couple</option>
+                <option
+                  style={{ backgroundColor: "#3f83f8" }}
+                  value="distanceFromVenue"
+                >
+                  Distance from Venue
+                </option>
+                <option
+                  style={{ backgroundColor: "#3f83f8" }}
+                  value="distanceFromCouple"
+                >
+                  Distance from Couple
+                </option>
               </select>
             </div>
           )}
