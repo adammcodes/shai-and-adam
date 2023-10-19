@@ -52,7 +52,7 @@ export default async function GuestsInGroup(request: any) {
       {!error && guests && (
         <>
           <h1 className="font-bold text-3xl mb-2">RSVP</h1>
-          <p className="text-lg">
+          <p className="text-lg text-center">
             Please submit an RSVP for each member of your group:
           </p>
 

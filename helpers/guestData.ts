@@ -5,6 +5,7 @@ export interface GuestData {
   name: string;
   email: string;
   group_number: number;
+  invite_delivered: boolean;
   submitted_rsvp: boolean;
   invite_to_mehndi: boolean;
   attending_mehndi: boolean;
@@ -31,6 +32,9 @@ type GuestDataColumns = {
   };
   "Group Number": {
     number: number;
+  };
+  "Invite Delivered": {
+    checkbox: boolean;
   };
   "Submitted RSVP": {
     checkbox: boolean;
@@ -65,6 +69,7 @@ export default function guestData(page: any): GuestData {
     name: columns.Name.title[0].plain_text,
     email: columns.Email.email, // email
     group_number: columns["Group Number"].number,
+    invite_delivered: columns["Invite Delivered"].checkbox,
     submitted_rsvp: columns["Submitted RSVP"].checkbox,
     invite_to_mehndi: columns["Invite to Mehndi"].checkbox,
     attending_mehndi: columns["Attending Mehndi"].checkbox,

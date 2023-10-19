@@ -88,7 +88,7 @@ export default function MapContainer({
 
       <div className="lg:w-full flex flex-col-reverse lg:flex-row justify-center items-center">
         {/* Render list of markers beside the map */}
-        <div className="border-2 border-[#002F6C] rounded-lg overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px] pt-5">
+        <div className="lg:border-2 lg:border-[#002F6C] rounded-lg overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px] pt-5">
           {selectedFilter === "stay" && (
             <div className="text-[#3f83f8] flex justify-center items-center pb-5">
               Sort By:

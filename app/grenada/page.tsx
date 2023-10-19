@@ -50,9 +50,9 @@ export default function Grenada() {
       <Card title="Grenada">
         <p className="italic">Thursday May 9, 2024</p>
         <br />
-        <strong>Location of the Ceremony & Reception:</strong>
-        <p className="text-center">
-          True Blue Bay Resort, True Blue Bay, Grenada
+        <strong>Location of the Ceremony&nbsp;&&nbsp;Reception:</strong>
+        <p className="text-left lg:text-center">
+          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada
         </p>
         <br />
         <strong>Details:</strong>

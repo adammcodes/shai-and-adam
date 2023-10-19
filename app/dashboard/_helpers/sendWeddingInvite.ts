@@ -41,10 +41,14 @@ const sendWeddingInvite = async (
     // get the response body
     const responseBody = await res.text();
     const parsedResponseBody = JSON.parse(responseBody) as ResponseBodyOk;
-    // log to the console the emails that were accepted
-    console.log("Successfully sent to: ", parsedResponseBody.accepted);
-    // log to the console the emails that were rejected
-    console.log("Rejected: ", parsedResponseBody.rejected);
+
+    // // log to the console the emails that were accepted
+    // console.log("Successfully sent to: ", parsedResponseBody.accepted);
+    // // log to the console the emails that were rejected
+    // console.log("Rejected: ", parsedResponseBody.rejected);
+
+    // return the response body
+    return parsedResponseBody;
   } catch (error) {
     // handle errors here
     console.error(error);

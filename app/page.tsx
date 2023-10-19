@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 // import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-// import images from "public/images";
 import mondello from "public/images/mondello.jpeg";
 import cefalu from "public/images/cefalu.jpeg";
 import tomatoes from "public/images/tomatoes.jpeg";
@@ -31,7 +30,7 @@ export default function Home() {
         </ol>
 
         <p className="text-center mb-3">
-          Please read our blurb on{" "}
+          Please read our page about{" "}
           <Link href="/about" className="underline">
             what to expect
           </Link>{" "}

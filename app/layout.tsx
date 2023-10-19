@@ -41,7 +41,7 @@ export default async function RootLayout({
                   loading="eager"
                 />
               </div>
-              <ul className="flex space-x-4 text-blue p-5 mt-10 sm:mt-0 text-xl">
+              <ul className="flex flex-wrap space-x-4 text-blue p-5 mt-10 sm:mt-0 text-xl">
                 <li>
                   <Link href="/">Us</Link>
                 </li>
@@ -53,6 +53,9 @@ export default async function RootLayout({
                 </li>
                 <li>
                   <Link href="/grenada">Grenada</Link>
+                </li>
+                <li>
+                  <Link href="/rsvp">RSVP</Link>
                 </li>
                 {process.env.NODE_ENV === "development" && (
                   <li>

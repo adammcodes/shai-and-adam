@@ -346,6 +346,13 @@ Details coming soon.</div>
 </td>
 </tr>
 <tr>
+<td align="center" class="font-16" style="font-size:0px;padding:0px 20px;word-break:break-word;">
+<div class="button" style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;">
+<a href="https://shaileenandadam.rsvp/about" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">Check out our website</a>
+</div>
+</td>
+</tr>
+<tr>
 <td align="center" class="eb-1i9x0hp" style="font-size:0px;padding:50px 30px 20px;word-break:break-word;">
 <div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;">We would be thrilled if you could join us for one or both of these events. Your presence is the best gift we could ask for, and your support means the world to<span> </span>us.<br>
 <br>

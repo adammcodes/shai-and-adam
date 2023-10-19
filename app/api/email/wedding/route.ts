@@ -29,8 +29,7 @@ export async function POST(request: Request) {
   // Define the email content
   const mailOptions = {
     from: `Shai & Adam <${process.env.PROTON_SMTP_USERNAME}>`,
-    // to: body.email,
-    to: ["adammarsala@hotmail.com", "shaileen@hotmail.ca"],
+    to: body.email,
     // to: `test-x70d82x1l@srv1.mail-tester.com`, // spam test
     subject: "You're Invited to Adam & Shai's Mehndi & Wedding Celebrations",
     html: weddingInvite({
