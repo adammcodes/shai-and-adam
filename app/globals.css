@@ -32,3 +32,8 @@ body {
 a:hover {
   text-decoration: underline;
 }
+
+/* WebKit Browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  display: none;
+}
