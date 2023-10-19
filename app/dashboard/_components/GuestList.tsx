@@ -11,6 +11,7 @@ type SendingInvites = string[];
 // Modal
 import Modal from "@/components/Modal";
 import ConfettiExplosion from "react-confetti-explosion";
+import Link from "next/link";
 
 export default function GuestList() {
   const [guests, setGuests] = useState<GuestData[]>([]);
@@ -280,7 +281,14 @@ export default function GuestList() {
                     <td className="border border-black">
                       {guest.group_number}
                     </td>
-                    <td className="border border-black">{guest.email}</td>
+                    <td className="border border-black">
+                      <Link
+                        href={`mailto:${guest.email}?subject=Shai and Adam's Wedding&body=Hi, Please check your spam/junk folder for an email from wedding@shaileenandadam.rsvp. Please say "this is not junk" and add to contacts. Thank you!`}
+                        target="_blank"
+                      >
+                        {guest.email}
+                      </Link>
+                    </td>
                     <td className="border border-black">
                       {guest.invite_to_mehndi ? "✅" : "🔲"}
                     </td>
