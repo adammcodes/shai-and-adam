@@ -364,7 +364,7 @@ If you choose to stay here, feel free to use this confirmation number before <st
 <br>
 <br>
 Kindly RSVP to each event using the link below before<br>
-<span style="font-family: Arial;"><b>February<span> </span>1st, 2023.</b></span><br></div>
+<span style="font-family: Arial;"><b>February<span> </span>1st, 2024.</b></span><br></div>
 </td>
 </tr>
 <tr>
