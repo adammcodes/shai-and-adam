@@ -359,7 +359,7 @@ export const mapMarkers: MapMarker[] = [
     id: 18,
     png: 0, // monday
     title: "Coyaba Beach Resort",
-    desc: "We are staying here Monday the 6th to Monday the 13th of May.",
+    desc: "May 6th to May 13th, 2024",
     position: coyabaPosition,
     website: "https://www.coyaba.com",
     email: "reservations@coyaba.com",
@@ -376,7 +376,7 @@ export const mapMarkers: MapMarker[] = [
     id: 19,
     png: 1, // tuesday
     title: "Coyaba Beach Resort",
-    desc: "May 7th: relaxing",
+    desc: "May 7th, 2024",
     position: coyabaPosition,
     website: "https://www.coyaba.com",
     email: "reservations@coyaba.com",
@@ -393,7 +393,7 @@ export const mapMarkers: MapMarker[] = [
     id: 20,
     png: 2, // wednesday
     title: "Street Food Wednesday at the Dodgy Dock",
-    desc: "May 8th: eating, drinking & partying",
+    desc: "May 8th, 2024 (evening event)",
     position: {
       lat: 12.00042635320048,
       lng: -61.7687359033394,
@@ -414,7 +414,7 @@ export const mapMarkers: MapMarker[] = [
     id: 21,
     png: 3, // thursday
     title: "Ceremony & Reception at True Blue Bay Resort",
-    desc: "May 9th: getting married",
+    desc: "May 9th, 2024",
     position: {
       lat: 12.000312492233384,
       lng: -61.768568271488,

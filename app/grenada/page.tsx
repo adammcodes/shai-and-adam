@@ -48,17 +48,39 @@ export default function Grenada() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Grenada">
-        <p className="italic">Thursday May 9, 2024</p>
         <br />
-        <strong>Location of the Ceremony&nbsp;&&nbsp;Reception:</strong>
-        <p className="text-left lg:text-center">
-          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada
+        <strong>Where we are staying:</strong>
+        <p className="text-center">
+          <Link
+            target="_blank"
+            className="underline"
+            href="https://www.coyaba.com/"
+          >
+            Coyaba Beach Resort
+          </Link>{" "}
+          <br />
         </p>
         <br />
-        <strong>Details:</strong>
+        <strong>When:</strong>
         <p className="text-center">
-          We&apos;re still working out the details. We&apos;ll be sharing more
-          information as we get closer to the date.
+          from Monday, May 6th to Monday, May 13th, 2024
+          <br />
+        </p>
+        <br />
+        <strong>Ceremony&nbsp;&&nbsp;Reception:</strong>
+        <p className="text-left lg:text-center">
+          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada.
+          <br />
+          on May 9th, 2024.
+        </p>
+        <br />
+        <p className="text-center">
+          Please refer to the map and tabs below on "Where the couple will be"
+          for more information on these locations.
+          <br />
+          <br />
+          The currency in Grenada is Eastern Carribeans. US dollars are also
+          accepted.
           <br />
           <br />
           Please{" "}
@@ -71,6 +93,7 @@ export default function Grenada() {
           </Link>{" "}
           if you have any questions.
         </p>
+        <br />
       </Card>
 
       {/* Display Error for loading map */}

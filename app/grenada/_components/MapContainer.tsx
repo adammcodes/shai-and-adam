@@ -115,7 +115,7 @@ export default function MapContainer({
             </div>
           )}
           {filteredMarkers.sort(sortMarkers).map((marker) => (
-            <div key={marker.id} className="flex flex-col">
+            <div key={marker.id} className="flex flex-col mb-10">
               <div className="flex items-center">
                 <div
                   className="w-10 h-10 m-3 rounded-full bg-[#FFF] flex justify-center items-center cursor-pointer"
