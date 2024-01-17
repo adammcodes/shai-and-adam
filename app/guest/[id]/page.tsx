@@ -8,7 +8,7 @@ import { GuestData } from "@/helpers/guestData";
 import Guest from "../_components/Guest";
 
 export default async function GuestsInGroup(request: any) {
-  let guests;
+  let guests: any;
   let error;
   // get the id from the URL in the request params
   const { id } = request.params;
@@ -53,13 +53,14 @@ export default async function GuestsInGroup(request: any) {
         <>
           <h1 className="font-bold text-3xl mb-2">RSVP</h1>
           <p className="text-lg text-center px-[10px]">
-            Please submit an RSVP for each member of your group:
+            Please submit an RSVP for <u>each member</u> of your group. You have{" "}
+            {guests.length} guests in your group.
           </p>
 
           <div className="flex flex-col w-full items-center justify-center">
             {guests && guests.length > 0 ? (
               guests.map((guest: GuestData, index: number) => (
-                <Guest key={index} guest={guest} />
+                <Guest key={index} guest={guest} allGuests={guests} />
               ))
             ) : (
               <p>No guests found.</p>

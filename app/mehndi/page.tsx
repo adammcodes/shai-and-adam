@@ -10,7 +10,7 @@ export default function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Mehndi">
-        <p className="italic">Saturday May 4th, 2024</p>
+        <p className="italic">Saturday May 4th, 2024 @ 6:30PM</p>
         <br />
         <strong>Location:</strong>
         <p className="text-center">

@@ -144,17 +144,17 @@ width: 100px !important;
 }</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style data-emotion-global="" type="text/css">
-@media (max-width:520px){.eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
-}
-body[data-outlook-cycle] .eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
 @media (max-width:520px){.eb-1i9x0hp{padding:20px 0px 20px !important;}
 }
 body[data-outlook-cycle] .eb-1i9x0hp{padding:20px 0px 20px !important;}
+@media (max-width:520px){.eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
+}
+body[data-outlook-cycle] .eb-1fi9xc2 > div{font-size:10px !important;line-height:12px !important;}
 </style>
 </head>
 <body style="background-color:#4FB2D1;">
 <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-Hi ${name}, please RSVP inside.
+Hi ${name}, please RSVP to Shai & Adam's wedding events.
 ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌ ͏‌
 </div>
 <div class="bg-main" style="background-color:#4FB2D1;">
@@ -298,7 +298,7 @@ class="" style="vertical-align:top;width:600px;"
 </tr>
 <tr>
 <td align="center" class="font-20" style="font-size:0px;padding:0px 10px;word-break:break-word;">
-<div style="font-family:Arial;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;"><strong><a href="" style="color:#fff;text-decoration:none;">Saturday May<span> </span>4th,<span> </span>2024</a></strong><br>
+<div style="font-family:Arial;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;"><strong><a href="" style="color:#fff;text-decoration:none;">Saturday May<span> </span>4th,<span> </span>2024<br> 6:30<span> </span>PM</a></strong><br>
 <span>@</span><br>
 <a href="https://www.simplydeliciousrestaurant.ca/" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">Simply Delicious</a></div>
 </td>
@@ -308,8 +308,7 @@ class="" style="vertical-align:top;width:600px;"
 <div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;"><a href="https://maps.app.goo.gl/hcH4R7ZkiJJWqtfF8" target="_blank" style="color:#fff;text-decoration:underline;">
 7850<span> </span>Woodbine Ave<br>
 Markham, ON L3R<span> </span>4S1</a>
-<br><br>
-Details coming soon.</div>
+<br><br></div>
 </td>
 </tr>
 <tr>
@@ -341,15 +340,7 @@ Details coming soon.</div>
 <td align="center" class="font-16" style="font-size:0px;padding:20px 10px;word-break:break-word;">
 <div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;"><a href="https://maps.app.goo.gl/NKYNnu423SPJdNET7" target="_blank" style="color:#fff;text-decoration:underline;">
 True Blue, St George's, Grenada</a>
-<br><br>
-Details coming soon.</div>
-</td>
-</tr>
-<tr>
-<td align="center" class="font-16" style="font-size:0px;padding:0px 20px;word-break:break-word;">
-<div class="button" style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;">
-<a href="https://shaileenandadam.rsvp/about" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">Check out our website</a>
-</div>
+<br><br></div>
 </td>
 </tr>
 <tr>
@@ -358,12 +349,7 @@ Details coming soon.</div>
 <br>
 More information on each event can be found at our website at <a target="_blank" href="https://shaileenandadam.rsvp" style="color:#FFF;">shaileenandadam.rsvp</a>. Please look out for updates.<br>
 <br>
-We have a limited number of rooms held at <b>Coyaba Beach Resort</b>.<br>
-If you choose to stay here, feel free to use this confirmation number before <strong style="font-family: Arial;text-decoration:none;">December<span> </span>21st, 2023</strong>:<br>
-<span style="font-family: Arial;">CBR75805</span>
-<br>
-<br>
-Kindly RSVP to each event using the link below before<br>
+Please submit an RSVP for each person in your group before<br>
 <span style="font-family: Arial;"><b>February<span> </span>1st, 2024.</b></span><br></div>
 </td>
 </tr>

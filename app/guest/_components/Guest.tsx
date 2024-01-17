@@ -10,7 +10,18 @@ import TextInput from "./TextInput";
 import RadioSelect from "./RadioSelect";
 
 // Component for rending each guest in the group
-const Guest = ({ guest }: { guest: GuestData }) => {
+const Guest = ({
+  guest,
+  allGuests,
+}: {
+  guest: GuestData;
+  allGuests: GuestData[];
+}) => {
+  // all other guest names in the group:
+  const guestNames = allGuests
+    .filter((g) => g.id !== guest.id)
+    .map((guest) => guest.name)
+    .join(", ");
   // state for loading
   const [loading, setLoading] = useState(false);
   // state for error modal
@@ -74,7 +85,7 @@ const Guest = ({ guest }: { guest: GuestData }) => {
             setConfetti(true);
           }
           const message = attending
-            ? "We will see you there! 🎉"
+            ? `We will see you there! 🎉`
             : data.message;
           setConfirmationModalText(message);
         });
@@ -216,6 +227,13 @@ const Guest = ({ guest }: { guest: GuestData }) => {
           )}
           <p className="text-center text-xl lg:text-3xl">
             {confirmationModalText}
+          </p>
+          <br />
+          <br />
+          <p className="text-center text-lg lg:text-2xl">
+            If you haven't done so already please submit the RSVP for the other
+            guests in your group on this page:
+            <br /> {guestNames}
           </p>
         </Modal>
       )}
