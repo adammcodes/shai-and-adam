@@ -262,18 +262,42 @@ export default function GuestList() {
           <table className="text-center mt-10">
             <thead>
               <tr>
-                <th className="px-5">Select</th>
-                <th className="px-5">Delivered</th>
-                <th className="px-5">Name</th>
-                <th className="px-5">RSVP Submitted</th>
-                <th className="px-5">Group #</th>
-                <th className="px-5">Email</th>
-                <th className="px-5">Invite to mehndi</th>
-                <th className="px-5">Attending mehndi</th>
-                <th className="px-5">Invite to Grenada</th>
-                <th className="px-5">Attending Grenada</th>
-                <th className="px-5">Diet</th>
-                <th className="px-5">Send Email</th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Select
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Delivered
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Name
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  RSVP Submitted
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Group #
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Email
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Invite to mehndi
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Attending mehndi
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Invite to Grenada
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Attending Grenada
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Diet
+                </th>
+                <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  Send Email
+                </th>
               </tr>
             </thead>
             <tbody>
