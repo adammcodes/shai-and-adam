@@ -30,6 +30,8 @@ export default function GuestList() {
   // state for selected guests (array of id strings)
   const [selectedGuests, setSelectedGuests] = useState<string[]>([]);
 
+  const numOfGuestsWithEmail = guests.filter((guest) => guest.email).length;
+
   useEffect(() => {
     const getGuests = async () => {
       try {
@@ -65,6 +67,16 @@ export default function GuestList() {
   // number of guests who have had their invite delivered
   const deliveredCount = guests.filter(
     (guest: GuestData) => guest.invite_delivered
+  ).length;
+
+  // number of guests who are attending the mehndi
+  const attendingMehndiCount = guests.filter(
+    (guest: GuestData) => guest.attending_mehndi
+  ).length;
+
+  // number of guests who are attending the wedding in Grenada
+  const attendingGrenadaCount = guests.filter(
+    (guest: GuestData) => guest.attending_grenada
   ).length;
 
   // update Invite Delivered field in Notion database for guest
@@ -220,11 +232,21 @@ export default function GuestList() {
         </h1>
 
         <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {deliveredCount}/{guests.length} have had their invite delivered.
+          {deliveredCount}/{numOfGuestsWithEmail} with an email have had their
+          invite delivered.
         </h2>
 
         <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {rsvpCount}/{guests.length} have submitted an RSVP.
+          {rsvpCount}/{numOfGuestsWithEmail} with an email have submitted an
+          RSVP.
+        </h2>
+
+        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
+          {attendingMehndiCount}/{guests.length} are attending the mehndi.
+        </h2>
+
+        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
+          {attendingGrenadaCount}/{guests.length} are attending in Grenada.
         </h2>
 
         <Button
