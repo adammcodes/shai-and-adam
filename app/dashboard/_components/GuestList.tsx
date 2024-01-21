@@ -1,17 +1,14 @@
 // list of guests on the Invite List, which is a notion database
 // Fetches Invite List from Notion database
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+// import Link from "next/link";
 import Button from "./Button";
+import Modal from "@/components/Modal";
+import ConfettiExplosion from "react-confetti-explosion";
 import sendWeddingInvite from "../_helpers/sendWeddingInvite";
 // import types
 import { GuestData } from "@/helpers/guestData";
-
 type SendingInvites = string[];
-
-// Modal
-import Modal from "@/components/Modal";
-import ConfettiExplosion from "react-confetti-explosion";
-import Link from "next/link";
 
 export default function GuestList() {
   const [guests, setGuests] = useState<GuestData[]>([]);
@@ -29,6 +26,10 @@ export default function GuestList() {
   const [errorModalText, setErrorModalText] = useState("");
   // state for selected guests (array of id strings)
   const [selectedGuests, setSelectedGuests] = useState<string[]>([]);
+  // sort guests by column name
+  const [sortColumn, setSortColumn] = useState<string>("group_number");
+  // sort direction
+  const [sortDirection, setSortDirection] = useState<string>("asc");
 
   const numOfGuestsWithEmail = guests.filter((guest) => guest.email).length;
 
@@ -55,8 +56,33 @@ export default function GuestList() {
     getGuests();
   }, []);
 
-  const sendInviteToMehndi = async (email: string) => {
-    console.log("Sending mehndi invite to:", email);
+  // Function to toggle sort direction and set sort column
+  const handleSort = (columnName: string) => {
+    setSortColumn(columnName);
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  };
+
+  // Sorted guests array based on sortColumn and sortDirection
+  const sortedGuests = useMemo(() => {
+    const sorter = (a: any, b: any) => {
+      let A = a[sortColumn];
+      let B = b[sortColumn];
+
+      // If sorting by name, split and use the last name
+      if (sortColumn === "name") {
+        A = a[sortColumn].split(" ").slice(-1)[0];
+        B = b[sortColumn].split(" ").slice(-1)[0];
+      }
+
+      if (A < B) return sortDirection === "asc" ? -1 : 1;
+      if (A > B) return sortDirection === "asc" ? 1 : -1;
+      return 0;
+    };
+    return [...guests].sort(sorter);
+  }, [guests, sortColumn, sortDirection]);
+
+  const sendInviteToMehndi = async (guest: GuestData) => {
+    console.log(guest);
   };
 
   // number of guests who have submitted an rsvp
@@ -227,27 +253,28 @@ export default function GuestList() {
   return (
     <section className="flex min-h-screen flex-col items-center mt-[2em] text-black">
       <div className="text-center">
-        <h1 className="text-center font-bold text-2xl py-5">
-          Guest List ({guests.length} people)
-        </h1>
+        <header className="p-2">
+          <h1 className="font-bold text-2xl py-5">
+            Guest List ({guests.length} people)
+          </h1>
 
-        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {deliveredCount}/{numOfGuestsWithEmail} with an email have had their
-          invite delivered.
-        </h2>
+          <h2 className="font-bold text-blue-500 text-xl py-5">
+            {deliveredCount}/{numOfGuestsWithEmail} with an email have had their
+            invite delivered.
+          </h2>
 
-        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {rsvpCount}/{numOfGuestsWithEmail} with an email have submitted an
-          RSVP.
-        </h2>
+          <h2 className="font-bold text-blue-500 text-xl py-5">
+            {rsvpCount}/{guests.length} have submitted an RSVP.
+          </h2>
 
-        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {attendingMehndiCount}/{guests.length} are attending the mehndi.
-        </h2>
+          <h2 className="font-bold text-blue-500 text-xl py-5">
+            {attendingMehndiCount} are attending the mehndi.
+          </h2>
 
-        <h2 className="text-center font-bold text-blue-500 text-xl py-5">
-          {attendingGrenadaCount}/{guests.length} are attending in Grenada.
-        </h2>
+          <h2 className="font-bold text-blue-500 text-xl py-5">
+            {attendingGrenadaCount} are attending in Grenada.
+          </h2>
+        </header>
 
         <Button
           text={sendingInvite.length > 0 ? "Sending..." : "Send To Selected"}
@@ -259,54 +286,77 @@ export default function GuestList() {
         {errorMessage && <p className="text-red-500">Error: {errorMessage}</p>}
 
         {guests.length > 0 && (
-          <table className="text-center mt-10">
-            <thead>
-              <tr>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Select
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Delivered
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Name
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  RSVP Submitted
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Group #
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Email
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Invite to mehndi
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Attending mehndi
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Invite to Grenada
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Attending Grenada
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Diet
-                </th>
-                <th className="px-5 sticky z-10 top-0 bg-black text-white">
-                  Send Email
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {guests
-                .sort(
-                  (a: GuestData, b: GuestData) =>
-                    a.group_number - b.group_number
-                )
-                .map((guest: GuestData) => (
+          <div className="overflow-x-auto max-w-[100vw] mt-10 max-h-[100vh] shadow-lg">
+            <table className="w-full overflow-x-auto text-center table-auto text-sm md:text-md">
+              <thead>
+                <tr>
+                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                    Select
+                  </th>
+                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                    Delivered
+                  </th>
+                  <th
+                    onClick={() => handleSort("name")}
+                    className="px-5 sticky z-50 top-0 left-0 bg-black text-white"
+                  >
+                    Name
+                  </th>
+                  <th
+                    onClick={() => handleSort("submitted_rsvp")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    RSVP Submitted
+                  </th>
+                  <th
+                    onClick={() => handleSort("group_number")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Group #
+                  </th>
+                  <th
+                    onClick={() => handleSort("email")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Email
+                  </th>
+                  <th
+                    onClick={() => handleSort("attending_mehndi")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Attending mehndi
+                  </th>
+                  <th
+                    onClick={() => handleSort("attending_grenada")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Attending Grenada
+                  </th>
+                  <th
+                    onClick={() => handleSort("invite_to_mehndi")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Invite to mehndi
+                  </th>
+                  <th
+                    onClick={() => handleSort("invite_to_grenada")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Invite to Grenada
+                  </th>
+                  <th
+                    onClick={() => handleSort("diet")}
+                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                  >
+                    Diet
+                  </th>
+                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                    Send Email
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedGuests.map((guest: GuestData) => (
                   <tr key={guest.id}>
                     <td className="border border-black">
                       <input
@@ -320,44 +370,39 @@ export default function GuestList() {
                     <td className="border border-black">
                       {guest.invite_delivered ? "✅" : "🔲"}
                     </td>
-                    <td className="border border-black">{guest.name}</td>
+                    <td className="sticky left-[-1px] z-10 bg-black text-white p-1">
+                      {guest.name}
+                    </td>
                     <td className="border border-black">
                       {guest.submitted_rsvp ? "✅" : "🔲"}
                     </td>
                     <td className="border border-black">
                       {guest.group_number}
                     </td>
-                    <td className="border border-black">
-                      <Link
-                        href={`mailto:${guest.email}?subject=Shai and Adam's Wedding&body=Hi, Please check your spam/junk folder for an email from wedding@shaileenandadam.rsvp. Please say "this is not junk" and add to contacts. Thank you!`}
-                        target="_blank"
-                      >
-                        {guest.email}
-                      </Link>
-                    </td>
-                    <td className="border border-black">
-                      {guest.invite_to_mehndi ? "✅" : "🔲"}
-                    </td>
+                    <td className="border border-black">{guest.email}</td>
                     <td className="border border-black">
                       {guest.attending_mehndi ? "✅" : "🔲"}
+                    </td>
+                    <td className="border border-black">
+                      {guest.attending_grenada ? "✅" : "🔲"}
                     </td>
                     <td className="border border-black">
                       {guest.invite_to_grenada ? "✅" : "🔲"}
                     </td>
                     <td className="border border-black">
-                      {guest.attending_grenada ? "✅" : "🔲"}
+                      {guest.invite_to_mehndi ? "✅" : "🔲"}
                     </td>
                     <td className="border border-black px-5">{guest.diet}</td>
                     <td className="border-black p-5 flex flex-col">
-                      {guest.invite_to_mehndi && !guest.invite_to_grenada && (
+                      {/* {guest.invite_to_mehndi && !guest.invite_to_grenada && (
                         <Button
                           text="Send Mehndi Invite"
                           onClick={() => {
-                            sendInviteToMehndi(guest.email);
+                            sendInviteToMehndi(guest);
                           }}
                           disabled={!guest.email || !guest.invite_to_mehndi}
                         />
-                      )}
+                      )} */}
                       {guest.invite_to_grenada && guest.invite_to_mehndi && (
                         <Button
                           text={
@@ -379,8 +424,9 @@ export default function GuestList() {
                     </td>
                   </tr>
                 ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         )}
         {loading && <p>Loading...</p>}
 

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Shai & Adam",
   description:
     "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default async function RootLayout({
@@ -98,7 +99,7 @@ export default async function RootLayout({
                     rel="noopener noreferrer"
                     className="underline"
                   >
-                    Email me
+                    Email&nbsp;me
                   </a>
                   .
                 </p>

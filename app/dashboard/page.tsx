@@ -8,10 +8,8 @@ export default withPageAuthRequired(function Dashboard() {
   const { user, error, isLoading } = useUser();
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="w-full flex min-h-screen flex-col items-center">
       <Card title="Dashboard">
-        <p className="italic">Manage the invites here!</p>
-        <br />
         {!isLoading && !error && !user && (
           <>
             <p>
@@ -31,7 +29,7 @@ export default withPageAuthRequired(function Dashboard() {
         {user && (
           <div>
             <p>Hi {user.name}</p>
-            <p>Your email is {user.email}.</p>
+            <br />
             <p>
               <a href="/api/auth/logout">Logout</a>
             </p>
