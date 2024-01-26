@@ -79,8 +79,8 @@ export default function Grenada() {
           for more information on these locations.
           <br />
           <br />
-          The currency in Grenada is Eastern Carribeans. US dollars are also
-          accepted.
+          The currency in Grenada is Eastern Carribean Dollars. US dollars are
+          also accepted.
           <br />
           <br />
           Please{" "}
