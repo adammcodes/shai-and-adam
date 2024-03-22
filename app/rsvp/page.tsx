@@ -4,17 +4,18 @@ import Paragraph from "@/components/Paragraph";
 
 export default function RsvpPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 text-lg lg:text-xl">
+    <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="To RSVP">
-        <Paragraph>
-          <strong>
+        <ol className="list-decimal pl-10" role="list">
+          <li className="p-4 font-bold">
             Please click the "RSVP" button in your email invitation.
-          </strong>
-        </Paragraph>
-        <Paragraph>
-          You will be taken to the guest page where you can submit an RSVP for
-          each member of your group.
-        </Paragraph>
+          </li>
+          <li className="p-4 font-bold">
+            For each member of your group, fill in the details, and click
+            "Submit RSVP".
+          </li>
+        </ol>
+
         <Paragraph>
           If you have any questions or encounter any issues, please email us at{" "}
           <Link
@@ -28,6 +29,6 @@ export default function RsvpPage() {
           .
         </Paragraph>
       </Card>
-    </div>
+    </main>
   );
 }

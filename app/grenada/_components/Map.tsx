@@ -5,6 +5,8 @@ import MapMarkers from "./MapMarkers";
 const containerStyle = {
   width: "680px",
   height: "600px",
+  borderRadius: "20px",
+  // border: "1px solid #002F6C",
 };
 
 type MapProps = {

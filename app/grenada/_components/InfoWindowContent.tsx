@@ -15,16 +15,21 @@ const InfoWindowContent: React.FC<InfoWindowContentProps> = ({
 }) => {
   return (
     <>
-      <div className="text-[#002F6C]">
-        <h1 className="font-bold text-[#002F6C]">{title}</h1>
+      <div className="text-[#002F6C] py-3 px-2 pr-8">
+        <h1 className="font-bold text-[#002F6C] text-[18px]">{title}</h1>
         {email && (
           <>
+            <br />
+            <span className="font-bold">Email: </span>
             <br />
             <a id={id.toString()} target="_blank" href={`mailto:${email}`}>
               {email}
             </a>
+            <br />
           </>
         )}
+        <br />
+        <span className="font-bold">Website: </span>
         <br />
         <a target="_blank" href={website}>
           {removeProtocolFromURL(website)}

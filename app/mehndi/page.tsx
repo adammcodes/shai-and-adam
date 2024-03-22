@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 // import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import stpeters from "public/images/stpeters.jpeg";
+import mehndi from "public/images/mehndi.png";
+import Paragraph from "@/components/Paragraph";
 
 export default function Mehndi() {
   return (
@@ -23,12 +25,103 @@ export default function Mehndi() {
             7850 Woodbine Ave, Markham, ON L3R 4S1
           </Link>
         </p>
-        <br />
-        <strong>Details:</strong>
-        <p className="text-center">
-          We&apos;re still working out the details. We&apos;ll be sharing more
-          information as we get closer to the date.
-        </p>
+      </Card>
+
+      <Card title="What Is a Mehndi?">
+        <Paragraph>
+          &emsp;An Ismaili Mehndi (Henna) Ceremony is traditionally a
+          pre-wedding celebration hosted by the bride and her family in the
+          bride's home. Although this is typically a small, casual affair,
+          modern multi-cultural mehndi ceremonies are becoming more elaborate
+          and inclusive of both families. A Mehndi Ceremony involves adorning
+          the hands and feet of the bride with a henna design as a celebration.
+          At a Mehndi, guests also have the opportunity to decorate their hands
+          with henna. Many believe that the Mehndi Ceremony signifies happiness,
+          prosperity, love and strength.
+        </Paragraph>
+        <Paragraph>
+          &emsp;Mehndi (henna) is a paste made from the henna plant that is left
+          on the skin to create a beautiful design. The longer henna paste is
+          left on the skin, the darker the design will be.
+        </Paragraph>
+      </Card>
+
+      <Image
+        src={mehndi}
+        alt="Mehndi"
+        width={410}
+        height={410}
+        className="rounded-[30px] drop-shadow-lg"
+      />
+
+      <Card title="What happens at a Mehndi?">
+        <Paragraph>Some traditions you will see:</Paragraph>
+        <Paragraph>
+          Puro: The women of the groom's family carry the bride's trousseau to
+          welcome her into their family. In turn, the bride's mother greets them
+          and will "ponke" each woman to welcome them into the bride's family.
+        </Paragraph>
+        <Paragraph>
+          Ponke/Ponkwa: The ponkwa ceremony is performed many times throughout
+          the wedding festivities. It is a method of bestowing blessings by the
+          mothers of the couple. The mother places a dot of saffron water
+          (chandlo) on the forehead of a person, representing good luck. She
+          will then place rice on top of the chandlo, to signify bounty.
+          Coloured rice or flower petals are then showered over the person three
+          times as a blessing. Finally, the person is fed something sweet to
+          bless them with, "sweetness," in life. After the mothers have
+          completed the Ponkwa ceremony, guests are welcome to participate as
+          well if they wish.
+        </Paragraph>
+        <Paragraph>
+          Entrance of the Groom: The groom enters the hall accompanied by
+          friends and family of his choice in the spirit of celebration as he
+          enters a new phase in his life.
+        </Paragraph>
+        <Paragraph>
+          Entrance of the Bride: The bride enters the hall led by friends and
+          family of her choice. They hold a saree above her head to signify
+          protection and dignity. Shaileen will be entering under her
+          grandmother's saree.
+        </Paragraph>
+        <Paragraph>
+          Sapatia: Sapatia are two clay pots that are placed on top of each
+          other that are broken throughout the wedding ceremonies, and are
+          filled with items of significance; lentils to symbolize abundance and
+          bounty, silver to signify wealth, sugar representing sweetness and
+          harmony, and turmeric for good health. Filled sapatias are placed in
+          front of the couple who will stomp on them to break them open and
+          release their contents. It is said that whoever breaks the sapatia
+          first will rule the household.
+        </Paragraph>
+        <Paragraph>
+          Blessing The Couple: Once the couple has entered the hall, it is time
+          for the mothers to bestow their blessings. At this time, the mothers
+          will ponke both the bride and groom. Both mothers will then hold the
+          ends of their sarees over the heads of the bride and groom to
+          symbolize protection. Sapatias are then placed in front of the couple
+          and are broken to signify the end of the ceremony.
+        </Paragraph>
+      </Card>
+
+      <Card title="FAQs">
+        <Paragraph>
+          <strong>Q: What should I wear?</strong>
+          <br />
+          A: Both Indian and Western attire are appropriate. Dress code is
+          similar to cocktail style attire.
+          <br />
+          <br />
+          <strong>Q: What are we eating?</strong>
+          <br />
+          A: Both Indian and Italian food will be served at the Mehndi.
+          <br />
+          <br />
+          <strong>Q: Where do I park?</strong>
+          <br />
+          There is a parking lot attached to the venue, with free parking both
+          in front and behind the building.
+        </Paragraph>
       </Card>
 
       <Image
