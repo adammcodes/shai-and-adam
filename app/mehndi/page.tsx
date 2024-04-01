@@ -12,7 +12,10 @@ export default function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Mehndi">
-        <p className="italic">Saturday May 4th, 2024 @ 6:30PM</p>
+        <p className="italic">
+          Saturday May 4th, 2024
+          <br className="lg:hidden" /> @ 6:30PM
+        </p>
         <br />
         <strong>Location:</strong>
         <p className="text-center">
@@ -44,15 +47,14 @@ export default function Mehndi() {
           on the skin to create a beautiful design. The longer henna paste is
           left on the skin, the darker the design will be.
         </Paragraph>
+        <Image
+          src={mehndi}
+          alt="Mehndi"
+          width={410}
+          height={410}
+          className="rounded-[30px] drop-shadow-lg my-4"
+        />
       </Card>
-
-      <Image
-        src={mehndi}
-        alt="Mehndi"
-        width={410}
-        height={410}
-        className="rounded-[30px] drop-shadow-lg"
-      />
 
       <Card title="What happens at a Mehndi?">
         <Paragraph>Some traditions you will see:</Paragraph>
@@ -106,29 +108,34 @@ export default function Mehndi() {
 
       <Card title="FAQs">
         <Paragraph>
-          <strong>Q: What should I wear?</strong>
+          <strong>What should I wear?</strong>
           <br />
-          A: Both Indian and Western attire are appropriate. Dress code is
-          similar to cocktail style attire.
-          <br />
-          <br />
-          <strong>Q: What are we eating?</strong>
-          <br />
-          A: Both Indian and Italian food will be served at the Mehndi.
+          Both Indian and Western attire are appropriate. Dress code is similar
+          to cocktail style attire.
           <br />
           <br />
-          <strong>Q: Where do I park?</strong>
+          <strong>What are we eating?</strong>
+          <br />
+          Both Indian and Italian food will be served at the Mehndi.
+          <br />
+          <br />
+          <strong>Where do I park?</strong>
           <br />
           There is a parking lot attached to the venue, with free parking both
           in front and behind the building.
+          <br />
+          <br />
+          <strong>Will there be alcohol?</strong>
+          <br />
+          There will be a open bar available.
         </Paragraph>
       </Card>
 
       <Image
         src={stpeters}
         alt="Shai and Adam at the Vatican"
-        width={600}
-        height={400}
+        width={300}
+        height={200}
         className="rounded-[30px] drop-shadow-lg mt-5"
       />
     </main>

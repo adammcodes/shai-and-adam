@@ -10,6 +10,7 @@ import { mapMarkers, MapMarker } from "@/app/grenada/_helpers/mapMarkers";
 import { useState } from "react";
 // components for this page
 import MapContainer from "./_components/MapContainer";
+import Paragraph from "@/components/Paragraph";
 // import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
 export default function Grenada() {
@@ -63,7 +64,7 @@ export default function Grenada() {
         <br />
         <strong>When:</strong>
         <p className="text-center">
-          from Monday, May 6th to Monday, May 13th, 2024
+          from Monday, May 6th to Sunday, May 12th, 2024
           <br />
         </p>
         <br />
@@ -82,7 +83,30 @@ export default function Grenada() {
           The currency in Grenada is Eastern Carribean Dollars. US dollars are
           also accepted.
           <br />
-          <br />
+        </p>
+        <br />
+        <Paragraph>
+          By the way,{" "}
+          <a
+            target="_blank"
+            className="underline"
+            href="https://grenadaturns50.gd/"
+          >
+            Grenada turns 50
+          </a>{" "}
+          this year!
+        </Paragraph>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/2rterUUISSg?si=CyqyW7FEjWDNQTX7"
+          title="YouTube video player"
+          style={{ margin: "1.5em" }}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+        <Paragraph>
           Please{" "}
           <Link
             href="mailto:pineappleshirt473@gmail.com"
@@ -92,8 +116,7 @@ export default function Grenada() {
             reach out to us
           </Link>{" "}
           if you have any questions.
-        </p>
-        <br />
+        </Paragraph>
       </Card>
 
       {/* Display Error for loading map */}
