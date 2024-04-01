@@ -100,8 +100,8 @@ export default function Home() {
       <Image
         src={us}
         alt="Shai and Adam"
-        width={600}
-        height={400}
+        width={300}
+        height={200}
         className="rounded-[30px] drop-shadow-lg"
       />
     </main>

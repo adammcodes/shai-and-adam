@@ -57,20 +57,6 @@ export default function Home() {
         height={200}
         className="rounded-[30px] drop-shadow-lg mb-5 max-w-[90%]"
       />
-      <Image
-        src={tomatoes}
-        alt="Naples"
-        width={350}
-        height={200}
-        className="rounded-[30px] drop-shadow-lg mb-5 max-w-[90%]"
-      />
-      <Image
-        src={cefalu}
-        alt="Naples"
-        width={350}
-        height={200}
-        className="rounded-[30px] drop-shadow-lg mb-5 max-w-[90%]"
-      />
     </main>
   );
 }
