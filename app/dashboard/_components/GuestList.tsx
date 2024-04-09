@@ -6,8 +6,10 @@ import Button from "./Button";
 import Modal from "@/components/Modal";
 import ConfettiExplosion from "react-confetti-explosion";
 import sendWeddingInvite from "../_helpers/sendWeddingInvite";
+import sendUpdateEmail from "../_helpers/sendUpdateEmail";
 // import types
 import { GuestData } from "@/helpers/guestData";
+
 type SendingInvites = string[];
 
 export default function GuestList() {
@@ -31,7 +33,12 @@ export default function GuestList() {
   // sort direction
   const [sortDirection, setSortDirection] = useState<string>("asc");
 
-  const numOfGuestsWithEmail = guests.filter((guest) => guest.email).length;
+  console.log(guests);
+  const guestsWithEmails = guests.filter((guest) => guest.email);
+  // const adam = guests.filter(
+  //   (guest) => guest.email === "adammarsala@hotmail.com"
+  // );
+  const numOfGuestsWithEmail = guestsWithEmails.length;
 
   useEffect(() => {
     const getGuests = async () => {
@@ -81,9 +88,9 @@ export default function GuestList() {
     return [...guests].sort(sorter);
   }, [guests, sortColumn, sortDirection]);
 
-  const sendInviteToMehndi = async (guest: GuestData) => {
-    console.log(guest);
-  };
+  // const sendInviteToMehndi = async (guest: GuestData) => {
+  //   console.log(guest);
+  // };
 
   // number of guests who have submitted an rsvp
   const rsvpCount = guests.filter(
@@ -250,6 +257,62 @@ export default function GuestList() {
     );
   };
 
+  // send update email to everyone
+  const sendUpdateEmailToSelected = async () => {
+    // turn on loading state for selected guests
+    setSendingInvite([...sendingInvite, ...selectedGuests]);
+
+    // send update email for each guest
+    const responses = await Promise.all(
+      selectedGuests.map(async (id) => {
+        const guest = guests.find((guest) => guest.id === id);
+        if (guest) {
+          return await sendUpdateEmail(
+            guest.email,
+            guest.id,
+            guest.name,
+            guest.group_number
+          );
+        }
+      })
+    );
+
+    console.log(responses);
+
+    const successfulDeliveries = responses.filter(
+      (response) => response?.accepted.length
+    );
+
+    // if any email is rejected, log error to console
+    if (responses.some((response) => response?.rejected.length)) {
+      console.error(responses.filter((response) => response?.rejected.length));
+      setErrorModalText("Error sending some emails. Check logs.");
+    }
+
+    // if there is at least one successful delivery
+    if (successfulDeliveries.length) {
+      setConfetti(true);
+      // open modal
+      setModalIsOpen(true);
+    }
+
+    // turn off loading state for selected guests
+    setSendingInvite([]);
+  };
+
+  // console.log(guestsWithEmails);
+  // console.log(adam);
+
+  const handleSelectAll = () => {
+    if (selectedGuests.length === guestsWithEmails.length) {
+      setSelectedGuests([]);
+    } else {
+      setSelectedGuests(
+        guests.filter((guest) => guest.email).map((guest) => guest.id)
+      );
+    }
+  };
+
   return (
     <section className="flex min-h-screen flex-col items-center mt-[2em] text-black">
       <div className="text-center">
@@ -277,10 +340,29 @@ export default function GuestList() {
         </header>
 
         <Button
+          disabled={guests.length === 0}
+          text={
+            selectedGuests.length === guestsWithEmails.length
+              ? "Deselect All"
+              : "Select All"
+          }
+          onClick={handleSelectAll}
+        />
+
+        <Button
           text={sendingInvite.length > 0 ? "Sending..." : "Send To Selected"}
           onClick={handleSendToSelected}
-          // className="bg-[#06b6d4] text-white rounded-md p-2 m-2 hover:bg-[#d9f99d] hover:text-black"
           disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
+        />
+
+        <Button
+          text={
+            sendingInvite.length
+              ? "Sending..."
+              : "Send Update Email To Selected"
+          }
+          onClick={sendUpdateEmailToSelected}
+          disabled={guestsWithEmails.length === 0 || sendingInvite.length > 0}
         />
 
         {errorMessage && <p className="text-red-500">Error: {errorMessage}</p>}
@@ -298,55 +380,55 @@ export default function GuestList() {
                   </th>
                   <th
                     onClick={() => handleSort("name")}
-                    className="px-5 sticky z-50 top-0 left-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-50 top-0 left-0 bg-black text-white"
                   >
                     Name
                   </th>
                   <th
                     onClick={() => handleSort("submitted_rsvp")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     RSVP Submitted
                   </th>
                   <th
                     onClick={() => handleSort("group_number")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Group #
                   </th>
                   <th
                     onClick={() => handleSort("email")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Email
                   </th>
                   <th
                     onClick={() => handleSort("attending_mehndi")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Attending mehndi
                   </th>
                   <th
                     onClick={() => handleSort("attending_grenada")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Attending Grenada
                   </th>
                   <th
                     onClick={() => handleSort("invite_to_mehndi")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Invite to mehndi
                   </th>
                   <th
                     onClick={() => handleSort("invite_to_grenada")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Invite to Grenada
                   </th>
                   <th
                     onClick={() => handleSort("diet")}
-                    className="px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
                   >
                     Diet
                   </th>
