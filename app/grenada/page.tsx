@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 // Grenada page
 import Card from "@/components/Card";
 // helpers for google maps, data, and styles
@@ -12,6 +13,8 @@ import { useState } from "react";
 import MapContainer from "./_components/MapContainer";
 import Paragraph from "@/components/Paragraph";
 // import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import tbb from "public/images/tbb.jpeg";
+import dodgydock from "public/images/dodgydock.jpeg";
 
 export default function Grenada() {
   // begin loading google maps
@@ -69,10 +72,9 @@ export default function Grenada() {
         </p>
         <br />
         <strong>Ceremony&nbsp;&&nbsp;Reception:</strong>
-        <p className="text-left lg:text-center">
-          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada.
-          <br />
-          on May 9th, 2024.
+        <p className="text-center">
+          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada. on May 9th,
+          2024.
         </p>
         <br />
         <p className="text-center">
@@ -105,6 +107,7 @@ export default function Grenada() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
+          className="rounded-lg mt-8 shadow-lg mx-auto my-4"
         ></iframe>
         <Paragraph>
           Please{" "}
@@ -117,6 +120,81 @@ export default function Grenada() {
           </Link>{" "}
           if you have any questions.
         </Paragraph>
+      </Card>
+
+      <Card title="Wedding Itinerary">
+        <section className="text-left w-full">
+          <div className="font-bold text-center text-xl italic">
+            Thursday May 9th
+          </div>
+
+          <h3 className="font-bold mt-8">
+            Ceremony @ True Blue Bay Resort: 10:00 AM to 12:00 PM
+          </h3>
+          <ul className="pl-6 list-disc">
+            <li>
+              Rides will be scheduled for pick up from Coyaba to True Blue Bay
+              Resort for the morning ceremony to commence at 10:00&nbsp;AM by
+              the pool.
+            </li>
+            <li>
+              There will be light refreshments and drinks available during and
+              after the&nbsp;ceremony.
+            </li>
+            <li>
+              Bring your swimming gear if you would like to take a dip in
+              the&nbsp;pool.
+            </li>
+          </ul>
+
+          <h3 className="font-bold mt-8">Intermission: 12:00 PM to 6:00 PM</h3>
+          <ul className="pl-6 list-disc">
+            <li>
+              Rides will be scheduled for transfer back to Coyaba Beach Resort
+              so you can relax, have lunch, and freshen up.
+            </li>
+          </ul>
+
+          <h3 className="font-bold mt-8">
+            Evening Reception @ True Blue Bay Resort: 6:30 to 11:00PM
+          </h3>
+          <ul className="pl-6 list-disc">
+            <li>
+              The reception dinner will be held at the <em>Dodgy Dock</em>, an
+              outdoor restaurant at True Blue Bay Resort.
+            </li>
+            <li>
+              Rides will be scheduled for transfer back to True Blue Bay Resort
+              for the dinner reception at 6:30&nbsp;PM.
+            </li>
+            <li>Dinner will be served at 7:00&nbsp;PM.</li>
+            <li>There will be music, dancing, and a coconut bar to enjoy.</li>
+          </ul>
+
+          <div className="w-full">
+            <Image
+              src={tbb}
+              alt="True Blue Bay Resort"
+              width={400}
+              height={300}
+              className="rounded-lg mt-8 shadow-lg mx-auto my-4"
+            />
+            <figcaption className="text-center italic text-sm">
+              True Blue Bay - Cocoa Pod Pool
+            </figcaption>
+
+            <Image
+              src={dodgydock}
+              alt="The Dodgy Dock Restaurant at True Blue Bay Resort"
+              width={400}
+              height={300}
+              className="rounded-lg mt-8 shadow-lg mx-auto my-4"
+            />
+            <figcaption className="text-center italic text-sm">
+              True Blue Bay - The Dodgy Dock Restaurant
+            </figcaption>
+          </div>
+        </section>
       </Card>
 
       {/* Display Error for loading map */}

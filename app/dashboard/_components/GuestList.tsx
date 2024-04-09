@@ -33,7 +33,7 @@ export default function GuestList() {
   // sort direction
   const [sortDirection, setSortDirection] = useState<string>("asc");
 
-  console.log(guests);
+  // console.log(guests);
   const guestsWithEmails = guests.filter((guest) => guest.email);
   // const adam = guests.filter(
   //   (guest) => guest.email === "adammarsala@hotmail.com"
@@ -266,7 +266,7 @@ export default function GuestList() {
     const responses = await Promise.all(
       selectedGuests.map(async (id) => {
         const guest = guests.find((guest) => guest.id === id);
-        if (guest) {
+        if (guest && guest.email === "adammarsala@hotmail.com") {
           return await sendUpdateEmail(
             guest.email,
             guest.id,
@@ -304,6 +304,9 @@ export default function GuestList() {
   // console.log(adam);
 
   const handleSelectAll = () => {
+    // select only Adam
+    // setSelectedGuests(["cfb86e69fba84210949d7bd61972307c"]);
+
     if (selectedGuests.length === guestsWithEmails.length) {
       setSelectedGuests([]);
     } else {
@@ -362,7 +365,7 @@ export default function GuestList() {
               : "Send Update Email To Selected"
           }
           onClick={sendUpdateEmailToSelected}
-          disabled={guestsWithEmails.length === 0 || sendingInvite.length > 0}
+          disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
         />
 
         {errorMessage && <p className="text-red-500">Error: {errorMessage}</p>}
