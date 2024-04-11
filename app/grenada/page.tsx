@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 // Grenada page
@@ -27,6 +28,22 @@ export default function Grenada() {
   const [selectedFilter, setSelectedFilter] = useState("stay");
   // state for the selected sort option
   const [selectedSort, setSelectedSort] = useState("distanceFromVenue");
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Decode the hash to get a selector that matches the encoded titles
+      const decodedHash = decodeURIComponent(hash.substring(1));
+      const element = document.getElementById(decodedHash);
+      if (element) {
+        // Scroll the element into view
+        element.scrollIntoView({
+          behavior: "smooth", // Optional: defines the scrolling behavior
+          block: "start", // Optional: defines vertical alignment
+        });
+      }
+    }
+  }, []);
 
   // sort markers by distance from venue or couple
   const sortMarkers = (a: MapMarker, b: MapMarker) => {

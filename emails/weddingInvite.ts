@@ -9,6 +9,8 @@ export default function weddingInvite({
   name,
   groupNumber,
 }: WeddingInvite): string {
+  const rsvpURL = `https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}`;
+
   return `
   <!doctype html><html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
 <title>
@@ -219,7 +221,7 @@ class="" style="vertical-align:top;width:600px;"
 <tbody>
 <tr>
 <td style="width:600px;">
-<a href="https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}" target="_blank">
+<a href="${rsvpURL}" target="_blank">
 <img alt="You are invited to the Mehndi &#x26; Wedding of Shaileen Wallani &#x26; Adam Marsala" height="auto" src="https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/wedding-invite-daxos4f41/images/wedding_invite-bcMVOw-.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="600">
 </a>
 </td>
@@ -356,7 +358,7 @@ Please submit an RSVP for each person in your group before<br>
 <tr>
 <td align="center" class="font-16" style="font-size:0px;padding:0px 20px;word-break:break-word;">
 <div class="button" style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;">
-<a href="https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">RSVP</a>
+<a href="${rsvpURL}" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">RSVP</a>
 </div>
 </td>
 </tr>

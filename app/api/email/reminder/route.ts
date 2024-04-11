@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     from: `Shai & Adam <${process.env.PROTON_SMTP_USERNAME}>`,
     to: body.email,
     // to: `test-x70d82x1l@srv1.mail-tester.com`, // spam test
-    subject: "RSVP Reminder",
+    subject: "The Mehndi venue has changed.",
     html: updateEmail({
       name: body.name,
       id: body.id,

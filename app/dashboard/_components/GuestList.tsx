@@ -13,6 +13,9 @@ import { GuestData } from "@/helpers/guestData";
 type SendingInvites = string[];
 
 export default function GuestList() {
+  // For counting things
+  const [counter, setCounter] = useState(0);
+
   const [guests, setGuests] = useState<GuestData[]>([]);
   // loading state for fetching guest list
   const [loading, setLoading] = useState(true);
@@ -277,8 +280,6 @@ export default function GuestList() {
       })
     );
 
-    console.log(responses);
-
     const successfulDeliveries = responses.filter(
       (response) => response?.accepted.length
     );
@@ -299,9 +300,6 @@ export default function GuestList() {
     // turn off loading state for selected guests
     setSendingInvite([]);
   };
-
-  // console.log(guestsWithEmails);
-  // console.log(adam);
 
   const handleSelectAll = () => {
     // select only Adam
@@ -342,12 +340,36 @@ export default function GuestList() {
           </h2>
         </header>
 
+        <p>{counter}</p>
+
+        <Button
+          disabled={false}
+          text="+"
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+        />
+        <Button
+          disabled={false}
+          text="-"
+          onClick={() => {
+            setCounter(counter - 1);
+          }}
+        />
+        <Button
+          disabled={false}
+          text="Reset"
+          onClick={() => {
+            setCounter(0);
+          }}
+        />
+
         <Button
           disabled={guests.length === 0}
           text={
             selectedGuests.length === guestsWithEmails.length
               ? "Deselect All"
-              : "Select All"
+              : "Select All With An Email"
           }
           onClick={handleSelectAll}
         />

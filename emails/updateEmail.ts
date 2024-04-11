@@ -9,10 +9,12 @@ export default function updateEmail({
   name,
   groupNumber,
 }: WeddingInvite): string {
+  const rsvpURL = `https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}`;
+
   return `
   <!doctype html><html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
 <title>
-Event Reminder
+An important update to our events
 </title>
 <!--[if !mso]><!-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,18 +76,6 @@ line-height: inherit !important;
 a {
 color: inherit;
 text-decoration: underline;
-}
-.button {
-display: inline-block;
-font-size: 20px;
-font-weight: bold;
-text-align: center;
-padding: 15px 40px;
-background-color: #418BCA;
-color: #fff;
-border-radius: 30px;
-margin: 10px 0;
-cursor: pointer;
 }
 .no-underline {
 text-decoration: none !important;
@@ -279,8 +269,18 @@ class="" style="vertical-align:top;width:600px;"
 <td style="vertical-align:top;padding:0px 20px;">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
 <tbody><tr>
-<td align="center" class="font-30" style="font-size:0px;padding:0px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:30px;font-weight:bold;line-height:34px;text-align:center;color:#FFFFFF;"><a href="https://shaileenandadam.rsvp/mehndi" target="_blank" style="color:#fff;text-decoration:none;">Mehndi</a></div>
+<td align="center" width="600" style="width:600px; vertical-align:top; padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="60%">
+<tbody>
+<tr>
+<td width="600" align="center" style="width:600px; font-size:0px; padding: 15px; background-color: #418BCA; border-radius: 30px; word-break:break-word;">
+<div width="600" style="width: 100%; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 24px; text-align: center; color: #FFFFFF;">
+<a href="https://shaileenandadam.rsvp/mehndi" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">Mehndi</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr>
@@ -298,16 +298,16 @@ class="" style="vertical-align:top;width:600px;"
 </tr>
 <tr>
 <td align="center" class="font-20" style="font-size:0px;padding:0px 10px;word-break:break-word;">
-<div style="font-family:Arial;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;"><strong><a href="" style="color:#fff;text-decoration:none;">Saturday May<span> </span>4th,<span> </span>2024<br> 6:30<span> </span>PM</a></strong><br>
+<div style="font-family:Arial;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;"><strong><a href="https://calendar.app.google/pdYjuSp3heN6j5YM9" target="_blank" style="color:#fff;text-decoration:none;">Saturday May<span> </span>4th,<span> </span>2024<br> 6:30<span> </span>PM</a></strong><br>
 <span>@</span><br>
-<a href="https://www.simplydeliciousrestaurant.ca/" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">Simply Delicious</a></div>
+<a href="https://dumpukht.com/" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">Dum Pukht</a></div>
 </td>
 </tr>
 <tr>
 <td align="center" class="font-16" style="font-size:0px;padding:20px 10px 50px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;"><a href="https://maps.app.goo.gl/hcH4R7ZkiJJWqtfF8" target="_blank" style="color:#fff;text-decoration:underline;">
-7850<span> </span>Woodbine Ave<br>
-Markham, ON L3R<span> </span>4S1</a></div>
+<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;color:#FFFFFF;"><a href="https://maps.app.goo.gl/bkuQLwFXmVVzWt3i6" target="_blank" style="color:#fff;text-decoration:underline;">
+323<span> </span>Denison St<br>
+Markham, ON L3R<span> </span>1B7</a></div>
 </td>
 </tr>
 <tr>
@@ -328,8 +328,18 @@ align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:soli
 </td>
 </tr>
 <tr>
-<td align="center" class="font-30" style="font-size:0px;padding:0px;padding-top:50px;word-break:break-word;">
-<div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:30px;font-weight:bold;line-height:34px;text-align:center;color:#FFFFFF;"><a href="https://shaileenandadam.rsvp/grenada" target="_blank" style="color:#fff;text-decoration:none;">Ceremony &#x26; Reception</a></div>
+<td align="center" width="600" style="width:600px; vertical-align:top; padding: 50px 20px 10px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="60%">
+<tbody>
+<tr>
+<td width="600" align="center" style="width:600px; font-size:0px; padding: 15px; background-color: #418BCA; border-radius: 30px; word-break:break-word;">
+<div width="600" style="width: 100%; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 24px; text-align: center; color: #FFFFFF;">
+<a href="https://shaileenandadam.rsvp/grenada" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">Wedding</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr>
@@ -385,10 +395,18 @@ If you haven't done so already, please submit an RSVP for each person in your gr
 </td>
 </tr>
 <tr>
-<td align="center" class="font-16" style="font-size:0px;padding:0px 20px;word-break:break-word;">
-<div class="button" style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;">
-<a href="https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">RSVP</a>
+<td align="center" width="600" style="width:600px; vertical-align:top; padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="60%">
+<tbody>
+<tr>
+<td width="600" align="center" style="width:600px; font-size:0px; padding: 15px; background-color: #418BCA; border-radius: 30px; word-break:break-word;">
+<div width="600" style="width: 100%; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 24px; text-align: center; color: #FFFFFF;">
+<a href="${rsvpURL}" target="_blank" style="color:#fff;text-decoration:none;font-family: Helvetica, sans-serif;">RSVP</a>
 </div>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr>
