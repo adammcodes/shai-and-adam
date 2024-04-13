@@ -269,7 +269,7 @@ export default function GuestList() {
     const responses = await Promise.all(
       selectedGuests.map(async (id) => {
         const guest = guests.find((guest) => guest.id === id);
-        if (guest && guest.email === "adammarsala@hotmail.com") {
+        if (guest) {
           return await sendUpdateEmail(
             guest.email,
             guest.id,
@@ -305,11 +305,18 @@ export default function GuestList() {
     // select only Adam
     // setSelectedGuests(["cfb86e69fba84210949d7bd61972307c"]);
 
-    if (selectedGuests.length === guestsWithEmails.length) {
+    const guestsAttendingAtLeastOneEventWithEmail = guests.filter(
+      (guest) =>
+        guest.email && (guest.attending_grenada || guest.attending_mehndi)
+    );
+
+    if (
+      selectedGuests.length === guestsAttendingAtLeastOneEventWithEmail.length
+    ) {
       setSelectedGuests([]);
     } else {
       setSelectedGuests(
-        guests.filter((guest) => guest.email).map((guest) => guest.id)
+        guestsAttendingAtLeastOneEventWithEmail.map((guest) => guest.id)
       );
     }
   };
@@ -369,7 +376,7 @@ export default function GuestList() {
           text={
             selectedGuests.length === guestsWithEmails.length
               ? "Deselect All"
-              : "Select All With An Email"
+              : "Select All With An Email Attending At Least One Event"
           }
           onClick={handleSelectAll}
         />
