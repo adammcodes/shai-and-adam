@@ -21,7 +21,7 @@ export async function PUT(
 
   // Find the guest in notion by the id
   const row = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
       property: "id",
       formula: {
@@ -42,7 +42,7 @@ export async function PUT(
   const row_id = row.results[0].id;
 
   // Update the guest in notion for properties: "Name", "Attending Mehndi", "Attending Grenada", "Dietary Restrictions"
-  const response = await notion.pages.update({
+  const response: any = await notion.pages.update({
     page_id: row_id,
     properties: {
       Name: {
