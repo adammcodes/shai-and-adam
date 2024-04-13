@@ -147,13 +147,13 @@ export default function Mehndi() {
           <br />
           <strong>Where do I park?</strong>
           <br />
-          There is a parking lot attached to the venue, with free parking both
-          in front and behind the building.
+          There is a parking lot circling the building. The venue has requested
+          that we park at the back or either side of the building.
           <br />
           <br />
           <strong>Will there be alcohol?</strong>
           <br />
-          There will be a open bar available.
+          There will be an open bar available.
         </Paragraph>
       </Card>
 
