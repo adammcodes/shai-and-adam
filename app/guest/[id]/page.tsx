@@ -1,18 +1,23 @@
 // Server component page for guest/[id]?group=[number]
 // Retrieves all the guests in a group and renders the Guest component for each guest
-
 // import types
 import { GuestData } from "@/helpers/guestData";
+import { NextRequest } from "next/server";
 
 // import components
 import Guest from "../_components/Guest";
 
-export default async function GuestsInGroup(request: any) {
-  let guests: any;
+export default async function GuestsInGroup(
+  request: NextRequest & {
+    params: { id: string };
+    searchParams: { group: string };
+  }
+) {
+  let guests: GuestData[] | undefined;
   let error;
   // get the id from the URL in the request params
   const { id } = request.params;
-  // get the group number from the URL in the request search params
+  // get the group number from the URL in the request search params // e.g. /guest/123?group=1
   const { group } = request.searchParams;
 
   // if there is no id or group number, return an error
@@ -22,18 +27,28 @@ export default async function GuestsInGroup(request: any) {
   }
 
   try {
-    const res = await fetch(
-      `${process.env.AUTH0_BASE_URL}/api/group/${group}`,
-      {
-        cache: "no-store",
-      }
-    );
-    guests = await res.json();
-    // check if id is in group
-    const guest = guests.find((guest: GuestData) => guest.id === id);
+    if (group) {
+      // fetch the group data
+      const res = await fetch(
+        `${process.env.AUTH0_BASE_URL}/api/group/${group}`,
+        {
+          cache: "no-store",
+        }
+      );
 
-    if (!guest) {
-      console.log("guest not found");
+      guests = await res.json();
+
+      // check if id is in group
+      const guest = guests
+        ? guests.find((guest: GuestData) => guest.id === id)
+        : null;
+
+      if (!guest) {
+        console.log("guest not found");
+        error = true;
+      }
+    } else {
+      console.log("no group number");
       error = true;
     }
   } catch (err) {
