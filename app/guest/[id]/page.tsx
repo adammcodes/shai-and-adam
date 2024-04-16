@@ -7,18 +7,19 @@ import { NextRequest } from "next/server";
 // import components
 import Guest from "../_components/Guest";
 
-export default async function Page(
-  request: NextRequest & {
-    params: { id: string };
-    searchParams: { group: string };
-  }
-) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   let guests: GuestData[] | undefined;
   let error;
   // get the id from the URL in the request params
-  const { id } = request.params;
+  const { id } = params;
   // get the group number from the URL in the request search params // e.g. /guest/123?group=1
-  const { group } = request.searchParams;
+  const { group } = searchParams;
 
   // if there is no id or group number, return an error
   if (!id || !group) {
