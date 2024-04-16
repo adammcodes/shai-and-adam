@@ -323,6 +323,10 @@ export default function GuestList() {
           <h2 className="font-bold text-blue-500 text-xl py-5">
             {attendingGrenadaCount} are attending in Grenada.
           </h2>
+
+          <h2 className="font-bold text-blue-500 text-xl py-5">
+            {selectedGuests.length} selected.
+          </h2>
         </header>
 
         <section className="flex justify-between items-center w-full px-10">
