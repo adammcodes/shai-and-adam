@@ -515,24 +515,22 @@ export default function GuestList() {
                     </td>
                     <td className="border border-black px-5">{guest.diet}</td>
                     <td className="border-black p-5 flex flex-col">
-                      {guest.invite_to_grenada && guest.invite_to_mehndi && (
-                        <Button
-                          text={
-                            sendingInvite.includes(guest.id)
-                              ? "Sending..."
-                              : "Send RSVP Reminder"
-                          }
-                          onClick={() => {
-                            handleSendWeddingInvite(guest);
-                          }}
-                          disabled={
-                            sendingInvite.includes(guest.id) ||
-                            !guest.email ||
-                            !guest.invite_to_grenada ||
-                            !guest.invite_to_mehndi
-                          }
-                        />
-                      )}
+                      <Button
+                        text={
+                          sendingInvite.includes(guest.id)
+                            ? "Sending..."
+                            : "Send RSVP Reminder"
+                        }
+                        onClick={() => {
+                          handleSendWeddingInvite(guest);
+                        }}
+                        disabled={
+                          sendingInvite.includes(guest.id) ||
+                          !guest.email ||
+                          !guest.invite_to_grenada ||
+                          !guest.invite_to_mehndi
+                        }
+                      />
                     </td>
                   </tr>
                 ))}
