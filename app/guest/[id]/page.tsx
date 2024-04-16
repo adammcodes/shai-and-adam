@@ -7,7 +7,7 @@ import { NextRequest } from "next/server";
 // import components
 import Guest from "../_components/Guest";
 
-export default async function GuestsInGroup(
+export default async function Page(
   request: NextRequest & {
     params: { id: string };
     searchParams: { group: string };
