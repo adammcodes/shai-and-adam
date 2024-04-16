@@ -2,7 +2,6 @@
 // Retrieves all the guests in a group and renders the Guest component for each guest
 // import types
 import { GuestData } from "@/helpers/guestData";
-import { NextRequest } from "next/server";
 
 // import components
 import Guest from "../_components/Guest";
@@ -14,7 +13,7 @@ export default async function Page({
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  let guests: GuestData[] | undefined;
+  let guests: any;
   let error;
   // get the id from the URL in the request params
   const { id } = params;
