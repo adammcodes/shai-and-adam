@@ -28,8 +28,6 @@ export default function GuestList() {
   const [sendingInvite, setSendingInvite] = useState<SendingInvites>([]);
   // Modal state for sending invite success
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // Modal state for person edit (id string of person to edit)
-  const [personModalIsOpen, setPersonModalIsOpen] = useState("");
   // state for confetti explosion
   const [confetti, setConfetti] = useState(false);
   // Error modal state
@@ -40,6 +38,8 @@ export default function GuestList() {
   const [sortColumn, setSortColumn] = useState<string>("group_number");
   // sort direction
   const [sortDirection, setSortDirection] = useState<string>("asc");
+  // active guest being edited in PersonEditModal
+  const [activeGuest, setActiveGuest] = useState<GuestData | null>(null);
 
   // const guestsWithEmails = guests.filter((guest) => guest.email);
 
@@ -329,7 +329,7 @@ export default function GuestList() {
           </h2>
         </header>
 
-        <section className="flex justify-between items-center w-full px-10">
+        <section className="flex flex-col lg:flex-row justify-between items-center w-full px-10">
           <Counter counter={counter} setCounter={setCounter} />
 
           <div>
@@ -374,67 +374,67 @@ export default function GuestList() {
             <table className="w-full overflow-x-auto text-center table-auto text-sm md:text-md">
               <thead>
                 <tr>
-                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  <th className="px-5 sticky top-0 bg-black text-white">
                     Select
                   </th>
-                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  <th className="px-5 sticky top-0 bg-black text-white">
                     Delivered
                   </th>
                   <th
                     onClick={() => handleSort("name")}
-                    className="cursor:pointer px-5 sticky z-50 top-0 left-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky z-10 top-0 left-0 bg-black text-white"
                   >
                     Name
                   </th>
                   <th
                     onClick={() => handleSort("submitted_rsvp")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     RSVP Submitted
                   </th>
                   <th
                     onClick={() => handleSort("group_number")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Group #
                   </th>
                   <th
                     onClick={() => handleSort("email")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Email
                   </th>
                   <th
                     onClick={() => handleSort("attending_mehndi")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Attending mehndi
                   </th>
                   <th
                     onClick={() => handleSort("attending_grenada")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Attending Grenada
                   </th>
                   <th
                     onClick={() => handleSort("invite_to_mehndi")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Invite to mehndi
                   </th>
                   <th
                     onClick={() => handleSort("invite_to_grenada")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Invite to Grenada
                   </th>
                   <th
                     onClick={() => handleSort("diet")}
-                    className="cursor:pointer px-5 sticky z-10 top-0 bg-black text-white"
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Diet
                   </th>
-                  <th className="px-5 sticky z-10 top-0 bg-black text-white">
+                  <th className="px-5 sticky top-0 bg-black text-white">
                     Send Email
                   </th>
                 </tr>
@@ -454,49 +454,17 @@ export default function GuestList() {
                     <td className="border border-black">
                       {guest.invite_delivered ? "✅" : "🔲"}
                     </td>
-                    <td className="relative sticky left-[-1px] z-10 bg-black text-white p-1">
+                    <td className="relative sticky left-[-1px] z-[5] bg-black text-white p-1">
                       {guest.name}
                       <button
                         onClick={() => {
-                          // open person edit modal
-                          setPersonModalIsOpen(guest.id);
+                          // open person edit modal by passing the guest data
+                          setActiveGuest(guest);
                         }}
                         className="absolute top-0 right-0 text-xs hover:bg-[#06b6d4] rounded-md px-3 hover:text-white p-1"
                       >
                         <PersonIcon />
                       </button>
-                      {personModalIsOpen === guest.id && (
-                        <PersonEditModal
-                          guest={guest}
-                          modalIsOpen={personModalIsOpen}
-                          setModalIsOpen={setPersonModalIsOpen}
-                          refetchGuests={() => {
-                            const getGuests = async () => {
-                              try {
-                                const response = await fetch("/api/notion", {
-                                  cache: "no-store",
-                                });
-                                const data = await response.json();
-                                const { guests } = data;
-                                setGuests(guests);
-                              } catch (e: unknown) {
-                                if (e instanceof Error) {
-                                  console.error(e.message);
-                                  if (
-                                    e.message &&
-                                    typeof e.message === "string"
-                                  ) {
-                                    setErrorMessage(e.message);
-                                  }
-                                }
-                              } finally {
-                                setLoading(false);
-                              }
-                            };
-                            getGuests();
-                          }}
-                        />
-                      )}
                     </td>
                     <td className="border border-black">
                       {guest.submitted_rsvp ? "✅" : "🔲"}
@@ -585,6 +553,36 @@ export default function GuestList() {
           >
             <p className="text-2xl text-center">{errorModalText}</p>
           </Modal>
+        )}
+
+        {activeGuest && (
+          <PersonEditModal
+            guest={activeGuest}
+            modalIsOpen={Boolean(activeGuest)}
+            setModalIsOpen={setActiveGuest}
+            refetchGuests={() => {
+              const getGuests = async () => {
+                try {
+                  const response = await fetch("/api/notion", {
+                    cache: "no-store",
+                  });
+                  const data = await response.json();
+                  const { guests } = data;
+                  setGuests(guests);
+                } catch (e: unknown) {
+                  if (e instanceof Error) {
+                    console.error(e.message);
+                    if (e.message && typeof e.message === "string") {
+                      setErrorMessage(e.message);
+                    }
+                  }
+                } finally {
+                  setLoading(false);
+                }
+              };
+              getGuests();
+            }}
+          />
         )}
       </div>
     </section>

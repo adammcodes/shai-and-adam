@@ -3,8 +3,8 @@ import { useState } from "react";
 import { GuestData } from "@/helpers/guestData";
 
 interface PersonEditModalProps {
-  modalIsOpen: string;
-  setModalIsOpen: (value: string) => void;
+  modalIsOpen: boolean;
+  setModalIsOpen: (value: GuestData | null) => void;
   guest: GuestData;
   refetchGuests: () => void;
 }
@@ -67,7 +67,7 @@ export default function PersonEditModal({
           setSuccess("Reloading guests...");
         }, 2000);
         setTimeout(() => {
-          setModalIsOpen("");
+          setModalIsOpen(null);
         }, 4000);
       });
     } catch (error) {
@@ -83,7 +83,7 @@ export default function PersonEditModal({
       title={guest.name}
       isOpen={Boolean(modalIsOpen)}
       handleClose={() => {
-        setModalIsOpen("");
+        setModalIsOpen(null);
       }}
       confirmCancel
     >
@@ -153,7 +153,7 @@ export default function PersonEditModal({
           </button>
           <button
             onClick={() => {
-              setModalIsOpen("");
+              setModalIsOpen(null);
             }}
             className="text-2xl border border-2 py-2 px-5 rounded-lg hover:bg-[#06b6d4] hover:text-white ml-2 cursor-pointer"
           >
