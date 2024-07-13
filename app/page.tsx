@@ -1,10 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import mondello from "public/images/mondello.jpeg";
-import cefalu from "public/images/cefalu.jpeg";
-import tomatoes from "public/images/tomatoes.jpeg";
 import Card from "@/components/Card";
 
 export default function Home() {
@@ -51,7 +47,7 @@ export default function Home() {
       </Card>
 
       <Image
-        src={mondello}
+        src={"/images/mondello.jpeg"}
         alt="Mondello Beach"
         width={350}
         height={200}

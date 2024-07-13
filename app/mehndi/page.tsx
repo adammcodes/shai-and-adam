@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import Card from "@/components/Card";
 import Link from "next/link";
 import Image from "next/image";
-// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import stpeters from "public/images/stpeters.jpeg";
-import mehndi from "public/images/mehndi.png";
 import Paragraph from "@/components/Paragraph";
 
 export default function Mehndi() {
@@ -65,7 +62,7 @@ export default function Mehndi() {
           left on the skin, the darker the design will be.
         </Paragraph>
         <Image
-          src={mehndi}
+          src={"/images/mehndi.png"}
           alt="Mehndi"
           width={410}
           height={410}
@@ -158,7 +155,7 @@ export default function Mehndi() {
       </Card>
 
       <Image
-        src={stpeters}
+        src={"/images/stpeters.jpeg"}
         alt="Shai and Adam at the Vatican"
         width={300}
         height={200}

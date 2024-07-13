@@ -13,9 +13,6 @@ import { useState } from "react";
 // components for this page
 import MapContainer from "./_components/MapContainer";
 import Paragraph from "@/components/Paragraph";
-// import { withPageAuthRequired } from "@auth0/nextjs-auth0/client";
-import tbb from "public/images/tbb.jpeg";
-import dodgydock from "public/images/dodgydock.jpeg";
 
 export default function Grenada() {
   // begin loading google maps
@@ -190,7 +187,7 @@ export default function Grenada() {
 
           <div className="w-full">
             <Image
-              src={tbb}
+              src={"/images/tbb.jpeg"}
               alt="True Blue Bay Resort"
               width={400}
               height={300}
@@ -201,7 +198,7 @@ export default function Grenada() {
             </figcaption>
 
             <Image
-              src={dodgydock}
+              src={"/images/dodgydock.jpeg"}
               alt="The Dodgy Dock Restaurant at True Blue Bay Resort"
               width={400}
               height={300}
