@@ -27,17 +27,7 @@ import day5 from "@/public/images/dates/10.png";
 import day6 from "@/public/images/dates/11.png";
 import day7 from "@/public/images/dates/12.png";
 
-const pngs = [
-  turtle,
-  food,
-  hiking,
-  choco,
-  fort,
-  spices,
-  waterfall,
-  rum,
-  hiking,
-];
+const pngs = [turtle, food, hiking, choco, fort, spices, waterfall, rum, hiking];
 
 const dates = [day1, day2, day3, day4, day5, day6, day7];
 
@@ -95,26 +85,20 @@ export default function MapContainer({
               <select
                 className="ml-2 text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none rounded-[20px] px-3 py-2 cursor-pointer"
                 value={selectedSort}
-                onChange={(e) => {
+                onChange={e => {
                   setSelectedSort(e.target.value);
                 }}
               >
-                <option
-                  style={{ backgroundColor: "#3f83f8" }}
-                  value="distanceFromVenue"
-                >
+                <option style={{ backgroundColor: "#3f83f8" }} value="distanceFromVenue">
                   Distance from Venue
                 </option>
-                <option
-                  style={{ backgroundColor: "#3f83f8" }}
-                  value="distanceFromCouple"
-                >
+                <option style={{ backgroundColor: "#3f83f8" }} value="distanceFromCouple">
                   Distance from Couple
                 </option>
               </select>
             </div>
           )}
-          {filteredMarkers.sort(sortMarkers).map((marker) => (
+          {filteredMarkers.sort(sortMarkers).map(marker => (
             <div key={marker.id} className="flex flex-col mb-10">
               <div className="flex items-center">
                 <div
@@ -126,9 +110,7 @@ export default function MapContainer({
                   {/* Render the marker svg here: parse svg string into Next Image component */}
                   {marker.svg && (
                     <Image
-                      src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
-                        marker.svg
-                      )}`}
+                      src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(marker.svg)}`}
                       alt={marker.title}
                       width={20}
                       height={20}
@@ -136,11 +118,7 @@ export default function MapContainer({
                   )}
                   {(marker.png === 0 || marker.png) && (
                     <Image
-                      src={
-                        selectedFilter === "do"
-                          ? pngs[marker.png]
-                          : dates[marker.png]
-                      }
+                      src={selectedFilter === "do" ? pngs[marker.png] : dates[marker.png]}
                       alt={marker.title}
                       width={25}
                       height={25}
@@ -167,9 +145,7 @@ export default function MapContainer({
                   )}
                 </p>
               </div>
-              {marker.desc && (
-                <p className="ml-5 text-blue-500">{marker.desc}</p>
-              )}
+              {marker.desc && <p className="ml-5 text-blue-500">{marker.desc}</p>}
             </div>
           ))}
         </div>

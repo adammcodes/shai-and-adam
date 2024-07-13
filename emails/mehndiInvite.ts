@@ -4,11 +4,7 @@ interface Invite {
   groupNumber: number;
 }
 
-export default function weddingInvite({
-  id,
-  name,
-  groupNumber,
-}: Invite): string {
+export default function weddingInvite({ id, name, groupNumber }: Invite): string {
   return `
 
   `;

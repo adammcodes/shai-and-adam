@@ -34,20 +34,17 @@ export async function POST(request: Request) {
   try {
     const result = await new Promise((resolve, reject) => {
       // Send the email
-      transporter.sendMail(
-        mailOptions,
-        (sendMailError: any, info: SentMessageInfo) => {
-          if (sendMailError) {
-            // reject the Promise if there's an error
-            reject(JSON.stringify(sendMailError));
-          } else {
-            // Resolve with the info if there's no error
-            console.log(FgGreen, "Email Sent", Reset);
-            console.log(info.accepted);
-            resolve(info);
-          }
+      transporter.sendMail(mailOptions, (sendMailError: any, info: SentMessageInfo) => {
+        if (sendMailError) {
+          // reject the Promise if there's an error
+          reject(JSON.stringify(sendMailError));
+        } else {
+          // Resolve with the info if there's no error
+          console.log(FgGreen, "Email Sent", Reset);
+          console.log(info.accepted);
+          resolve(info);
         }
-      );
+      });
     });
     // Return a 250 response if the email was sent
     return new Response(JSON.stringify(result), {

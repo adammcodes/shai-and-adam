@@ -10,17 +10,11 @@ import TextInput from "./TextInput";
 import RadioSelect from "./RadioSelect";
 
 // Component for rending each guest in the group
-const Guest = ({
-  guest,
-  allGuests,
-}: {
-  guest: GuestData;
-  allGuests: GuestData[];
-}) => {
+const Guest = ({ guest, allGuests }: { guest: GuestData; allGuests: GuestData[] }) => {
   // all other guest names in the group:
   const guestNames = allGuests
-    .filter((g) => g.id !== guest.id)
-    .map((guest) => guest.name)
+    .filter(g => g.id !== guest.id)
+    .map(guest => guest.name)
     .join(", ");
   // state for loading
   const [loading, setLoading] = useState(false);
@@ -46,9 +40,7 @@ const Guest = ({
     // if they haven't said yes or no to either event, don't submit
     if (attendingMehndi === undefined || attendingGrenada === undefined) {
       // open error modal
-      setErrorModalText(
-        "Please let us know if you are coming to both events before submitting 😄"
-      );
+      setErrorModalText("Please let us know if you are coming to both events before submitting 😄");
       setLoading(false);
       return;
     }
@@ -67,7 +59,7 @@ const Guest = ({
           diet,
         }),
       })
-        .then(async (res) => {
+        .then(async res => {
           if (res.ok) {
             const data = await res.json(); // Parse response body as JSON
             return data; // Return the parsed data
@@ -76,7 +68,7 @@ const Guest = ({
             throw new Error("Network response was not ok");
           }
         })
-        .then((data) => {
+        .then(data => {
           // open confirmation modal
           setLoading(false);
           const attending = data.attending_mehndi || data.attending_grenada;
@@ -84,9 +76,7 @@ const Guest = ({
             // run the confetti animation
             setConfetti(true);
           }
-          const message = attending
-            ? `We will see you there! 🎉`
-            : data.message;
+          const message = attending ? `We will see you there! 🎉` : data.message;
           setConfirmationModalText(message);
         });
     } catch (err) {
@@ -111,9 +101,7 @@ const Guest = ({
     const yesMehndi = document.getElementById(
       `yes-mehndi-attending-${guest.id}`
     ) as HTMLInputElement;
-    const noMehndi = document.getElementById(
-      `no-mehndi-attending-${guest.id}`
-    ) as HTMLInputElement;
+    const noMehndi = document.getElementById(`no-mehndi-attending-${guest.id}`) as HTMLInputElement;
     const yesGrenada = document.getElementById(
       `yes-grenada-attending-${guest.id}`
     ) as HTMLInputElement;
@@ -139,10 +127,7 @@ const Guest = ({
   return (
     <Fragment key={guest.id}>
       <Card title={guest.name}>
-        <form
-          className="flex w-full flex-col items-around"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex w-full flex-col items-around" onSubmit={handleSubmit}>
           {/* Name - text */}
           <TextInput
             label="Name"
@@ -189,11 +174,7 @@ const Guest = ({
             </button>
           )}
           {loading && (
-            <button
-              type="submit"
-              className="bg-[#EEE] text-black rounded-md p-2 m-2"
-              disabled
-            >
+            <button type="submit" className="bg-[#EEE] text-black rounded-md p-2 m-2" disabled>
               Submitting...
             </button>
           )}
@@ -225,14 +206,12 @@ const Guest = ({
               />
             </div>
           )}
-          <p className="text-center text-xl lg:text-3xl">
-            {confirmationModalText}
-          </p>
+          <p className="text-center text-xl lg:text-3xl">{confirmationModalText}</p>
           <br />
           <br />
           <p className="text-center text-lg lg:text-2xl">
-            If you haven't done so already please submit the RSVP for the other
-            guests in your group on this page:
+            If you haven't done so already please submit the RSVP for the other guests in your group
+            on this page:
             <br /> {guestNames}
           </p>
         </Modal>

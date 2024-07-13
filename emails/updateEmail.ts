@@ -4,11 +4,7 @@ interface WeddingInvite {
   groupNumber: number;
 }
 
-export default function updateEmail({
-  id,
-  name,
-  groupNumber,
-}: WeddingInvite): string {
+export default function updateEmail({ id, name, groupNumber }: WeddingInvite): string {
   const rsvpURL = `https://shaileenandadam.rsvp/guest/${id}?group=${groupNumber}`;
 
   return `

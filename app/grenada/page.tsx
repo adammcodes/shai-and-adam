@@ -59,9 +59,7 @@ export default function Grenada() {
   };
 
   // markers to display on the map
-  const filteredMarkers = mapMarkers.filter(
-    (marker) => selectedFilter === marker.filterId
-  );
+  const filteredMarkers = mapMarkers.filter(marker => selectedFilter === marker.filterId);
 
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
@@ -69,11 +67,7 @@ export default function Grenada() {
         <br />
         <strong>Where we are staying:</strong>
         <p className="text-center">
-          <Link
-            target="_blank"
-            className="underline"
-            href="https://www.coyaba.com/"
-          >
+          <Link target="_blank" className="underline" href="https://www.coyaba.com/">
             Coyaba Beach Resort
           </Link>{" "}
           <br />
@@ -87,27 +81,21 @@ export default function Grenada() {
         <br />
         <strong>Ceremony&nbsp;&&nbsp;Reception:</strong>
         <p className="text-center">
-          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada. on May 9th,
-          2024.
+          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada. on May 9th, 2024.
         </p>
         <br />
         <p className="text-center">
-          Please refer to the map and tabs below on "Where the couple will be"
-          for more information on these locations.
+          Please refer to the map and tabs below on "Where the couple will be" for more information
+          on these locations.
           <br />
           <br />
-          The currency in Grenada is Eastern Carribean Dollars. US dollars are
-          also accepted.
+          The currency in Grenada is Eastern Carribean Dollars. US dollars are also accepted.
           <br />
         </p>
         <br />
         <Paragraph>
           By the way,{" "}
-          <a
-            target="_blank"
-            className="underline"
-            href="https://grenadaturns50.gd/"
-          >
+          <a target="_blank" className="underline" href="https://grenadaturns50.gd/">
             Grenada turns 50
           </a>{" "}
           this year!
@@ -125,11 +113,7 @@ export default function Grenada() {
         ></iframe>
         <Paragraph>
           Please{" "}
-          <Link
-            href="mailto:pineappleshirt473@gmail.com"
-            target="_blank"
-            className="underline"
-          >
+          <Link href="mailto:pineappleshirt473@gmail.com" target="_blank" className="underline">
             reach out to us
           </Link>{" "}
           if you have any questions.
@@ -138,34 +122,26 @@ export default function Grenada() {
 
       <Card title="Wedding Itinerary">
         <section className="text-left w-full">
-          <div className="font-bold text-center text-xl italic">
-            Thursday May 9th
-          </div>
+          <div className="font-bold text-center text-xl italic">Thursday May 9th</div>
 
-          <h3 className="font-bold mt-8">
-            Ceremony @ True Blue Bay Resort: 10:00 AM to 12:00 PM
-          </h3>
+          <h3 className="font-bold mt-8">Ceremony @ True Blue Bay Resort: 10:00 AM to 12:00 PM</h3>
           <ul className="pl-6 list-disc">
             <li>
-              Rides will be scheduled for pick up from Coyaba to True Blue Bay
-              Resort for the morning ceremony to commence at 10:00&nbsp;AM by
-              the pool.
+              Rides will be scheduled for pick up from Coyaba to True Blue Bay Resort for the
+              morning ceremony to commence at 10:00&nbsp;AM by the pool.
             </li>
             <li>
-              There will be light refreshments and drinks available during and
-              after the&nbsp;ceremony.
+              There will be light refreshments and drinks available during and after
+              the&nbsp;ceremony.
             </li>
-            <li>
-              Bring your swimming gear if you would like to take a dip in
-              the&nbsp;pool.
-            </li>
+            <li>Bring your swimming gear if you would like to take a dip in the&nbsp;pool.</li>
           </ul>
 
           <h3 className="font-bold mt-8">Intermission: 12:00 PM to 6:00 PM</h3>
           <ul className="pl-6 list-disc">
             <li>
-              Rides will be scheduled for transfer back to Coyaba Beach Resort
-              so you can relax, have lunch, and freshen up.
+              Rides will be scheduled for transfer back to Coyaba Beach Resort so you can relax,
+              have lunch, and freshen up.
             </li>
           </ul>
 
@@ -174,12 +150,12 @@ export default function Grenada() {
           </h3>
           <ul className="pl-6 list-disc">
             <li>
-              The reception dinner will be held at the <em>Dodgy Dock</em>, an
-              outdoor restaurant at True Blue Bay Resort.
+              The reception dinner will be held at the <em>Dodgy Dock</em>, an outdoor restaurant at
+              True Blue Bay Resort.
             </li>
             <li>
-              Rides will be scheduled for transfer back to True Blue Bay Resort
-              for the dinner reception at 6:30&nbsp;PM.
+              Rides will be scheduled for transfer back to True Blue Bay Resort for the dinner
+              reception at 6:30&nbsp;PM.
             </li>
             <li>Dinner will be served at 7:00&nbsp;PM.</li>
             <li>There will be music, dancing, and a coconut bar to enjoy.</li>
@@ -215,9 +191,7 @@ export default function Grenada() {
       {loadError && (
         <div className="my-10 w-full flex justify-center">
           <Card title="">
-            <p className="text-[#E53E34] text-center">
-              An error has occurred loading the map.
-            </p>
+            <p className="text-[#E53E34] text-center">An error has occurred loading the map.</p>
           </Card>
         </div>
       )}

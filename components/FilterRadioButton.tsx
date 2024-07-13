@@ -8,12 +8,7 @@ type MapFilterProps = MapFilter & {
   setSelected: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const FilterRadioButton: React.FC<MapFilterProps> = ({
-  id,
-  label,
-  selected,
-  setSelected,
-}) => {
+const FilterRadioButton: React.FC<MapFilterProps> = ({ id, label, selected, setSelected }) => {
   const isSelected = selected === id;
   const selectedStyles = `text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none `;
   const defaultStyles = "text-[#002F6C] border border-[#002F6C]";
@@ -25,7 +20,7 @@ const FilterRadioButton: React.FC<MapFilterProps> = ({
         id={id}
         className="invisible"
         checked={isSelected}
-        onChange={(e) => {
+        onChange={e => {
           setSelected(e.target.id);
         }}
       />

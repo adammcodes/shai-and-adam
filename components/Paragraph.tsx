@@ -6,10 +6,7 @@ type ParagraphProps = {
 
 const Paragraph = ({ children }: ParagraphProps) => {
   return (
-    <p
-      className="my-[10px] mx-[5px] lg:text-justify"
-      style={{ wordSpacing: "-1px" }}
-    >
+    <p className="my-[10px] mx-[5px] lg:text-justify" style={{ wordSpacing: "-1px" }}>
       {children}
     </p>
   );

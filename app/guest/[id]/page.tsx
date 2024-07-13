@@ -29,19 +29,14 @@ export default async function Page({
   try {
     if (group) {
       // fetch the group data
-      const res = await fetch(
-        `${process.env.AUTH0_BASE_URL}/api/group/${group}`,
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch(`${process.env.AUTH0_BASE_URL}/api/group/${group}`, {
+        cache: "no-store",
+      });
 
       guests = await res.json();
 
       // check if id is in group
-      const guest = guests
-        ? guests.find((guest: GuestData) => guest.id === id)
-        : null;
+      const guest = guests ? guests.find((guest: GuestData) => guest.id === id) : null;
 
       if (!guest) {
         console.log("guest not found");
@@ -60,16 +55,15 @@ export default async function Page({
       {!guests && !error && <p>Loading...</p>}
       {error && (
         <p className="text-red-500 font-bold text-2xl">
-          Sorry, we couldn't find your guest data. Please use the link in your
-          email invitation.
+          Sorry, we couldn't find your guest data. Please use the link in your email invitation.
         </p>
       )}
       {!error && guests && (
         <>
           <h1 className="font-bold text-3xl mb-2">RSVP</h1>
           <p className="text-lg text-center px-[10px]">
-            Please submit an RSVP for <u>each member</u> of your group. You have{" "}
-            {guests.length} guests in your group.
+            Please submit an RSVP for <u>each member</u> of your group. You have {guests.length}{" "}
+            guests in your group.
           </p>
 
           <div className="flex flex-col w-full items-center justify-center">

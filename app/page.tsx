@@ -35,11 +35,7 @@ export default function Home() {
 
         <p className="text-center">
           If you have any questions please reach out to us at{" "}
-          <Link
-            href="mailto:pineappleshirt473@gmail.com"
-            target="_blank"
-            className="underline"
-          >
+          <Link href="mailto:pineappleshirt473@gmail.com" target="_blank" className="underline">
             pineappleshirt473@gmail.com
           </Link>
           .

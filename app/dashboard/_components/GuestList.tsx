@@ -92,18 +92,13 @@ export default function GuestList() {
   }, [guests, sortColumn, sortDirection]);
 
   // number of guests who are attending the mehndi
-  const attendingMehndiCount = guests.filter(
-    (guest: GuestData) => guest.attending_mehndi
-  ).length;
+  const attendingMehndiCount = guests.filter((guest: GuestData) => guest.attending_mehndi).length;
 
   // number of guests who are attending the wedding in Grenada
-  const attendingGrenadaCount = guests.filter(
-    (guest: GuestData) => guest.attending_grenada
-  ).length;
+  const attendingGrenadaCount = guests.filter((guest: GuestData) => guest.attending_grenada).length;
 
   const guestsAttendingAtLeastOneEventWithEmail = guests.filter(
-    (guest) =>
-      guest.email && (guest.attending_grenada || guest.attending_mehndi)
+    guest => guest.email && (guest.attending_grenada || guest.attending_mehndi)
   );
 
   // update Invite Delivered field in Notion database for guest
@@ -130,12 +125,7 @@ export default function GuestList() {
     setSendingInvite([...sendingInvite, guest.id]);
 
     // send wedding invite
-    const response = await sendWeddingInvite(
-      guest.email,
-      guest.id,
-      guest.name,
-      guest.group_number
-    );
+    const response = await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
 
     // if successful, update the database
     if (response?.accepted.length && response.accepted.includes(guest.email)) {
@@ -157,7 +147,7 @@ export default function GuestList() {
       setErrorModalText("Error sending wedding invite. Check logs.");
     }
     // turn off loading state for this guest
-    setSendingInvite(sendingInvite.filter((id) => id !== guest.id));
+    setSendingInvite(sendingInvite.filter(id => id !== guest.id));
   };
 
   // handler for selecting a guest (local state)
@@ -166,9 +156,7 @@ export default function GuestList() {
     if (checked) {
       setSelectedGuests([...selectedGuests, name.split("-")[1]]);
     } else {
-      setSelectedGuests(
-        selectedGuests.filter((id) => id !== name.split("-")[1])
-      );
+      setSelectedGuests(selectedGuests.filter(id => id !== name.split("-")[1]));
     }
   };
 
@@ -179,28 +167,21 @@ export default function GuestList() {
 
     // send wedding invite for each selected guest
     const responses = await Promise.all(
-      selectedGuests.map(async (id) => {
-        const guest = guests.find((guest) => guest.id === id);
+      selectedGuests.map(async id => {
+        const guest = guests.find(guest => guest.id === id);
         if (guest) {
-          return await sendWeddingInvite(
-            guest.email,
-            guest.id,
-            guest.name,
-            guest.group_number
-          );
+          return await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
         }
       })
     );
 
     console.log(responses);
 
-    const successfulDeliveries = responses.filter(
-      (response) => response?.accepted.length
-    );
+    const successfulDeliveries = responses.filter(response => response?.accepted.length);
 
     // if any email is rejected, log error to console
-    if (responses.some((response) => response?.rejected.length)) {
-      console.error(responses.filter((response) => response?.rejected.length));
+    if (responses.some(response => response?.rejected.length)) {
+      console.error(responses.filter(response => response?.rejected.length));
       setErrorModalText("Error sending some emails. Check logs.");
     }
 
@@ -208,14 +189,10 @@ export default function GuestList() {
     if (successfulDeliveries.length) {
       // if email successful, update the database for each guest
       // Update the notion database with the invite_delivered field for successful deliveries
-      console.log(
-        "Updating Notion database with invite_delivered field for each selected guest"
-      );
+      console.log("Updating Notion database with invite_delivered field for each selected guest");
       const updateResponses = await Promise.all(
-        successfulDeliveries.map(async (response) => {
-          const guest = guests.find(
-            (guest) => guest.email === response?.accepted[0]
-          );
+        successfulDeliveries.map(async response => {
+          const guest = guests.find(guest => guest.email === response?.accepted[0]);
           if (guest) {
             return await updateInviteDelivered(guest);
           }
@@ -223,12 +200,10 @@ export default function GuestList() {
       );
 
       // successful updates
-      const successfulUpdates = updateResponses.filter(
-        (response) => response?.status === "success"
-      );
+      const successfulUpdates = updateResponses.filter(response => response?.status === "success");
       // unsuccessful updates
       const unsuccessfulUpdates = updateResponses.filter(
-        (response) => response?.status !== "success"
+        response => response?.status !== "success"
       );
       console.log("Successful updates:", successfulUpdates);
       console.log("Unsuccessful updates:", unsuccessfulUpdates);
@@ -246,9 +221,7 @@ export default function GuestList() {
     }
 
     // turn off loading state for selected guests
-    setSendingInvite(
-      sendingInvite.filter((id) => !selectedGuests.includes(id))
-    );
+    setSendingInvite(sendingInvite.filter(id => !selectedGuests.includes(id)));
   };
 
   // send update email to everyone
@@ -258,26 +231,19 @@ export default function GuestList() {
 
     // send update email for each guest
     const responses = await Promise.all(
-      selectedGuests.map(async (id) => {
-        const guest = guests.find((guest) => guest.id === id);
+      selectedGuests.map(async id => {
+        const guest = guests.find(guest => guest.id === id);
         if (guest) {
-          return await sendUpdateEmail(
-            guest.email,
-            guest.id,
-            guest.name,
-            guest.group_number
-          );
+          return await sendUpdateEmail(guest.email, guest.id, guest.name, guest.group_number);
         }
       })
     );
 
-    const successfulDeliveries = responses.filter(
-      (response) => response?.accepted.length
-    );
+    const successfulDeliveries = responses.filter(response => response?.accepted.length);
 
     // if any email is rejected, log error to console
-    if (responses.some((response) => response?.rejected.length)) {
-      console.error(responses.filter((response) => response?.rejected.length));
+    if (responses.some(response => response?.rejected.length)) {
+      console.error(responses.filter(response => response?.rejected.length));
       setErrorModalText("Error sending some emails. Check logs.");
     }
 
@@ -293,14 +259,10 @@ export default function GuestList() {
   };
 
   const handleSelectAll = () => {
-    if (
-      selectedGuests.length === guestsAttendingAtLeastOneEventWithEmail.length
-    ) {
+    if (selectedGuests.length === guestsAttendingAtLeastOneEventWithEmail.length) {
       setSelectedGuests([]);
     } else {
-      setSelectedGuests(
-        guestsAttendingAtLeastOneEventWithEmail.map((guest) => guest.id)
-      );
+      setSelectedGuests(guestsAttendingAtLeastOneEventWithEmail.map(guest => guest.id));
     }
   };
 
@@ -312,9 +274,7 @@ export default function GuestList() {
     <section className="flex min-h-screen flex-col items-center mt-[2em] text-black">
       <div className="text-center">
         <header className="p-2">
-          <h1 className="font-bold text-2xl py-5">
-            Guest List ({guests.length} people)
-          </h1>
+          <h1 className="font-bold text-2xl py-5">Guest List ({guests.length} people)</h1>
 
           <h2 className="font-bold text-blue-500 text-xl py-5">
             {attendingMehndiCount} are attending the mehndi.
@@ -336,8 +296,7 @@ export default function GuestList() {
             <Button
               disabled={guests.length === 0}
               text={
-                selectedGuests.length ===
-                guestsAttendingAtLeastOneEventWithEmail.length
+                selectedGuests.length === guestsAttendingAtLeastOneEventWithEmail.length
                   ? "Deselect All"
                   : "Select All Attending At Least One Event"
               }
@@ -346,21 +305,13 @@ export default function GuestList() {
           </div>
           <div className="flex flex-col">
             <Button
-              text={
-                sendingInvite.length > 0
-                  ? "Sending..."
-                  : "Send RSVP Reminder To Selected"
-              }
+              text={sendingInvite.length > 0 ? "Sending..." : "Send RSVP Reminder To Selected"}
               onClick={handleSendToSelected}
               disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
             />
 
             <Button
-              text={
-                sendingInvite.length
-                  ? "Sending..."
-                  : "Send Update Email To Selected"
-              }
+              text={sendingInvite.length ? "Sending..." : "Send Update Email To Selected"}
               onClick={sendUpdateEmailToSelected}
               disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
             />
@@ -374,12 +325,8 @@ export default function GuestList() {
             <table className="w-full overflow-x-auto text-center table-auto text-sm md:text-md">
               <thead>
                 <tr>
-                  <th className="px-5 sticky top-0 bg-black text-white">
-                    Select
-                  </th>
-                  <th className="px-5 sticky top-0 bg-black text-white">
-                    Delivered
-                  </th>
+                  <th className="px-5 sticky top-0 bg-black text-white">Select</th>
+                  <th className="px-5 sticky top-0 bg-black text-white">Delivered</th>
                   <th
                     onClick={() => handleSort("name")}
                     className="cursor:pointer px-5 sticky z-10 top-0 left-0 bg-black text-white"
@@ -434,9 +381,7 @@ export default function GuestList() {
                   >
                     Diet
                   </th>
-                  <th className="px-5 sticky top-0 bg-black text-white">
-                    Send Email
-                  </th>
+                  <th className="px-5 sticky top-0 bg-black text-white">Send Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -451,9 +396,7 @@ export default function GuestList() {
                         onChange={handleSelectGuest}
                       />
                     </td>
-                    <td className="border border-black">
-                      {guest.invite_delivered ? "✅" : "🔲"}
-                    </td>
+                    <td className="border border-black">{guest.invite_delivered ? "✅" : "🔲"}</td>
                     <td className="relative sticky left-[-1px] z-[5] bg-black text-white p-1">
                       {guest.name}
                       <button
@@ -466,32 +409,18 @@ export default function GuestList() {
                         <PersonIcon />
                       </button>
                     </td>
-                    <td className="border border-black">
-                      {guest.submitted_rsvp ? "✅" : "🔲"}
-                    </td>
-                    <td className="border border-black">
-                      {guest.group_number}
-                    </td>
+                    <td className="border border-black">{guest.submitted_rsvp ? "✅" : "🔲"}</td>
+                    <td className="border border-black">{guest.group_number}</td>
                     <td className="border border-black">{guest.email}</td>
-                    <td className="border border-black">
-                      {guest.attending_mehndi ? "✅" : "🔲"}
-                    </td>
-                    <td className="border border-black">
-                      {guest.attending_grenada ? "✅" : "🔲"}
-                    </td>
-                    <td className="border border-black">
-                      {guest.invite_to_grenada ? "✅" : "🔲"}
-                    </td>
-                    <td className="border border-black">
-                      {guest.invite_to_mehndi ? "✅" : "🔲"}
-                    </td>
+                    <td className="border border-black">{guest.attending_mehndi ? "✅" : "🔲"}</td>
+                    <td className="border border-black">{guest.attending_grenada ? "✅" : "🔲"}</td>
+                    <td className="border border-black">{guest.invite_to_grenada ? "✅" : "🔲"}</td>
+                    <td className="border border-black">{guest.invite_to_mehndi ? "✅" : "🔲"}</td>
                     <td className="border border-black px-5">{guest.diet}</td>
                     <td className="border-black p-5 flex flex-col">
                       <Button
                         text={
-                          sendingInvite.includes(guest.id)
-                            ? "Sending..."
-                            : "Send RSVP Reminder"
+                          sendingInvite.includes(guest.id) ? "Sending..." : "Send RSVP Reminder"
                         }
                         onClick={() => {
                           handleSendWeddingInvite(guest);

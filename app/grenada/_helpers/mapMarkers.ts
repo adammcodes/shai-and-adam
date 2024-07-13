@@ -53,8 +53,7 @@ export const mapMarkers: MapMarker[] = [
       lat: 12.025479316711426,
       lng: -61.7571907043457,
     },
-    website:
-      "https://www.choicehotels.com/en-ca/grenada/st-georges/radisson-hotels",
+    website: "https://www.choicehotels.com/en-ca/grenada/st-georges/radisson-hotels",
     email: "",
     mapUrl: "",
     filterId: "stay",
@@ -207,8 +206,7 @@ export const mapMarkers: MapMarker[] = [
       lat: 12.00042635320048,
       lng: -61.7687359033394,
     },
-    website:
-      "https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar",
+    website: "https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar",
     email: "reservations@truebluebay.com",
     mapUrl: "https://maps.app.goo.gl/nAWL2BK3Fn7QK5gP8",
     filterId: "do",
@@ -284,8 +282,7 @@ export const mapMarkers: MapMarker[] = [
       lat: 12.166614908536209,
       lng: -61.73146800000001,
     },
-    website:
-      "https://www.puregrenada.com/product/gouyave-nutmeg-processing-station/",
+    website: "https://www.puregrenada.com/product/gouyave-nutmeg-processing-station/",
     email: "info@puregrenda.com",
     mapUrl: "https://maps.app.goo.gl/ry1M6zBnKuPBkvj26",
     filterId: "do",
@@ -342,8 +339,7 @@ export const mapMarkers: MapMarker[] = [
       lat: 12.094360564431678,
       lng: -61.69406450252602,
     },
-    website:
-      "https://www.puregrenada.com/product/grand-etang-national-park-forest-reserve/",
+    website: "https://www.puregrenada.com/product/grand-etang-national-park-forest-reserve/",
     email: "info@puregrenda.com",
     mapUrl: "https://maps.app.goo.gl/NCdU4ixLUriZQJay5",
     filterId: "do",
@@ -398,8 +394,7 @@ export const mapMarkers: MapMarker[] = [
       lat: 12.00042635320048,
       lng: -61.7687359033394,
     },
-    website:
-      "https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar",
+    website: "https://www.truebluebay.com/restaurant/dodgy-dock-restaurant-and-bar",
     email: "reservations@truebluebay.com",
     mapUrl: "https://maps.app.goo.gl/nAWL2BK3Fn7QK5gP8",
     filterId: "couple",

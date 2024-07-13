@@ -14,12 +14,7 @@ type ResponseBodyOk = {
   messageId: string;
 };
 
-const sendUpdateEmail = async (
-  email: string,
-  id: string,
-  name: string,
-  group_number: number
-) => {
+const sendUpdateEmail = async (email: string, id: string, name: string, group_number: number) => {
   console.log("Sending update email to:", email);
   try {
     // send a POST request to /api/email/reminder
@@ -34,9 +29,7 @@ const sendUpdateEmail = async (
 
     if (!res.ok) {
       const errorBody = await res.text();
-      throw new Error(
-        `Failed to send email. Status: ${res.status}\n ${errorBody}`
-      );
+      throw new Error(`Failed to send email. Status: ${res.status}\n ${errorBody}`);
     }
     // get the response body
     const responseBody = await res.text();

@@ -5,18 +5,18 @@ import Image from "next/image";
 import hero from "@/public/images/600px.webp";
 import github_small from "@/public/images/github_small.png";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import type { Viewport, Metadata } from 'next';
+import type { Viewport, Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Shai & Adam",
   description:
     "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",
 };
- 
+
 export const viewport: Viewport = {
-  themeColor: 'black',
-  width: 'device-width',
-  initialScale: 1
+  themeColor: "black",
+  width: "device-width",
+  initialScale: 1,
 };
 
 const googleFont = DM_Sans({
@@ -26,11 +26,7 @@ const googleFont = DM_Sans({
   display: "swap",
 });
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <UserProvider>
@@ -79,12 +75,7 @@ export default async function RootLayout({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Image
-                    src={github_small}
-                    alt="GitHub Logo"
-                    width={25}
-                    height={25}
-                  />
+                  <Image src={github_small} alt="GitHub Logo" width={25} height={25} />
                 </a>
                 <p className="text-center text-sm pt-2">
                   Custom build from code and ❤️ by{" "}

@@ -9,13 +9,7 @@ interface ModalProps {
   confirmCancel?: boolean;
 }
 
-export default function Modal({
-  title,
-  children,
-  isOpen,
-  handleClose,
-  confirmCancel,
-}: ModalProps) {
+export default function Modal({ title, children, isOpen, handleClose, confirmCancel }: ModalProps) {
   return (
     <dialog
       open={isOpen}

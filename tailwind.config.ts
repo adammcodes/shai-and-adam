@@ -21,8 +21,7 @@ const config: Config = {
         "lime-500": "#d9f99d",
       },
       backgroundImage: {
-        "gradient-radial":
-          "radial-gradient(var(--tw-gradient-stops)) no-repeat",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops)) no-repeat",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops)) no-repeat",
       },

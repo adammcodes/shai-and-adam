@@ -6,13 +6,7 @@ interface TextInputProps {
   name: string;
 }
 
-export default function TextInput({
-  label,
-  value,
-  onChange,
-  id,
-  name,
-}: TextInputProps) {
+export default function TextInput({ label, value, onChange, id, name }: TextInputProps) {
   return (
     <label htmlFor={id} className="text-lg mb-5">
       {label}:<br />
@@ -22,7 +16,7 @@ export default function TextInput({
         id={id}
         className="border border-[#06b6d4] rounded-md px-2 text-black w-full"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
     </label>
   );

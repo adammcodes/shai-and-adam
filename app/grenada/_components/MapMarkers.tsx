@@ -15,7 +15,7 @@ export default function MapMarkers({
   return (
     <>
       {/* map markers defined in helpers/mapMarkers */}
-      {filteredMarkers.map((marker) => (
+      {filteredMarkers.map(marker => (
         <Marker
           key={marker.id}
           position={marker.position}

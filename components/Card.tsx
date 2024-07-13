@@ -1,12 +1,6 @@
 // Card is a component that renders a card with a title and children
 
-export default function Card({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+export default function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div
       id={title}

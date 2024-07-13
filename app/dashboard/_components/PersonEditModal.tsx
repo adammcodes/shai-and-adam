@@ -20,13 +20,9 @@ export default function PersonEditModal({
   // Dietary restriction input value
   const [diet, setDiet] = useState(guest.diet);
   // Attending Mehndi checkbox value
-  const [attendingMehndi, setAttendingMehndi] = useState(
-    guest.attending_mehndi
-  );
+  const [attendingMehndi, setAttendingMehndi] = useState(guest.attending_mehndi);
   // Attending Grenada checkbox value
-  const [attendingGrenada, setAttendingGrenada] = useState(
-    guest.attending_grenada
-  );
+  const [attendingGrenada, setAttendingGrenada] = useState(guest.attending_grenada);
   // Error state
   const [error, setError] = useState("");
   // Loading state for update request
@@ -95,7 +91,7 @@ export default function PersonEditModal({
             type="text"
             placeholder="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             className="border w-full border-2 p-1 rounded-lg"
           />
         </div>
@@ -105,7 +101,7 @@ export default function PersonEditModal({
             <input
               type="checkbox"
               checked={attendingMehndi}
-              onChange={(e) => setAttendingMehndi(e.target.checked)}
+              onChange={e => setAttendingMehndi(e.target.checked)}
               className="mr-2"
             />
             Attending Mehndi
@@ -115,7 +111,7 @@ export default function PersonEditModal({
             <input
               type="checkbox"
               checked={attendingGrenada}
-              onChange={(e) => setAttendingGrenada(e.target.checked)}
+              onChange={e => setAttendingGrenada(e.target.checked)}
               className="mr-2"
             />
             Attending Grenada
@@ -128,7 +124,7 @@ export default function PersonEditModal({
             type="text"
             placeholder="Dietary restrictions"
             value={diet}
-            onChange={(e) => setDiet(e.target.value)}
+            onChange={e => setDiet(e.target.value)}
             className="border w-full border-2 p-1 rounded-lg"
           />
         </div>

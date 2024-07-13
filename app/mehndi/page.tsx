@@ -35,10 +35,7 @@ export default function Mehndi() {
         <p className="text-center">
           Dum Pukht, Markham, Ontario.
           <br />
-          <Link
-            target="_blank"
-            href="https://maps.app.goo.gl/bkuQLwFXmVVzWt3i6"
-          >
+          <Link target="_blank" href="https://maps.app.goo.gl/bkuQLwFXmVVzWt3i6">
             323 Denison St Markham, ON L3R 1B7
           </Link>
         </p>
@@ -46,20 +43,18 @@ export default function Mehndi() {
 
       <Card title="What Is a Mehndi?">
         <Paragraph>
-          &emsp;An Ismaili Mehndi (Henna) Ceremony is traditionally a
-          pre-wedding celebration hosted by the bride and her family in the
-          bride's home. Although this is typically a small, casual affair,
-          modern multi-cultural mehndi ceremonies are becoming more elaborate
-          and inclusive of both families. A Mehndi Ceremony involves adorning
-          the hands and feet of the bride with a henna design as a celebration.
-          At a Mehndi, guests also have the opportunity to decorate their hands
-          with henna. Many believe that the Mehndi Ceremony signifies happiness,
-          prosperity, love and strength.
+          &emsp;An Ismaili Mehndi (Henna) Ceremony is traditionally a pre-wedding celebration hosted
+          by the bride and her family in the bride's home. Although this is typically a small,
+          casual affair, modern multi-cultural mehndi ceremonies are becoming more elaborate and
+          inclusive of both families. A Mehndi Ceremony involves adorning the hands and feet of the
+          bride with a henna design as a celebration. At a Mehndi, guests also have the opportunity
+          to decorate their hands with henna. Many believe that the Mehndi Ceremony signifies
+          happiness, prosperity, love and strength.
         </Paragraph>
         <Paragraph>
-          &emsp;Mehndi (henna) is a paste made from the henna plant that is left
-          on the skin to create a beautiful design. The longer henna paste is
-          left on the skin, the darker the design will be.
+          &emsp;Mehndi (henna) is a paste made from the henna plant that is left on the skin to
+          create a beautiful design. The longer henna paste is left on the skin, the darker the
+          design will be.
         </Paragraph>
         <Image
           src={"/images/mehndi.png"}
@@ -73,50 +68,43 @@ export default function Mehndi() {
       <Card title="What happens at a Mehndi?">
         <Paragraph>Some traditions you will see:</Paragraph>
         <Paragraph>
-          Puro: The women of the groom's family carry the bride's trousseau to
-          welcome her into their family. In turn, the bride's mother greets them
-          and will "ponke" each woman to welcome them into the bride's family.
+          Puro: The women of the groom's family carry the bride's trousseau to welcome her into
+          their family. In turn, the bride's mother greets them and will "ponke" each woman to
+          welcome them into the bride's family.
         </Paragraph>
         <Paragraph>
-          Ponke/Ponkwa: The ponkwa ceremony is performed many times throughout
-          the wedding festivities. It is a method of bestowing blessings by the
-          mothers of the couple. The mother places a dot of saffron water
-          (chandlo) on the forehead of a person, representing good luck. She
-          will then place rice on top of the chandlo, to signify bounty.
-          Coloured rice or flower petals are then showered over the person three
-          times as a blessing. Finally, the person is fed something sweet to
-          bless them with, "sweetness," in life. After the mothers have
-          completed the Ponkwa ceremony, guests are welcome to participate as
-          well if they wish.
+          Ponke/Ponkwa: The ponkwa ceremony is performed many times throughout the wedding
+          festivities. It is a method of bestowing blessings by the mothers of the couple. The
+          mother places a dot of saffron water (chandlo) on the forehead of a person, representing
+          good luck. She will then place rice on top of the chandlo, to signify bounty. Coloured
+          rice or flower petals are then showered over the person three times as a blessing.
+          Finally, the person is fed something sweet to bless them with, "sweetness," in life. After
+          the mothers have completed the Ponkwa ceremony, guests are welcome to participate as well
+          if they wish.
         </Paragraph>
         <Paragraph>
-          Entrance of the Groom: The groom enters the hall accompanied by
-          friends and family of his choice in the spirit of celebration as he
-          enters a new phase in his life.
+          Entrance of the Groom: The groom enters the hall accompanied by friends and family of his
+          choice in the spirit of celebration as he enters a new phase in his life.
         </Paragraph>
         <Paragraph>
-          Entrance of the Bride: The bride enters the hall led by friends and
-          family of her choice. They hold a saree above her head to signify
-          protection and dignity. Shaileen will be entering under her
-          grandmother's saree.
+          Entrance of the Bride: The bride enters the hall led by friends and family of her choice.
+          They hold a saree above her head to signify protection and dignity. Shaileen will be
+          entering under her grandmother's saree.
         </Paragraph>
         <Paragraph>
-          Sapatia: Sapatia are two clay pots that are placed on top of each
-          other that are broken throughout the wedding ceremonies, and are
-          filled with items of significance; lentils to symbolize abundance and
-          bounty, silver to signify wealth, sugar representing sweetness and
-          harmony, and turmeric for good health. Filled sapatias are placed in
-          front of the couple who will stomp on them to break them open and
-          release their contents. It is said that whoever breaks the sapatia
-          first will rule the household.
+          Sapatia: Sapatia are two clay pots that are placed on top of each other that are broken
+          throughout the wedding ceremonies, and are filled with items of significance; lentils to
+          symbolize abundance and bounty, silver to signify wealth, sugar representing sweetness and
+          harmony, and turmeric for good health. Filled sapatias are placed in front of the couple
+          who will stomp on them to break them open and release their contents. It is said that
+          whoever breaks the sapatia first will rule the household.
         </Paragraph>
         <Paragraph>
-          Blessing The Couple: Once the couple has entered the hall, it is time
-          for the mothers to bestow their blessings. At this time, the mothers
-          will ponke both the bride and groom. Both mothers will then hold the
-          ends of their sarees over the heads of the bride and groom to
-          symbolize protection. Sapatias are then placed in front of the couple
-          and are broken to signify the end of the ceremony.
+          Blessing The Couple: Once the couple has entered the hall, it is time for the mothers to
+          bestow their blessings. At this time, the mothers will ponke both the bride and groom.
+          Both mothers will then hold the ends of their sarees over the heads of the bride and groom
+          to symbolize protection. Sapatias are then placed in front of the couple and are broken to
+          signify the end of the ceremony.
         </Paragraph>
       </Card>
 
@@ -133,8 +121,8 @@ export default function Mehndi() {
           <br />
           <strong>What should I wear?</strong>
           <br />
-          Both Indian and Western attire are appropriate. Dress code is similar
-          to cocktail style attire.
+          Both Indian and Western attire are appropriate. Dress code is similar to cocktail style
+          attire.
           <br />
           <br />
           <strong>What are we eating?</strong>
@@ -144,8 +132,8 @@ export default function Mehndi() {
           <br />
           <strong>Where do I park?</strong>
           <br />
-          There is a parking lot circling the building. The venue has requested
-          that we park at the back or either side of the building.
+          There is a parking lot circling the building. The venue has requested that we park at the
+          back or either side of the building.
           <br />
           <br />
           <strong>Will there be alcohol?</strong>

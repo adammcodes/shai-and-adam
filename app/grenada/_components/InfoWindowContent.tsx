@@ -7,12 +7,7 @@ type InfoWindowContentProps = {
   website: string;
 };
 
-const InfoWindowContent: React.FC<InfoWindowContentProps> = ({
-  id,
-  title,
-  email,
-  website,
-}) => {
+const InfoWindowContent: React.FC<InfoWindowContentProps> = ({ id, title, email, website }) => {
   return (
     <>
       <div className="text-[#002F6C] py-3 px-2 pr-8">

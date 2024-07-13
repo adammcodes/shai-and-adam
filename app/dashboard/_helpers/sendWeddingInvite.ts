@@ -14,12 +14,7 @@ type ResponseBodyOk = {
   messageId: string;
 };
 
-const sendWeddingInvite = async (
-  email: string,
-  id: string,
-  name: string,
-  group_number: number
-) => {
+const sendWeddingInvite = async (email: string, id: string, name: string, group_number: number) => {
   console.log("Sending wedding invite to:", email);
   try {
     // send a POST request to /api/email/wedding
@@ -34,9 +29,7 @@ const sendWeddingInvite = async (
 
     if (!res.ok) {
       const errorBody = await res.text();
-      throw new Error(
-        `Failed to send email. Status: ${res.status}\n ${errorBody}`
-      );
+      throw new Error(`Failed to send email. Status: ${res.status}\n ${errorBody}`);
     }
     // get the response body
     const responseBody = await res.text();

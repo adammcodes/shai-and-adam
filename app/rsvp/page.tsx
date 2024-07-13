@@ -11,8 +11,7 @@ export default function RsvpPage() {
             Please click the "RSVP" button in your email invitation.
           </li>
           <li className="p-4 font-bold">
-            For each member of your group, fill in the details, and click
-            "Submit RSVP".
+            For each member of your group, fill in the details, and click "Submit RSVP".
           </li>
         </ol>
 

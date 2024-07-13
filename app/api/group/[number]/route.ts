@@ -4,10 +4,7 @@ import guestData from "@/helpers/guestData";
 
 // route that handles group requests by the number parameter
 // returns the list of guests in the group
-export async function GET(
-  request: Request,
-  { params }: { params: { number: string } }
-) {
+export async function GET(request: Request, { params }: { params: { number: string } }) {
   const { number } = params;
 
   // query the database for the group number
