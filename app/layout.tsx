@@ -1,11 +1,23 @@
 import "./globals.css";
-import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import hero from "@/public/images/600px.webp";
 import github_small from "@/public/images/github_small.png";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import type { Viewport, Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Shai & Adam",
+  description:
+    "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",
+};
+ 
+export const viewport: Viewport = {
+  themeColor: 'black',
+  width: 'device-width',
+  initialScale: 1
+};
 
 const googleFont = DM_Sans({
   weight: ["400", "700"],
@@ -13,13 +25,6 @@ const googleFont = DM_Sans({
   subsets: ["latin"],
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "Shai & Adam",
-  description:
-    "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",
-  viewport: "width=device-width, initial-scale=1",
-};
 
 export default async function RootLayout({
   children,
