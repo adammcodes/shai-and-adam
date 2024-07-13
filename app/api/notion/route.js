@@ -28,7 +28,8 @@ export async function GET() {
     return NextResponse.json(data);
   } catch (error) {
     console.error("Error:", error);
-    return JSON.stringify({ error: "An error occurred" });
+    // Return an error response instead of a string
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   }
 }
 
