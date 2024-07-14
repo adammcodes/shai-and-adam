@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: `${process.env.B2_BUCKET_NAME}.${process.env.B2_ENDPOINT}`,
+      },
+    ],
+  },
+};
 
 module.exports = nextConfig;

@@ -57,7 +57,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <Link href="/grenada">Grenada</Link>
                 </li>
                 <li>
-                  <Link href="/rsvp">RSVP</Link>
+                  <Link href="/gallery">Gallery</Link>
                 </li>
                 {process.env.NODE_ENV === "development" && (
                   <li>
@@ -68,7 +68,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </nav>
 
             <div className="flex flex-col min-h-screen items-center">
-              <div className="flex-grow">{children}</div>
+              <div className="w-full flex-grow">{children}</div>
               <footer className="mt-auto py-10 flex flex-col justify-center items-center">
                 <a
                   href="https://github.com/MagicMark5/shai-and-adam"
