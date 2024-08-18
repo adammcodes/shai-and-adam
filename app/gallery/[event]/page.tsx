@@ -5,7 +5,7 @@ import Masonry from "react-masonry-css";
 import B2Image from "../_components/B2Image";
 import PasswordProtection from "../_components/PasswordProtection";
 
-const PAGE_SIZE = 10; // Make sure this matches the PAGE_SIZE in the API route
+const PAGE_SIZE = 20; // Make sure this matches the PAGE_SIZE in the API route
 
 export default function EventGallery({ params }: { params: { event: string } }) {
   const [images, setImages] = useState<string[]>([]);

@@ -6,6 +6,7 @@ import styles from "./PasswordProtection.module.css";
 export default function PasswordProtection({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const storedPassword = localStorage.getItem("password");
@@ -16,6 +17,7 @@ export default function PasswordProtection({ children }: { children: React.React
   }, []);
 
   const handleAuthentication = async (pwd: string) => {
+    setError("");
     const response = await fetch("/api/validate-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,6 +27,8 @@ export default function PasswordProtection({ children }: { children: React.React
     setIsAuthenticated(isValid);
     if (isValid) {
       localStorage.setItem("password", pwd);
+    } else {
+      setError("Invalid password. Please try again.");
     }
   };
 
@@ -41,6 +45,7 @@ export default function PasswordProtection({ children }: { children: React.React
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <h2 className={styles.title}>Enter the password to view this gallery</h2>
+        {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="password"
