@@ -37,6 +37,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <Image
                   src={hero}
                   alt="Shai and Adam"
+                  style={{
+                    borderRadius: "0px 0px 50% 0px",
+                    boxShadow: "0px 0px 10px 0px #6f6a91",
+                  }}
                   width={200}
                   height={200}
                   priority
