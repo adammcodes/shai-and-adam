@@ -21,7 +21,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: radial-gradient(
+  background: repeating-radial-gradient(
     circle farthest-corner at top left,
     var(--yellow-hex),
     var(--light-blue-hex) 25%,

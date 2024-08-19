@@ -1,11 +1,31 @@
 "use client";
-
 import { useEffect, useState, useCallback, useRef } from "react";
-import Masonry from "react-masonry-css";
-import B2Image from "../_components/B2Image";
 import PasswordProtection from "../_components/PasswordProtection";
+import type { GalleryEvent } from "../page";
+import Link from "next/link";
+import PhotoWall from "../_components/PhotoWall";
 
-const PAGE_SIZE = 20; // Make sure this matches the PAGE_SIZE in the API route
+export const PAGE_SIZE = 30; // Make sure this matches the PAGE_SIZE in the API route
+
+// Sub-folders of "personal" photos that have people's camera photos in different categories
+const subfolders: GalleryEvent[] = [
+  {
+    name: "Pre-Events",
+    route: "/gallery/personal/pre-events",
+    coverImage: "/images/pre-events.webp",
+  },
+  {
+    name: "Wedding",
+    route: "/gallery/personal/wedding",
+    coverImage: "/images/personal-wedding.webp",
+  },
+  { name: "Mehndi", route: "/gallery/personal/mehndi", coverImage: "/images/personal-mehndi.webp" },
+  {
+    name: "Grenada",
+    route: "/gallery/personal/grenada",
+    coverImage: "/images/personal-grenada.webp",
+  },
+];
 
 export default function EventGallery({ params }: { params: { event: string } }) {
   const [images, setImages] = useState<string[]>([]);
@@ -80,9 +100,50 @@ export default function EventGallery({ params }: { params: { event: string } }) 
     return <div className="container mx-auto p-4 text-center">{error}</div>;
   }
 
+  if (params.event === "personal") {
+    return (
+      <PasswordProtection>
+        <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
+          <h1 className="text-2xl font-bold mb-4 mt-4 text-center">Personal Photos</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {subfolders.map(subfolder => (
+              <Link
+                href={`/gallery/${params.event}/${subfolder.name.toLowerCase()}`}
+                key={subfolder.name}
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                  <div className="relative h-96">
+                    <img
+                      src={subfolder.coverImage}
+                      alt={`${subfolder.name} cover`}
+                      className="object-cover object-top w-full h-full"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-xl font-semibold">{subfolder.name}</h2>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </PasswordProtection>
+    );
+  }
+
   return (
     <PasswordProtection>
-      <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
+      <PhotoWall
+        title={params.event.charAt(0).toUpperCase() + params.event.slice(1)}
+        breakpointCols={breakpointColumnsObj}
+        eventName={params.event}
+        images={images}
+        pageSize={PAGE_SIZE}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        handleLoadMore={handleLoadMore}
+      />
+      {/* <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
         <h1 className="text-2xl font-bold mb-4 mt-4 text-center">
           {params.event.charAt(0).toUpperCase() + params.event.slice(1)}
         </h1>
@@ -113,7 +174,7 @@ export default function EventGallery({ params }: { params: { event: string } }) 
           </button>
         )}
         {!hasMore && <div className="text-center mt-4">That's all for now!</div>}
-      </div>
+      </div> */}
     </PasswordProtection>
   );
 }
