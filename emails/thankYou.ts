@@ -5,20 +5,23 @@ export default function thankYouEmail({
   names: string[];
   customMessage?: string;
 }) {
-  const messageBody =
-    customMessage ??
-    `
-    Dear ${names.join(", ")}:
-    <br><br>
-    We are so grateful that you could join us on our special day. Your presence meant the world to us, and we feel incredibly blessed to have shared this unforgettable moment with you.
-    <br>
-    <br>
+  const greeting = `Dear ${names.join(", ")}:<br><br>`;
+
+  const messageBody = customMessage
+    ? customMessage
+    : `
+    We are immensely grateful that you were able to celebrate our wedding with us. We feel incredibly blessed to have shared these moments with you.
+    <br/><br/>
     Thank you for your love, support, and the beautiful memories we created together. We hope you enjoyed the celebration as much as we did!
-    <br>
-    <br>
-    With love and gratitude,<br>
-    Adam &#38; Shai
+    <br/><br/>
   `;
+
+  const signature = `<br/><br/>With Love,<br>Adam &#38; Shai`;
+
+  const galleryURL =
+    process.env.NODE_ENV === "production"
+      ? "https://shaileenandadam.rsvp/gallery"
+      : "http://localhost:3000/gallery";
 
   return `<!doctype html><html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>
 <title>
@@ -267,7 +270,9 @@ class="" style="vertical-align:top;width:600px;"
 <tbody><tr>
 <td align="center" class="font-20" style="font-size:0px;padding:0px 10px;word-break:break-word;">
 <div style="font-family:Georgia, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:center;color:#FFFFFF;">
+${greeting}
 ${messageBody}
+${signature}
 </div>
 </td>
 </tr>
@@ -300,7 +305,7 @@ align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:soli
 <tr>
 <td width="600" align="center" style="width:600px; font-size:0px; padding: 15px; background-color: #418BCA; border-radius: 30px; word-break:break-word;">
 <div width="600" style="width: 100%; font-weight: bold; cursor: pointer; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; line-height: 24px; text-align: center; color: #FFFFFF;">
-<a href="https://shaileenandadam.rsvp/gallery" target="_blank" style="color:#fff;text-decoration:none;font-family: Georgia, Helvetica, sans-serif;">Photo Gallery</a>
+<a href="${galleryURL}" target="_blank" style="color:#fff;text-decoration:none;font-family: Georgia, Helvetica, sans-serif;">Photo Gallery</a>
 </div>
 </td>
 </tr>

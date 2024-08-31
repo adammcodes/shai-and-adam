@@ -1,6 +1,6 @@
 // map callback function to return the properties of each guest
 // takes in a page object from Notion API and returns the properties we need for each guest
-export interface GuestData {
+export type GuestData = {
   id: string;
   name: string;
   email: string;
@@ -12,7 +12,8 @@ export interface GuestData {
   invite_to_grenada: boolean;
   attending_grenada: boolean;
   diet: string;
-}
+  thank_you_sent: boolean;
+};
 
 type PlainText = {
   plain_text: string;
@@ -54,6 +55,9 @@ type GuestDataColumns = {
   "Dietary Restrictions": {
     rich_text: PlainText[];
   };
+  "Thank You Sent": {
+    checkbox: boolean;
+  };
 };
 
 export default function guestData(page: any): GuestData {
@@ -76,5 +80,6 @@ export default function guestData(page: any): GuestData {
     invite_to_grenada: columns["Invite to Grenada"].checkbox,
     attending_grenada: columns["Attending Grenada"].checkbox,
     diet: diet,
+    thank_you_sent: columns["Thank You Sent"].checkbox,
   };
 }

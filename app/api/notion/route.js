@@ -33,18 +33,9 @@ export async function GET() {
   }
 }
 
-// Filter out guest if they don't have a valid name
-function filterGuests(page) {
-  // takes a single page.properties object (columns)
-  // returns true if guest has a valid name
-  const columns = page.properties;
-  const name = columns.Name.title.length > 0 ? columns.Name.title[0].plain_text : "";
-  return name;
-}
-
-// PATCH function to update a guest's "Invite Delivered" property
+// PATCH function to update a guest's checkbox property
 export async function PATCH(request) {
-  const { id, delivered, name } = await request.json();
+  const { id, delivered, name, field = "Invite Delivered" } = await request.json();
 
   // Find the guest in notion database by the id
   const row = await notion.databases.query({
@@ -68,22 +59,22 @@ export async function PATCH(request) {
 
   const row_id = row.results[0].id;
 
-  // Update the guest in notion for property: "Invite Delivered"
+  // Update the guest in notion for checkbox property: e.g. "Invite Delivered" or "Thank You Sent"
   const response = await notion.pages.update({
     page_id: row_id,
     properties: {
-      "Invite Delivered": {
+      [field]: {
         checkbox: delivered,
       },
     },
   });
 
   // Return a response
-  if (response.properties && response.properties["Invite Delivered"]) {
+  if (response.properties && response.properties[field]) {
     return new Response(
       JSON.stringify({
         status: "success",
-        message: `Invite status for ${name} was updated.`,
+        message: `${field} status for ${name} was updated.`,
         guestId: id,
       }),
       {
@@ -95,7 +86,7 @@ export async function PATCH(request) {
     return new Response(
       JSON.stringify({
         status: "error",
-        message: `Invite status for ${name} was not updated.`,
+        message: `${field} status for ${name} was not updated.`,
         guestId: id,
       }),
       {
@@ -104,4 +95,13 @@ export async function PATCH(request) {
       }
     );
   }
+}
+
+// Filter out guest if they don't have a valid name
+function filterGuests(page) {
+  // takes a single page.properties object (columns)
+  // returns true if guest has a valid name
+  const columns = page.properties;
+  const name = columns.Name.title.length > 0 ? columns.Name.title[0].plain_text : "";
+  return name;
 }

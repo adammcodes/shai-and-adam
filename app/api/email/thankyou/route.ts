@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   const body = await request.json();
 
   // Check if request body has list of names
-  if (!body.names || body.names?.length === 0) {
+  if (!body.email || !body.names || body.names?.length === 0) {
     return new Response(JSON.stringify({ error: "Invalid request body" }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     subject: "Thank you for attending our wedding!",
     html: thankYouEmail({
       names: body.names,
-      customMessage: body.custom_message ?? "",
+      customMessage: body.custom_message ?? null,
     }),
     headers: {
       "List-Unsubscribe": "<mailto:adam@shaileenandadam.rsvp>",

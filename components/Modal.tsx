@@ -1,33 +1,68 @@
-// pop-up Modal component that takes in a title and children props
 "use client";
+import { useEffect } from "react";
 
 interface ModalProps {
   title: string;
+  justify?: string;
+  height?: string;
+  maxHeight?: string;
   children: React.ReactNode;
   isOpen: boolean;
   handleClose: () => void;
   confirmCancel?: boolean;
 }
 
-export default function Modal({ title, children, isOpen, handleClose, confirmCancel }: ModalProps) {
+export default function Modal({
+  title,
+  justify = "justify-center",
+  maxHeight = "max-h-[800px]",
+  height = "h-full",
+  children,
+  isOpen,
+  handleClose,
+  confirmCancel,
+}: ModalProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   return (
-    <dialog
-      open={isOpen}
-      onClose={handleClose}
-      className="h-[80%] max-h-[500px] w-[80%] max-w-[600px] rounded-[30px] inset-0 overflow-y-auto border-2 border-[#06b6d4]"
-      style={{
-        position: "fixed",
-        zIndex: 9999,
-      }}
-    >
-      <div className="flex w-full items-center justify-center h-full z-50 py-[20px] px-[15px]">
-        <div className="bg-white w-full rounded-md px-2 py-2 z-50 lg:p-5 m-5 h-full flex flex-col items-center justify-center gap-y-10">
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm"
+        onClick={handleClose}
+      ></div>
+
+      {/* Modal */}
+      <dialog
+        open={isOpen}
+        onClose={handleClose}
+        className={`h-[90%] ${maxHeight} w-[80%] max-w-[600px] rounded-[30px] inset-0 overflow-y-auto z-50 shadow-lg rounded-md`}
+        style={{
+          position: "fixed",
+          zIndex: 9999,
+        }}
+      >
+        <div
+          className={`flex flex-col items-center ${justify} gap-y-4 bg-gray-100 w-full ${height} rounded-md z-50 p-2 lg:p-4`}
+        >
           {/* Modal header */}
-          <div className="flex justify-center items-center p-0">
-            <h1 className="font-bold text-[1.1em] lg:text-3xl">{title}</h1>
+          <div className="flex justify-center items-center m-0 p-0">
+            <h1 className="font-bold text-[1.1em] lg:text-2xl">{title}</h1>
           </div>
           {/* Modal content */}
-          <div className="w-full">{children}</div>
+          <div className="w-full h-full">{children}</div>
           {/* Modal footer */}
           {!confirmCancel && (
             <button
@@ -38,7 +73,7 @@ export default function Modal({ title, children, isOpen, handleClose, confirmCan
             </button>
           )}
         </div>
-      </div>
-    </dialog>
+      </dialog>
+    </>
   );
 }

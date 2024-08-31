@@ -1,17 +1,22 @@
 // list of guests on the Invite List, which is a notion database
 // Fetches Invite List from Notion database
 import { useEffect, useState, useMemo } from "react";
-// import Link from "next/link";
+
 import Button from "./Button";
 import Modal from "@/components/Modal";
-import ConfettiExplosion from "react-confetti-explosion";
-import sendWeddingInvite from "../_helpers/sendWeddingInvite";
-import sendUpdateEmail from "../_helpers/sendUpdateEmail";
-// import types
-import { GuestData } from "@/helpers/guestData";
-import Counter from "./Counter";
 import PersonIcon from "@mui/icons-material/Person";
+import ConfettiExplosion from "react-confetti-explosion";
+import Counter from "./Counter";
 import PersonEditModal from "./PersonEditModal";
+import CustomMessageModal from "./CustomMessageModal";
+
+// emails
+// import sendWeddingInvite from "../_helpers/sendWeddingInvite";
+import sendThankyouEmail from "../_helpers/sendThankyouEmail";
+// import sendUpdateEmail from "../_helpers/sendUpdateEmail";
+
+// import types
+import type { GuestData } from "@/helpers/guestData";
 
 type SendingInvites = string[];
 
@@ -25,11 +30,15 @@ export default function GuestList() {
   // error message state for fetching guest list
   const [errorMessage, setErrorMessage] = useState<string>("");
   // loading state for sending invite (array of id strings that are loading)
-  const [sendingInvite, setSendingInvite] = useState<SendingInvites>([]);
-  // Modal state for sending invite success
+  const [sendingEmail, setSendingEmail] = useState<SendingInvites>([]);
+  // Modal state for sending email success
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  // Modal state for sending custom message
+  const [customMessageGuest, setCustomMessageGuest] = useState<GuestData | null>(null);
   // state for confetti explosion
   const [confetti, setConfetti] = useState(false);
+  // Success message for modal
+  const [successModalText, setSuccessModalText] = useState("");
   // Error modal state
   const [errorModalText, setErrorModalText] = useState("");
   // state for selected guests (array of id strings)
@@ -92,18 +101,18 @@ export default function GuestList() {
   }, [guests, sortColumn, sortDirection]);
 
   // number of guests who are attending the mehndi
-  const attendingMehndiCount = guests.filter((guest: GuestData) => guest.attending_mehndi).length;
+  // const attendingMehndiCount = guests.filter((guest: GuestData) => guest.attending_mehndi).length;
 
   // number of guests who are attending the wedding in Grenada
-  const attendingGrenadaCount = guests.filter((guest: GuestData) => guest.attending_grenada).length;
+  // const attendingGrenadaCount = guests.filter((guest: GuestData) => guest.attending_grenada).length;
 
-  const guestsAttendingAtLeastOneEventWithEmail = guests.filter(
-    guest => guest.email && (guest.attending_grenada || guest.attending_mehndi)
-  );
+  const guestsAttendingAtLeastOneEventWithEmail = guests
+    .filter(guest => guest.email && (guest.attending_grenada || guest.attending_mehndi))
+    .filter(guest => guest.thank_you_sent === false);
 
   // update Invite Delivered field in Notion database for guest
-  const updateInviteDelivered = async (guest: GuestData) => {
-    console.log(`Updating Notion data delivered status for ${guest.name}`);
+  const updateCheckboxField = async (guest: GuestData, field: string) => {
+    console.log(`Updating Notion data ${field} status for ${guest.name}`);
     const response = await fetch("/api/notion", {
       method: "PATCH",
       headers: {
@@ -113,6 +122,7 @@ export default function GuestList() {
         id: guest.id,
         delivered: true,
         name: guest.name,
+        field: field,
       }),
     });
     const data = await response.json();
@@ -120,35 +130,35 @@ export default function GuestList() {
   };
 
   // handler for sending wedding invite for 1 guest
-  const handleSendWeddingInvite = async (guest: GuestData) => {
-    // turn on loading state for this guest
-    setSendingInvite([...sendingInvite, guest.id]);
+  // const handleSendWeddingInvite = async (guest: GuestData) => {
+  //   // turn on loading state for this guest
+  //   setSendingEmail([...sendingEmail, guest.id]);
 
-    // send wedding invite
-    const response = await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
+  //   // send wedding invite
+  //   const response = await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
 
-    // if successful, update the database
-    if (response?.accepted.length && response.accepted.includes(guest.email)) {
-      // Update the notion database with the invite_delivered field
-      const data = await updateInviteDelivered(guest);
+  //   // if successful, update the database
+  //   if (response?.accepted.length && response.accepted.includes(guest.email)) {
+  //     // Update the notion database with the invite_delivered field
+  //     const data = await updateCheckboxField(guest, "Invite Delivered");
 
-      if (data.status === "success") {
-        // confetti
-        setConfetti(true);
-        // open modal
-        setModalIsOpen(true);
-      } else {
-        console.log("Error updating Notion database");
-        setErrorModalText("Error updating Notion database. Check logs.");
-      }
-    } else {
-      console.log(response);
-      console.log(response?.rejected);
-      setErrorModalText("Error sending wedding invite. Check logs.");
-    }
-    // turn off loading state for this guest
-    setSendingInvite(sendingInvite.filter(id => id !== guest.id));
-  };
+  //     if (data.status === "success") {
+  //       // confetti
+  //       setConfetti(true);
+  //       // open modal
+  //       setModalIsOpen(true);
+  //     } else {
+  //       console.log("Error updating Notion database");
+  //       setErrorModalText("Error updating Notion database. Check logs.");
+  //     }
+  //   } else {
+  //     console.log(response);
+  //     console.log(response?.rejected);
+  //     setErrorModalText("Error sending wedding invite. Check logs.");
+  //   }
+  //   // turn off loading state for this guest
+  //   setSendingEmail(sendingEmail.filter(id => id !== guest.id));
+  // };
 
   // handler for selecting a guest (local state)
   const handleSelectGuest = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,103 +170,100 @@ export default function GuestList() {
     }
   };
 
-  // handler for sending wedding invite to selected guests
-  const handleSendToSelected = async () => {
-    // turn on loading state for selected guests
-    setSendingInvite([...sendingInvite, ...selectedGuests]);
+  // const handleSendToSelected = async () => {
+  //   // turn on loading state for selected guests
+  //   setSendingEmail([...sendingEmail, ...selectedGuests]);
 
-    // send wedding invite for each selected guest
-    const responses = await Promise.all(
-      selectedGuests.map(async id => {
-        const guest = guests.find(guest => guest.id === id);
-        if (guest) {
-          return await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
-        }
-      })
-    );
+  //   // send wedding invite for each selected guest
+  //   const responses = await Promise.all(
+  //     selectedGuests.map(async id => {
+  //       const guest = guests.find(guest => guest.id === id);
+  //       if (guest) {
+  //         return await sendWeddingInvite(guest.email, guest.id, guest.name, guest.group_number);
+  //       }
+  //     })
+  //   );
 
-    console.log(responses);
+  //   const successfulDeliveries = responses.filter(response => response?.accepted.length);
 
-    const successfulDeliveries = responses.filter(response => response?.accepted.length);
+  //   // if any email is rejected, log error to console
+  //   if (responses.some(response => response?.rejected.length)) {
+  //     console.error(responses.filter(response => response?.rejected.length));
+  //     setErrorModalText("Error sending some emails. Check logs.");
+  //   }
 
-    // if any email is rejected, log error to console
-    if (responses.some(response => response?.rejected.length)) {
-      console.error(responses.filter(response => response?.rejected.length));
-      setErrorModalText("Error sending some emails. Check logs.");
-    }
+  //   // if there is at least one successful delivery
+  //   if (successfulDeliveries.length) {
+  //     // if email successful, update the database for each guest
+  //     // Update the notion database with the invite_delivered field for successful deliveries
+  //     console.log("Updating Notion database with invite_delivered field for each selected guest");
+  //     const updateResponses = await Promise.all(
+  //       successfulDeliveries.map(async response => {
+  //         const guest = guests.find(guest => guest.email === response?.accepted[0]);
+  //         if (guest) {
+  //           return await updateCheckboxField(guest, "Invite Delivered");
+  //         }
+  //       })
+  //     );
 
-    // if there is at least one successful delivery
-    if (successfulDeliveries.length) {
-      // if email successful, update the database for each guest
-      // Update the notion database with the invite_delivered field for successful deliveries
-      console.log("Updating Notion database with invite_delivered field for each selected guest");
-      const updateResponses = await Promise.all(
-        successfulDeliveries.map(async response => {
-          const guest = guests.find(guest => guest.email === response?.accepted[0]);
-          if (guest) {
-            return await updateInviteDelivered(guest);
-          }
-        })
-      );
+  //     // successful updates
+  //     const successfulUpdates = updateResponses.filter(response => response?.status === "success");
+  //     // unsuccessful updates
+  //     const unsuccessfulUpdates = updateResponses.filter(
+  //       response => response?.status !== "success"
+  //     );
+  //     console.log("Successful updates:", successfulUpdates);
+  //     console.log("Unsuccessful updates:", unsuccessfulUpdates);
 
-      // successful updates
-      const successfulUpdates = updateResponses.filter(response => response?.status === "success");
-      // unsuccessful updates
-      const unsuccessfulUpdates = updateResponses.filter(
-        response => response?.status !== "success"
-      );
-      console.log("Successful updates:", successfulUpdates);
-      console.log("Unsuccessful updates:", unsuccessfulUpdates);
+  //     if (successfulUpdates.length === selectedGuests.length) {
+  //       console.log("All deliveries and updates successful!");
+  //       // confetti
+  //       setConfetti(true);
+  //       // open modal
+  //       setModalIsOpen(true);
+  //     } else {
+  //       // open modal but no confetti
+  //       setModalIsOpen(true);
+  //     }
+  //   }
 
-      if (successfulUpdates.length === selectedGuests.length) {
-        console.log("All deliveries and updates successful!");
-        // confetti
-        setConfetti(true);
-        // open modal
-        setModalIsOpen(true);
-      } else {
-        // open modal but no confetti
-        setModalIsOpen(true);
-      }
-    }
-
-    // turn off loading state for selected guests
-    setSendingInvite(sendingInvite.filter(id => !selectedGuests.includes(id)));
-  };
+  //   // turn off loading state for selected guests
+  //   setSendingEmail(sendingEmail.filter(id => !selectedGuests.includes(id)));
+  // };
 
   // send update email to everyone
-  const sendUpdateEmailToSelected = async () => {
-    // turn on loading state for selected guests
-    setSendingInvite([...sendingInvite, ...selectedGuests]);
+  // const sendUpdateEmailToSelected = async () => {
+  //   // turn on loading state for selected guests
+  //   setSendingEmail([...sendingEmail, ...selectedGuests]);
 
-    // send update email for each guest
-    const responses = await Promise.all(
-      selectedGuests.map(async id => {
-        const guest = guests.find(guest => guest.id === id);
-        if (guest) {
-          return await sendUpdateEmail(guest.email, guest.id, guest.name, guest.group_number);
-        }
-      })
-    );
+  //   // send update email for each guest
+  //   const responses = await Promise.all(
+  //     selectedGuests.map(async id => {
+  //       const guest = guests.find(guest => guest.id === id);
+  //       if (guest) {
+  //         return await sendUpdateEmail(guest.email, guest.id, guest.name, guest.group_number);
+  //       }
+  //     })
+  //   );
 
-    const successfulDeliveries = responses.filter(response => response?.accepted.length);
+  //   const successfulDeliveries = responses.filter(response => response?.accepted.length);
 
-    // if any email is rejected, log error to console
-    if (responses.some(response => response?.rejected.length)) {
-      console.error(responses.filter(response => response?.rejected.length));
-      setErrorModalText("Error sending some emails. Check logs.");
-    }
+  //   // if any email is rejected, log error to console
+  //   if (responses.some(response => response?.rejected.length)) {
+  //     console.error(responses.filter(response => response?.rejected.length));
+  //     setErrorModalText("Error sending some emails. Check logs.");
+  //   }
 
-    // if there is at least one successful delivery
-    if (successfulDeliveries.length) {
-      setConfetti(true);
-      // open modal
-      setModalIsOpen(true);
-    }
+  //   // if there is at least one successful delivery
+  //   if (successfulDeliveries.length) {
+  //     setConfetti(true);
+  //     // open modal
+  //     setModalIsOpen(true);
+  //   }
 
-    // turn off loading state for selected guests
-    setSendingInvite([]);
-  };
+  //   // turn off loading state for selected guests
+  //   setSendingEmail([]);
+  // };
 
   const handleSelectAll = () => {
     if (selectedGuests.length === guestsAttendingAtLeastOneEventWithEmail.length) {
@@ -266,8 +273,97 @@ export default function GuestList() {
     }
   };
 
+  type EmailResponse = {
+    response: any;
+    guest: GuestData;
+  };
+
+  const handleSendThankYouEmailToSelected = async () => {
+    setSendingEmail([...sendingEmail, ...selectedGuests]);
+    // For each guest, send a thank you email
+    const successfulSends: EmailResponse[] = [];
+    const failedSends: EmailResponse[] = [];
+    // For each sent email, update the checkbox field (Thank You Sent) in the Notion database
+    const successfulUpdates: EmailResponse[] = [];
+    const failedUpdates: EmailResponse[] = [];
+
+    // Send a thank you email to each selected guest with no custom message
+    await Promise.all(
+      selectedGuests.map(async id => {
+        const guest: GuestData | undefined = guests.find(guest => guest.id === id);
+        if (guest) {
+          const groupNames = getGroupNames(guest);
+          const sendResponse = await sendThankyouEmail(guest.email, groupNames);
+          // if successful, update the database
+          if (sendResponse?.accepted.length && sendResponse.accepted.includes(guest.email)) {
+            // save a record of the successful send
+            successfulSends.push({ response: sendResponse, guest });
+            // Update the notion database "Thank You Sent" field
+            const updateResponse = await updateCheckboxField(guest, "Thank You Sent");
+            if (updateResponse.status === "success") {
+              // save a record of the successful update
+              successfulUpdates.push({ response: updateResponse, guest });
+            } else {
+              // save a record of the failed update
+              failedUpdates.push({ response: updateResponse, guest });
+              console.log("Error updating Notion database");
+            }
+          } else {
+            // save a record of the failed send
+            failedSends.push({ response: sendResponse, guest });
+            console.log("Email Rejected: ", sendResponse?.rejected);
+            console.log("Failed send response: ", sendResponse);
+          }
+          return sendResponse;
+        } else {
+          console.error("Error: Guest not found when sending thank you email");
+          return null;
+        }
+      })
+    );
+
+    console.log("Successful sends:", successfulSends);
+    console.log("Failed sends:", failedSends);
+
+    console.log("Successful updates:", successfulUpdates);
+    console.log("Failed updates:", failedUpdates);
+
+    if (failedSends.length || failedUpdates.length) {
+      setErrorModalText("Error sending some emails or updating fields. Check logs.");
+    }
+
+    if (
+      successfulSends.length === selectedGuests.length &&
+      successfulUpdates.length === selectedGuests.length
+    ) {
+      setConfetti(true);
+      setModalIsOpen(true);
+      setSuccessModalText("All thank you emails sent and database updated successfully!");
+    }
+
+    // turn off loading state for selected guests
+    setSendingEmail([]);
+  };
+
+  const getGroupNames = (guestData: GuestData) => {
+    const guestGroupNumber = guestData?.group_number;
+    const groupNames: string[] = guests
+      .filter(guest => guest.group_number === guestGroupNumber)
+      .map(guest => guest.name);
+    return groupNames;
+  };
+
+  const getGroupEmails = (guestData: GuestData) => {
+    const guestGroupNumber = guestData?.group_number;
+    const groupEmails: string[] = guests
+      .filter(guest => guest.group_number === guestGroupNumber)
+      .map(guest => guest.email)
+      .filter(email => email);
+    return groupEmails;
+  };
+
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Fetching data from Notion...</p>;
   }
 
   return (
@@ -276,13 +372,13 @@ export default function GuestList() {
         <header className="p-2">
           <h1 className="font-bold text-2xl py-5">Guest List ({guests.length} people)</h1>
 
-          <h2 className="font-bold text-blue-500 text-xl py-5">
+          {/* <h2 className="font-bold text-blue-500 text-xl py-5">
             {attendingMehndiCount} are attending the mehndi.
           </h2>
 
           <h2 className="font-bold text-blue-500 text-xl py-5">
             {attendingGrenadaCount} are attending in Grenada.
-          </h2>
+          </h2> */}
 
           <h2 className="font-bold text-blue-500 text-xl py-5">
             {selectedGuests.length} selected.
@@ -305,16 +401,21 @@ export default function GuestList() {
           </div>
           <div className="flex flex-col">
             <Button
-              text={sendingInvite.length > 0 ? "Sending..." : "Send RSVP Reminder To Selected"}
+              text={sendingEmail.length ? "Sending..." : "Send Thank You Email To Selected"}
+              onClick={handleSendThankYouEmailToSelected}
+              disabled={selectedGuests.length === 0 || sendingEmail.length > 0}
+            />
+            {/* <Button
+              text={sendingEmail.length > 0 ? "Sending..." : "Send RSVP Reminder To Selected"}
               onClick={handleSendToSelected}
-              disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
-            />
+              disabled={selectedGuests.length === 0 || sendingEmail.length > 0}
+            /> */}
 
-            <Button
-              text={sendingInvite.length ? "Sending..." : "Send Update Email To Selected"}
+            {/* <Button
+              text={sendingEmail.length ? "Sending..." : "Send Update Email To Selected"}
               onClick={sendUpdateEmailToSelected}
-              disabled={selectedGuests.length === 0 || sendingInvite.length > 0}
-            />
+              disabled={selectedGuests.length === 0 || sendingEmail.length > 0}
+            /> */}
           </div>
         </section>
 
@@ -326,18 +427,24 @@ export default function GuestList() {
               <thead>
                 <tr>
                   <th className="px-5 sticky top-0 bg-black text-white">Select</th>
-                  <th className="px-5 sticky top-0 bg-black text-white">Delivered</th>
+                  {/* <th className="px-5 sticky top-0 bg-black text-white">Delivered</th> */}
                   <th
                     onClick={() => handleSort("name")}
                     className="cursor:pointer px-5 sticky z-10 top-0 left-0 bg-black text-white"
                   >
                     Name
                   </th>
-                  <th
+                  {/* <th
                     onClick={() => handleSort("submitted_rsvp")}
                     className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     RSVP Submitted
+                  </th> */}
+                  <th
+                    onClick={() => handleSort("thank_you_sent")}
+                    className="cursor:pointer px-5 sticky top-0 bg-black text-white"
+                  >
+                    Thank You Sent
                   </th>
                   <th
                     onClick={() => handleSort("group_number")}
@@ -363,7 +470,7 @@ export default function GuestList() {
                   >
                     Attending Grenada
                   </th>
-                  <th
+                  {/* <th
                     onClick={() => handleSort("invite_to_mehndi")}
                     className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
@@ -374,14 +481,14 @@ export default function GuestList() {
                     className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Invite to Grenada
-                  </th>
-                  <th
+                  </th> */}
+                  {/* <th
                     onClick={() => handleSort("diet")}
                     className="cursor:pointer px-5 sticky top-0 bg-black text-white"
                   >
                     Diet
-                  </th>
-                  <th className="px-5 sticky top-0 bg-black text-white">Send Email</th>
+                  </th> */}
+                  <th className="px-5 sticky z-20 top-0 bg-black text-white">Send Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -390,13 +497,21 @@ export default function GuestList() {
                     <td className="border border-black">
                       <input
                         type="checkbox"
+                        className="w-5 h-5 cursor-pointer text-blue-600 bg-gray-100 border-gray-300 rounded focus-none"
                         name={`select-${guest.id}`}
                         id={`select-${guest.id}`}
                         checked={selectedGuests.includes(guest.id)}
                         onChange={handleSelectGuest}
+                        disabled={
+                          !guest.email ||
+                          (!guest.attending_grenada && !guest.attending_mehndi) ||
+                          guest.thank_you_sent
+                        }
                       />
                     </td>
-                    <td className="border border-black">{guest.invite_delivered ? "✅" : "🔲"}</td>
+                    {/* <td className="border border-black">
+                      {guest.invite_delivered ? <GreenCheckMark /> : <EmptyBox />}
+                    </td> */}
                     <td className="relative sticky left-[-1px] z-[5] bg-black text-white p-1">
                       {guest.name}
                       <button
@@ -409,27 +524,47 @@ export default function GuestList() {
                         <PersonIcon />
                       </button>
                     </td>
-                    <td className="border border-black">{guest.submitted_rsvp ? "✅" : "🔲"}</td>
+                    {/* <td className="border border-black">{guest.submitted_rsvp ? <GreenCheckMark /> : <EmptyBox />}</td> */}
+                    <td className="border border-black">
+                      {guest.thank_you_sent ? <GreenCheckMark /> : <EmptyBox />}
+                    </td>
                     <td className="border border-black">{guest.group_number}</td>
                     <td className="border border-black">{guest.email}</td>
-                    <td className="border border-black">{guest.attending_mehndi ? "✅" : "🔲"}</td>
-                    <td className="border border-black">{guest.attending_grenada ? "✅" : "🔲"}</td>
-                    <td className="border border-black">{guest.invite_to_grenada ? "✅" : "🔲"}</td>
-                    <td className="border border-black">{guest.invite_to_mehndi ? "✅" : "🔲"}</td>
-                    <td className="border border-black px-5">{guest.diet}</td>
+                    <td className="border border-black">
+                      {guest.attending_mehndi ? <GreenCheckMark /> : <EmptyBox />}
+                    </td>
+                    <td className="border border-black">
+                      {guest.attending_grenada ? <GreenCheckMark /> : <EmptyBox />}
+                    </td>
+                    {/* <td className="border border-black">{guest.invite_to_grenada ? <GreenCheckMark /> : <EmptyBox />}</td>
+                    <td className="border border-black">{guest.invite_to_mehndi ? <GreenCheckMark /> : <EmptyBox />}</td> */}
+                    {/* <td className="border border-black px-5">{guest.diet}</td> */}
                     <td className="border-black p-5 flex flex-col">
-                      <Button
-                        text={
-                          sendingInvite.includes(guest.id) ? "Sending..." : "Send RSVP Reminder"
-                        }
+                      {/* <Button
+                        text={sendingEmail.includes(guest.id) ? "Sending..." : "Send RSVP Reminder"}
                         onClick={() => {
                           handleSendWeddingInvite(guest);
                         }}
                         disabled={
-                          sendingInvite.includes(guest.id) ||
+                          sendingEmail.includes(guest.id) ||
                           !guest.email ||
                           !guest.invite_to_grenada ||
                           !guest.invite_to_mehndi
+                        }
+                      /> */}
+                      <Button
+                        text={
+                          sendingEmail.includes(guest.id)
+                            ? "Sending..."
+                            : guest.thank_you_sent
+                              ? "Sent"
+                              : "Send Custom Thank You Invite"
+                        }
+                        onClick={() => {
+                          setCustomMessageGuest(guest);
+                        }}
+                        disabled={
+                          sendingEmail.includes(guest.id) || !guest.email || guest.thank_you_sent
                         }
                       />
                     </td>
@@ -440,15 +575,95 @@ export default function GuestList() {
           </div>
         )}
 
-        {modalIsOpen && confetti && (
+        {customMessageGuest && (
+          <CustomMessageModal
+            guestData={customMessageGuest}
+            groupNames={getGroupNames(customMessageGuest)}
+            isOpen={Boolean(customMessageGuest)}
+            onClose={() => setCustomMessageGuest(null)}
+            onSubmit={async (customMessage, guestData, sendToGroup) => {
+              const groupNames = getGroupNames(guestData);
+              const groupEmails = getGroupEmails(guestData);
+              const groupGuests = guests.filter(
+                guest => guest.group_number === guestData.group_number
+              );
+              const groupIds = sendToGroup ? groupGuests.map(guest => guest.id) : [guestData.id];
+              setSendingEmail([...sendingEmail, ...groupIds]);
+              try {
+                const response = sendToGroup
+                  ? groupEmails.map(async email => {
+                      const guest = groupGuests.find(guest => guest.email === email);
+                      await sendThankyouEmail(email, groupNames, customMessage)
+                        .then(async response => {
+                          if (
+                            guest &&
+                            response?.accepted.length &&
+                            response.accepted.includes(email)
+                          ) {
+                            // Update the guest in the notion database with the thank_you_sent field
+                            return await updateCheckboxField(guest, "Thank You Sent");
+                          } else {
+                            console.error("Email send not accepted");
+                            return false;
+                          }
+                        })
+                        .catch(e => {
+                          console.error("Error sending thank you email to group: ", e);
+                          throw new Error(`Error sending thank you email to group: ${groupNames}`);
+                        });
+                    })
+                  : await sendThankyouEmail(guestData.email, [guestData.name], customMessage)
+                      .then(async response => {
+                        if (
+                          response?.accepted.length &&
+                          response.accepted.includes(guestData.email)
+                        ) {
+                          // Update the notion database with the thank_you_sent field
+                          return await updateCheckboxField(guestData, "Thank You Sent");
+                        } else {
+                          console.error("Email send not accepted");
+                          return false;
+                        }
+                      })
+                      .catch(e => {
+                        console.error("Email send failed: ", e);
+                        throw new Error(`Error sending thank you email to ${guestData.email}`);
+                      });
+
+                console.log(response);
+
+                setSuccessModalText(
+                  sendToGroup
+                    ? `Custom thank you emails sent successfully to ${groupNames.join(", ")} (${groupEmails.join(", ")})."`
+                    : `Custom thank you email sent successfully to ${guestData.email}.`
+                );
+              } catch (e: unknown) {
+                if (e instanceof Error) {
+                  console.error(e.message);
+                  if (e.message && typeof e.message === "string") {
+                    setErrorModalText(e.message);
+                  }
+                } else {
+                  setErrorModalText("Error sending thank you email(s). Check logs.");
+                }
+              } finally {
+                setSendingEmail([]);
+              }
+            }}
+          ></CustomMessageModal>
+        )}
+
+        {successModalText && (
           <Modal
             title="Success"
-            isOpen={modalIsOpen}
+            isOpen={Boolean(successModalText)}
+            height="h-full"
+            maxHeight="max-h-[400px]"
             handleClose={() => {
-              setModalIsOpen(false);
+              setSuccessModalText("");
             }}
           >
-            <h1>Invite sent successfully!</h1>
+            <div className="flex justify-center items-center h-full">{successModalText}</div>
             {confetti && (
               <ConfettiExplosion
                 width={1600}
@@ -458,19 +673,6 @@ export default function GuestList() {
                 }}
               />
             )}
-          </Modal>
-        )}
-
-        {modalIsOpen && !confetti && (
-          <Modal
-            isOpen={modalIsOpen}
-            title="Partial Success"
-            handleClose={() => {
-              setModalIsOpen(false);
-            }}
-          >
-            <h1>Invites sent successfully!</h1>
-            <p>Check the logs for any unsuccessful deliveries or updates.</p>
           </Modal>
         )}
 
@@ -517,3 +719,31 @@ export default function GuestList() {
     </section>
   );
 }
+
+const GreenCheckMark = () => (
+  <div className="flex w-full justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 text-green-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+);
+
+const EmptyBox = () => (
+  <div className="flex w-full justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 text-gray-100"
+      viewBox="0 0 24 24"
+      fill="white"
+      stroke="currentColor"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
+    </svg>
+  </div>
+);
