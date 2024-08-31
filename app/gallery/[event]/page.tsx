@@ -5,7 +5,8 @@ import type { GalleryEvent } from "../page";
 import Link from "next/link";
 import PhotoWall from "../_components/PhotoWall";
 
-export const PAGE_SIZE = 30; // Make sure this matches the PAGE_SIZE in the API route
+// You can't export constants from a page file, so we have to define it here
+const PAGE_SIZE = 30;
 
 // Sub-folders of "personal" photos that have people's camera photos in different categories
 const subfolders: GalleryEvent[] = [
@@ -143,38 +144,6 @@ export default function EventGallery({ params }: { params: { event: string } }) 
         hasMore={hasMore}
         handleLoadMore={handleLoadMore}
       />
-      {/* <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
-        <h1 className="text-2xl font-bold mb-4 mt-4 text-center">
-          {params.event.charAt(0).toUpperCase() + params.event.slice(1)}
-        </h1>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
-        >
-          {images.map((imageName, i) => (
-            <B2Image
-              key={imageName}
-              imageName={imageName}
-              alt={`${params.event} photo - ${imageName}`}
-              isPriority={i < 3}
-            />
-          ))}
-          {isLoading &&
-            Array.from({ length: PAGE_SIZE }).map((_, i) => (
-              <div key={`placeholder-${i}`} className="h-48 bg-gray-200 animate-pulse"></div>
-            ))}
-        </Masonry>
-        {!isLoading && hasMore && images.length % PAGE_SIZE === 0 && (
-          <button
-            onClick={handleLoadMore}
-            className="w-36 mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Load More
-          </button>
-        )}
-        {!hasMore && <div className="text-center mt-4">That's all for now!</div>}
-      </div> */}
     </PasswordProtection>
   );
 }

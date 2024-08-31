@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import PasswordProtection from "../../_components/PasswordProtection";
 import PhotoWall from "../../_components/PhotoWall";
-import { PAGE_SIZE } from "../page";
+
+const PAGE_SIZE = 30;
 
 export default function PersonalSubfolder({
   params,
