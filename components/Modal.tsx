@@ -6,6 +6,7 @@ interface ModalProps {
   justify?: string;
   height?: string;
   maxHeight?: string;
+  background?: string;
   children: React.ReactNode;
   isOpen: boolean;
   handleClose: () => void;
@@ -17,6 +18,7 @@ export default function Modal({
   justify = "justify-center",
   maxHeight = "max-h-[800px]",
   height = "h-full",
+  background = "bg-gray-100",
   children,
   isOpen,
   handleClose,
@@ -48,14 +50,14 @@ export default function Modal({
       <dialog
         open={isOpen}
         onClose={handleClose}
-        className={`h-[90%] ${maxHeight} w-[80%] max-w-[600px] rounded-[30px] inset-0 overflow-y-auto z-50 shadow-lg rounded-md`}
+        className={`h-[90%] ${maxHeight} w-[90%] lg:w-[80%] max-w-[600px] rounded-[30px] inset-0 overflow-y-auto z-50 shadow-lg rounded-md`}
         style={{
           position: "fixed",
           zIndex: 9999,
         }}
       >
         <div
-          className={`flex flex-col items-center ${justify} gap-y-4 bg-gray-100 w-full ${height} rounded-md z-50 p-2 lg:p-4`}
+          className={`flex flex-col items-center ${justify} gap-y-4 ${background} w-full ${height} rounded-md z-50 p-2 pb-6 lg:p-4`}
         >
           {/* Modal header */}
           <div className="flex justify-center items-center m-0 p-0">
