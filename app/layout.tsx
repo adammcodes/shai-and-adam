@@ -9,6 +9,7 @@ import type { Viewport, Metadata } from "next";
 import DonationModal from "@/components/DonationModal";
 
 export const metadata: Metadata = {
+  robots: "noindex, nofollow",
   title: "Shai & Adam",
   description:
     "Only the GOAT of all wedding websites for the GOAT of all weddings for the GOAT of all couples.",

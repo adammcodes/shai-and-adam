@@ -34,9 +34,6 @@ export default function DonationModal() {
 
   if (!isModalOpen) {
     return (
-      // <Button colorScheme="blue" onClick={() => setIsModalOpen(true)}>
-      //   Donations
-      // </Button>
       <IconButton
         aria-label="Donation Modal"
         onClick={() => setIsModalOpen(true)}
@@ -58,9 +55,9 @@ export default function DonationModal() {
       confirmCancel={true}
     >
       <div className="flex flex-col justify-between h-full">
-        <Image src={"/images/top-divider.png"} alt="divider" width={600} height={400} />
-        <div className="h-full max-h-[400px] p-2 lg:p-4 text-[#30518A] text-center font-bold flex flex-col justify-around gap-y-6">
-          <p className="text-2xl">
+        <Image src={"/images/top-divider.png"} alt="divider" width={600} height={500} />
+        <div className="h-full max-h-unset lg:max-h-[500px] p-2 lg:p-4 text-[#30518A] text-center font-bold flex flex-col justify-around gap-y-6">
+          <p className="text-lg">
             In lieu of wedding favours,
             <br /> Adam and Shaileen have donated&nbsp;to
           </p>
@@ -108,7 +105,7 @@ export default function DonationModal() {
         <Button
           onClick={closeModal}
           colorScheme="blue"
-          className="w-1/2 mx-auto text-2xl border border-2 py-2 px-5 rounded-lg hover:bg-[#06b6d4] hover:text-white"
+          className="w-1/4 mx-auto text-xl border border-2 py-2 px-4 rounded-lg hover:bg-[#06b6d4] hover:text-white"
         >
           OK
         </Button>
