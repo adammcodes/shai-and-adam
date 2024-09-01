@@ -72,26 +72,6 @@ export default function B2Image({
     return <></>;
   }
 
-  // return (
-  //   <div className={`relative ${!isImageLoaded ? "h-96" : ""}`}>
-  //     {!isImageLoaded && (
-  //       <div className="absolute inset-0 bg-gray-300 border border-1 border-silver shadow-lg animate-pulse rounded-md" />
-  //     )}
-  //     {imageData && (
-  //       <Image
-  //         src={imageData.url}
-  //         alt={alt}
-  //         width={imageData.width}
-  //         height={imageData.height}
-  //         priority={isPriority}
-  //         className={`object-cover w-full rounded-md shadow-lg ${
-  //           isImageLoaded ? "opacity-100 transition-opacity duration-300" : "opacity-0"
-  //         }`}
-  //         onLoad={() => setIsImageLoaded(true)}
-  //       />
-  //     )}
-  //   </div>
-  // );
   return (
     <div className={`relative ${!isImageLoaded ? "h-96" : ""}`}>
       {!isImageLoaded && (
