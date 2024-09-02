@@ -50,21 +50,21 @@ export default function Modal({
       <dialog
         open={isOpen}
         onClose={handleClose}
-        className={`h-[90%] ${maxHeight} w-[90%] lg:w-[80%] max-w-[600px] rounded-[30px] inset-0 overflow-y-auto z-50 shadow-lg rounded-md`}
+        className={`h-[90%] ${maxHeight} w-[90%] lg:w-[80%] max-w-[600px] rounded-[28px] inset-0 overflow-y-auto z-50 shadow-lg`}
         style={{
           position: "fixed",
           zIndex: 9999,
         }}
       >
         <div
-          className={`flex flex-col items-center ${justify} gap-y-4 ${background} w-full ${height} rounded-md z-50 p-2 pb-6 lg:p-4`}
+          className={`overflow-scroll flex flex-col items-center ${justify} gap-y-4 ${background} w-full ${height} z-50 p-2 pb-6 lg:p-4`}
         >
           {/* Modal header */}
           <div className="flex justify-center items-center m-0 p-0">
             <h1 className="font-bold text-[1.1em] lg:text-2xl">{title}</h1>
           </div>
           {/* Modal content */}
-          <div className="w-full h-full">{children}</div>
+          {children}
           {/* Modal footer */}
           {!confirmCancel && (
             <button

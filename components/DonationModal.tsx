@@ -54,7 +54,7 @@ export default function DonationModal() {
       background="bg-gradient-img"
       confirmCancel={true}
     >
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col h-full pb-4">
         <Image src={"/images/top-divider.png"} alt="divider" width={600} height={500} />
         <div className="h-full max-h-unset lg:max-h-[500px] p-2 lg:p-4 text-[#30518A] text-center font-bold flex flex-col justify-around gap-y-6">
           <p className="text-lg">
@@ -101,14 +101,14 @@ export default function DonationModal() {
             </em>
           </div>
           <p className="text-lg">Visit the links above for more information.</p>
+          <Button
+            onClick={closeModal}
+            colorScheme="blue"
+            className="w-1/4 mx-auto text-xl border border-2 py-2 px-4 rounded-lg hover:bg-[#06b6d4] hover:text-white"
+          >
+            OK
+          </Button>
         </div>
-        <Button
-          onClick={closeModal}
-          colorScheme="blue"
-          className="w-1/4 mx-auto text-xl border border-2 py-2 px-4 rounded-lg hover:bg-[#06b6d4] hover:text-white"
-        >
-          OK
-        </Button>
       </div>
     </Modal>
   );
