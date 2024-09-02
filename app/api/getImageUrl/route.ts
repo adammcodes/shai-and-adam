@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import sharp from "sharp";
 
@@ -27,8 +27,6 @@ export async function GET(request: NextRequest) {
       Key: imageName,
     });
 
-    const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
-
     // Fetch image metadata
     const getObjectResponse = await s3Client.send(command);
 
@@ -45,12 +43,36 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Empty image buffer" }, { status: 500 });
     }
 
-    // console.log(`Received buffer of size: ${imageBuffer.length} bytes`);
+    // Use Sharp to automatically rotate the image based on EXIF orientation
+    const rotatedImage = await sharp(imageBuffer)
+      .rotate() // This will automatically rotate based on EXIF orientation
+      .toBuffer();
 
-    const metadata = await sharp(imageBuffer).metadata();
+    // Get metadata from the rotated image
+    const metadata = await sharp(rotatedImage).metadata();
+
+    // Generate a new signed URL for the rotated image
+    const rotatedImageKey = `rotated-${imageName}`;
+    await s3Client.send(
+      new PutObjectCommand({
+        Bucket: process.env.B2_BUCKET_NAME!,
+        Key: rotatedImageKey,
+        Body: rotatedImage,
+        ContentType: "image/webp", // Set content type to WebP
+      })
+    );
+
+    const rotatedSignedUrl = await getSignedUrl(
+      s3Client,
+      new GetObjectCommand({
+        Bucket: process.env.B2_BUCKET_NAME!,
+        Key: rotatedImageKey,
+      }),
+      { expiresIn: 3600 }
+    );
 
     return NextResponse.json({
-      url: signedUrl,
+      url: rotatedSignedUrl,
       width: metadata.width,
       height: metadata.height,
     });
@@ -68,9 +90,6 @@ async function streamToBuffer(stream: any): Promise<Buffer> {
     stream.on("error", reject);
     stream.on("end", () => {
       const buffer = Buffer.concat(chunks);
-      // console.log(
-      //   `streamToBuffer: Received ${chunks.length} chunks, total size: ${buffer.length} bytes`
-      // );
       resolve(buffer);
     });
   });
