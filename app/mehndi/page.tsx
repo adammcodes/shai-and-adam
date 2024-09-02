@@ -26,7 +26,7 @@ export default function Mehndi() {
   return (
     <main className="flex min-h-screen flex-col items-center text-xl">
       <Card title="Mehndi">
-        <p className="italic">
+        <p className="italic text-center">
           Saturday May 4th, 2024
           <br className="lg:hidden" /> @ 6:30PM
         </p>
@@ -36,7 +36,7 @@ export default function Mehndi() {
           Dum Pukht, Markham, Ontario.
           <br />
           <Link target="_blank" href="https://maps.app.goo.gl/bkuQLwFXmVVzWt3i6">
-            323 Denison St Markham, ON L3R 1B7
+            323 Denison St Markham, ON L3R&nbsp;1B7
           </Link>
         </p>
       </Card>

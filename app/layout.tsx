@@ -1,12 +1,10 @@
 import "./globals.css";
 import { DM_Sans } from "next/font/google";
-import Link from "next/link";
 import Image from "next/image";
-import hero from "@/public/images/600px.webp";
 import github_small from "@/public/images/github_small.png";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import type { Viewport, Metadata } from "next";
-import DonationModal from "@/components/DonationModal";
+import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   robots: "noindex, nofollow",
@@ -34,50 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <UserProvider>
         <body className={googleFont.className}>
           <div className="min-h-screen">
-            <nav className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex flex-col sm:flex-row sm:items-start">
-                <div className="h-[200px] w-[200px] hidden lg:block">
-                  <Image
-                    src={hero}
-                    alt="Shai and Adam"
-                    style={{
-                      borderRadius: "0px 0px 50% 0px",
-                      boxShadow: "0px 0px 10px 0px #6f6a91",
-                    }}
-                    width={200}
-                    height={200}
-                    priority
-                    loading="eager"
-                  />
-                </div>
-                <ul className="flex flex-wrap space-x-4 text-blue p-5 mt-10 sm:mt-0 text-xl">
-                  <li>
-                    <Link href="/">Us</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">About</Link>
-                  </li>
-                  <li>
-                    <Link href="/mehndi">Mehndi</Link>
-                  </li>
-                  <li>
-                    <Link href="/grenada">Grenada</Link>
-                  </li>
-                  <li>
-                    <Link href="/gallery">Gallery</Link>
-                  </li>
-                  {process.env.NODE_ENV === "development" && (
-                    <li>
-                      <a href="/api/auth/logout">Logout</a>
-                    </li>
-                  )}
-                </ul>
-              </div>
-
-              <div className="mx-5 my-3">
-                <DonationModal />
-              </div>
-            </nav>
+            <Nav />
 
             <div className="flex flex-col min-h-screen items-center">
               <div className="w-full flex-grow">{children}</div>

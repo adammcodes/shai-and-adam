@@ -75,13 +75,13 @@ export default function Grenada() {
         <br />
         <strong>When:</strong>
         <p className="text-center">
-          from Monday, May 6th to Sunday, May 12th, 2024
+          from Monday, May 6th to Sunday, May&nbsp;12th,&nbsp;2024
           <br />
         </p>
         <br />
         <strong>Ceremony&nbsp;&&nbsp;Reception:</strong>
         <p className="text-center">
-          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada. on May 9th, 2024.
+          True Blue Bay Resort, True&nbsp;Blue&nbsp;Bay, Grenada. on May&nbsp;9th,&nbsp;2024.
         </p>
         <br />
         <p className="text-center">
@@ -124,7 +124,9 @@ export default function Grenada() {
         <section className="text-left w-full">
           <div className="font-bold text-center text-xl italic">Thursday May 9th</div>
 
-          <h3 className="font-bold mt-8">Ceremony @ True Blue Bay Resort: 10:00 AM to 12:00 PM</h3>
+          <h3 className="font-bold mt-8">
+            Ceremony @ True Blue Bay Resort: 10:00&nbsp;AM to 12:00&nbsp;PM
+          </h3>
           <ul className="pl-6 list-disc">
             <li>
               Rides will be scheduled for pick up from Coyaba to True Blue Bay Resort for the
@@ -137,7 +139,7 @@ export default function Grenada() {
             <li>Bring your swimming gear if you would like to take a dip in the&nbsp;pool.</li>
           </ul>
 
-          <h3 className="font-bold mt-8">Intermission: 12:00 PM to 6:00 PM</h3>
+          <h3 className="font-bold mt-8">Intermission: 12:00&nbsp;PM&nbsp;to&nbsp;6:00&nbsp;PM</h3>
           <ul className="pl-6 list-disc">
             <li>
               Rides will be scheduled for transfer back to Coyaba Beach Resort so you can relax,
@@ -146,7 +148,7 @@ export default function Grenada() {
           </ul>
 
           <h3 className="font-bold mt-8">
-            Evening Reception @ True Blue Bay Resort: 6:30 to 11:00PM
+            Evening Reception @ True Blue Bay Resort: 6:30 to 11:00&nbsp;PM
           </h3>
           <ul className="pl-6 list-disc">
             <li>

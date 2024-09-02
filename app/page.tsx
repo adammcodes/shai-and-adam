@@ -15,10 +15,10 @@ export default function Home() {
             <Link href="/mehndi" className="underline">
               Mehndi
             </Link>{" "}
-            - May 4, 2024 in Markham, Ontario
+            - May&nbsp;4,&nbsp;2024 in Markham, Ontario
           </li>
           <li>
-            Ceremony & Reception - May 9, 2024 in{" "}
+            Ceremony & Reception - May&nbsp;9,&nbsp;2024 in{" "}
             <Link href="/grenada" className="underline">
               Grenada
             </Link>{" "}

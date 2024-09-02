@@ -8,7 +8,7 @@ const ICON_WIDTH = 40;
 const ICON_HEIGHT = 60;
 
 const GiftSVG = () => (
-  <div className="text-yellow-300">
+  <div className="text-[#000]">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"

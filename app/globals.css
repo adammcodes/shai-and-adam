@@ -6,8 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  /* --yellow-hex: #fcd721; */
-  --yellow-hex: #7ec80e;
+  --yellow-hex: #fcd721;
+  /* --yellow-hex: #7ec80e; */
   --light-blue-hex: #c9feff;
   --blue-hex: #4ab8d3;
 }
