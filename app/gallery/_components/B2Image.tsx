@@ -70,7 +70,7 @@ export default function B2Image({
 
   const landscape = imageData?.width > imageData?.height;
   const containerClasses = isLightboxOpen
-    ? `w-[90%] md:w-3/4 lg:w-[${landscape ? "50%" : "60vh"}]`
+    ? `w-[90%] md:w-1/2  ${landscape ? "lg:w-1/2" : "lg:w-[60vh]"}`
     : "";
 
   return (

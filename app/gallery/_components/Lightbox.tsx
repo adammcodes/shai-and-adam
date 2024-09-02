@@ -99,7 +99,7 @@ const Lightbox: React.FC<LightboxProps> = ({
       <button onClick={onNext} className="absolute bottom-4 right-4 md:right-4 text-white text-4xl">
         &rarr;
       </button>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-full">
         <B2Image
           imageName={currentImage.imageName}
           index={currentImage.index}
