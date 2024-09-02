@@ -1,6 +1,10 @@
+// components/PhotoWall.tsx
 "use client";
+import { useState } from "react";
 import Masonry from "react-masonry-css";
 import B2Image from "./B2Image";
+import Lightbox from "./Lightbox";
+import type { ImageMetadata } from "./B2Image";
 
 export default function PhotoWall({
   title,
@@ -21,6 +25,26 @@ export default function PhotoWall({
   hasMore: boolean;
   handleLoadMore: () => void;
 }) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageData, setCurrentImageData] = useState<ImageMetadata | null>(null);
+
+  const openLightbox = (imageData: ImageMetadata, index: number) => {
+    setCurrentImageData(imageData);
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => setLightboxOpen(false);
+
+  const goToPrevious = () => {
+    setCurrentImageIndex(prevIndex => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
+  };
+
   return (
     <div className="container mx-auto md:p-2 lg:p-4 max-w-[1200px] flex flex-col justify-center">
       <h1 className="text-2xl font-bold mb-4 mt-4 text-center">{title}</h1>
@@ -32,9 +56,11 @@ export default function PhotoWall({
         {images.map((imageName, i) => (
           <B2Image
             key={imageName}
+            index={i}
             imageName={imageName}
             alt={`${eventName} photo - ${imageName}`}
-            isPriority={i < 3}
+            isPriority={i < 10}
+            onClick={openLightbox}
           />
         ))}
         {isLoading &&
@@ -51,6 +77,16 @@ export default function PhotoWall({
         </button>
       )}
       {!hasMore && <div className="text-center mt-4">That's all we got!</div>}
+      {lightboxOpen && currentImageData && (
+        <Lightbox
+          images={images}
+          currentIndex={currentImageIndex}
+          currentImageData={currentImageData}
+          onClose={closeLightbox}
+          onPrev={goToPrevious}
+          onNext={goToNext}
+        />
+      )}
     </div>
   );
 }

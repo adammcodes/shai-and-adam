@@ -3,34 +3,36 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
-interface B2ImageProps {
-  imageName: string;
-  alt: string;
-  isPriority: boolean;
-  showDownloadButton?: boolean;
-}
-
-interface ImageMetadata {
+export type ImageMetadata = {
   url: string;
   width: number;
   height: number;
+};
+
+interface B2ImageProps {
+  imageName: string;
+  index: number;
+  alt: string;
+  isPriority: boolean;
+  showDownloadButton?: boolean;
+  onClick: (imageData: ImageMetadata, index: number) => void;
 }
 
 export default function B2Image({
   imageName,
+  index,
   alt,
   isPriority,
   showDownloadButton = true,
+  onClick,
 }: B2ImageProps) {
   const [imageData, setImageData] = useState<ImageMetadata | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchImageData() {
       try {
-        setIsLoading(true);
         const response = await fetch(`/api/getImageUrl?imageName=${encodeURIComponent(imageName)}`);
         if (!response.ok) {
           throw new Error("Failed to fetch image data");
@@ -39,8 +41,6 @@ export default function B2Image({
         setImageData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setIsLoading(false);
       }
     }
 
@@ -85,10 +85,11 @@ export default function B2Image({
             width={imageData.width}
             height={imageData.height}
             priority={isPriority}
-            className={`object-cover w-full lg:rounded-md shadow-lg ${
+            className={`object-cover cursor-pointer w-full lg:rounded-md shadow-lg ${
               isImageLoaded ? "opacity-100 transition-opacity duration-300" : "opacity-0"
             }`}
             onLoad={() => setIsImageLoaded(true)}
+            onClick={() => onClick(imageData, index)}
           />
           {showDownloadButton && isImageLoaded && (
             <button
