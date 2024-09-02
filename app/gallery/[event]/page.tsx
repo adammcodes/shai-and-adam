@@ -1,32 +1,11 @@
 "use client";
 import { useEffect, useState, useCallback, useRef } from "react";
 import PasswordProtection from "../_components/PasswordProtection";
-import type { GalleryEvent } from "../page";
 import Link from "next/link";
 import PhotoWall from "../_components/PhotoWall";
-
-// You can't export constants from a page file, so we have to define it here
-const PAGE_SIZE = 60;
-
-// Sub-folders of "personal" photos that have people's camera photos in different categories
-const subfolders: GalleryEvent[] = [
-  {
-    name: "Pre-Events",
-    route: "/gallery/personal/pre-events",
-    coverImage: "/images/pre-events.webp",
-  },
-  {
-    name: "Wedding",
-    route: "/gallery/personal/wedding",
-    coverImage: "/images/personal-wedding.webp",
-  },
-  { name: "Mehndi", route: "/gallery/personal/mehndi", coverImage: "/images/personal-mehndi.webp" },
-  {
-    name: "Grenada",
-    route: "/gallery/personal/grenada",
-    coverImage: "/images/personal-grenada.webp",
-  },
-];
+import GalleryNav from "../_components/GalleryNav";
+import { subfolders } from "../_constants/links";
+import { PAGE_SIZE } from "../_constants/pageSize";
 
 export default function EventGallery({ params }: { params: { event: string } }) {
   const [images, setImages] = useState<string[]>([]);
@@ -36,6 +15,8 @@ export default function EventGallery({ params }: { params: { event: string } }) 
   const [hasMore, setHasMore] = useState(true);
   // This is to prevent the initial fetch from being called twice due to React's StrictMode in development
   const initialFetchDone = useRef(false);
+
+  const eventName = params.event;
 
   const fetchImages = useCallback(
     async (token: string | null) => {
@@ -106,6 +87,7 @@ export default function EventGallery({ params }: { params: { event: string } }) 
     return (
       <PasswordProtection>
         <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
+          <GalleryNav eventName={eventName} />
           <h1 className="text-2xl font-bold mb-4 mt-4 text-center">Personal Photos</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {subfolders.map(subfolder => (

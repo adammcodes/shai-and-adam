@@ -11,7 +11,7 @@ const s3Client = new S3Client({
   },
 });
 
-const PAGE_SIZE = 60; // Make sure this matches the PAGE_SIZE in the client (app/gallery/[event]/page.tsx)
+const PAGE_SIZE = 40; // Make sure this matches the PAGE_SIZE in the client (app/gallery/_constants/pageSize.ts)
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

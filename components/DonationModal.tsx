@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { Button, IconButton } from "@chakra-ui/react";
 import Image from "next/image";
@@ -30,7 +30,17 @@ const GiftSVG = () => (
 export default function DonationModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
-  const closeModal = () => setIsModalOpen(false);
+  useEffect(() => {
+    // Check if the user has seen the modal before
+    const modalSeen = localStorage.getItem("donationModalSeen") === "true";
+    setIsModalOpen(!modalSeen);
+  }, []);
+
+  const closeModal = () => {
+    // Store the user's preference in localStorage
+    localStorage.setItem("donationModalSeen", "true");
+    setIsModalOpen(false);
+  };
 
   if (!isModalOpen) {
     return (

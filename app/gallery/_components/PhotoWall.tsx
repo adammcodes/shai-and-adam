@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Masonry from "react-masonry-css";
 import B2Image from "./B2Image";
 import Lightbox from "./Lightbox";
+import GalleryNav from "./GalleryNav";
 
 export default function PhotoWall({
   title,
@@ -53,8 +54,26 @@ export default function PhotoWall({
     });
   };
 
+  // show back to top button after user scrolls down
+  useEffect(() => {
+    const handleScroll = () => {
+      const topButton = document.getElementById("back-to-top");
+      if (topButton) {
+        if (window.scrollY > 100) {
+          topButton.style.display = "block";
+        } else {
+          topButton.style.display = "none";
+        }
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => document.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="container mx-auto md:p-2 lg:p-4 max-w-[1200px] flex flex-col justify-center">
+      <GalleryNav eventName={eventName} />
       <h1 className="text-2xl font-bold mb-4 mt-4 text-center">{title}</h1>
       <Masonry
         breakpointCols={breakpointCols}
@@ -96,6 +115,13 @@ export default function PhotoWall({
           onNext={goToNext}
         />
       )}
+      <button
+        id="back-to-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="w-10 h-10 text-xl fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all duration-200"
+      >
+        &#8679;
+      </button>
     </div>
   );
 }
