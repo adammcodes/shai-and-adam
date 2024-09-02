@@ -93,8 +93,9 @@ export default function EventGallery({ params }: { params: { event: string } }) 
 
   const breakpointColumnsObj = {
     default: 3,
-    1100: 2,
-    700: 1,
+    1100: 3,
+    700: 3,
+    500: 3,
   };
 
   if (error) {

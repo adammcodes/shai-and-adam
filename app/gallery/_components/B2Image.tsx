@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
+import useSWR from "swr";
 
 export type ImageMetadata = {
   url: string;
@@ -15,7 +16,8 @@ interface B2ImageProps {
   alt: string;
   isPriority: boolean;
   showDownloadButton?: boolean;
-  onClick: (imageData: ImageMetadata, index: number) => void;
+  isLightboxOpen: boolean;
+  onClick: (index: number) => void;
 }
 
 export default function B2Image({
@@ -24,28 +26,22 @@ export default function B2Image({
   alt,
   isPriority,
   showDownloadButton = true,
+  isLightboxOpen,
   onClick,
 }: B2ImageProps) {
-  const [imageData, setImageData] = useState<ImageMetadata | null>(null);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchImageData() {
-      try {
-        const response = await fetch(`/api/getImageUrl?imageName=${encodeURIComponent(imageName)}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch image data");
-        }
-        const data: ImageMetadata = await response.json();
-        setImageData(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      }
+  const { data: imageData, error } = useSWR(
+    `image-${imageName}`,
+    () =>
+      fetch(`/api/getImageUrl?imageName=${encodeURIComponent(imageName)}`, {
+        method: "GET",
+        headers: { "cache-control": "force-cache" },
+      }).then(res => res.json()),
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false, // don't revalidate since we know the images won't change very often
     }
-
-    fetchImageData();
-  }, [imageName]);
+  );
 
   const downloadImage = useCallback(async () => {
     if (!imageData) return;
@@ -72,8 +68,13 @@ export default function B2Image({
     return <></>;
   }
 
+  const landscape = imageData?.width > imageData?.height;
+  const containerClasses = isLightboxOpen
+    ? `w-[90%] md:w-3/4 lg:w-[${landscape ? "50%" : "60vh"}]`
+    : "";
+
   return (
-    <div className={`relative ${!isImageLoaded ? "h-36 md:h-48 lg:h-96" : ""}`}>
+    <div className={`relative ${!isImageLoaded ? "h-36 md:h-48 lg:h-96" : containerClasses}`}>
       {!isImageLoaded && (
         <div className="absolute inset-0 bg-gray-300 border border-1 border-silver shadow-lg animate-pulse rounded-md" />
       )}
@@ -89,12 +90,12 @@ export default function B2Image({
               isImageLoaded ? "opacity-100 transition-opacity duration-300" : "opacity-0"
             }`}
             onLoad={() => setIsImageLoaded(true)}
-            onClick={() => onClick(imageData, index)}
+            onClick={() => onClick(index)}
           />
           {showDownloadButton && isImageLoaded && (
             <button
               onClick={downloadImage}
-              className="hidden lg:block absolute top-2 right-2 bg-white bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-200"
+              className={`${isLightboxOpen ? "" : "hidden"} lg:block absolute top-2 right-2 bg-white bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-200`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,10 +1,8 @@
-// components/PhotoWall.tsx
 "use client";
 import { useState } from "react";
 import Masonry from "react-masonry-css";
 import B2Image from "./B2Image";
 import Lightbox from "./Lightbox";
-import type { ImageMetadata } from "./B2Image";
 
 export default function PhotoWall({
   title,
@@ -26,23 +24,33 @@ export default function PhotoWall({
   handleLoadMore: () => void;
 }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentImageData, setCurrentImageData] = useState<ImageMetadata | null>(null);
+  const [currentImage, setCurrentImage] = useState<{
+    index: number;
+    imageName: string;
+  }>({ index: 0, imageName: "" });
 
-  const openLightbox = (imageData: ImageMetadata, index: number) => {
-    setCurrentImageData(imageData);
-    setCurrentImageIndex(index);
+  const openLightbox = (index: number) => {
+    // setCurrentImageIndex(index);
+    setCurrentImage({ index, imageName: images[index] });
     setLightboxOpen(true);
   };
 
   const closeLightbox = () => setLightboxOpen(false);
 
   const goToPrevious = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex - 1 + images.length) % images.length);
+    // setCurrentImageIndex(prevIndex => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImage(prevImage => {
+      const newIndex = (prevImage.index - 1 + images.length) % images.length;
+      return { index: newIndex, imageName: images[newIndex] };
+    });
   };
 
   const goToNext = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
+    // setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
+    setCurrentImage(prevImage => {
+      const newIndex = (prevImage.index + 1) % images.length;
+      return { index: newIndex, imageName: images[newIndex] };
+    });
   };
 
   return (
@@ -60,6 +68,7 @@ export default function PhotoWall({
             imageName={imageName}
             alt={`${eventName} photo - ${imageName}`}
             isPriority={i < 10}
+            isLightboxOpen={lightboxOpen}
             onClick={openLightbox}
           />
         ))}
@@ -77,11 +86,11 @@ export default function PhotoWall({
         </button>
       )}
       {!hasMore && <div className="text-center mt-4">That's all we got!</div>}
-      {lightboxOpen && currentImageData && (
+      {lightboxOpen && (
         <Lightbox
           images={images}
-          currentIndex={currentImageIndex}
-          currentImageData={currentImageData}
+          currentImage={currentImage}
+          openLightbox={openLightbox}
           onClose={closeLightbox}
           onPrev={goToPrevious}
           onNext={goToNext}

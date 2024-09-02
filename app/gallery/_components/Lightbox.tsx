@@ -1,21 +1,20 @@
 // components/Lightbox.tsx
-import React, { useEffect, useCallback } from "react";
-import Image from "next/image";
-import type { ImageMetadata } from "./B2Image";
+import React, { useEffect, useCallback, use } from "react";
+import B2Image from "./B2Image";
 
 interface LightboxProps {
   images: string[];
-  currentImageData: ImageMetadata | null;
-  currentIndex: number;
+  currentImage: { index: number; imageName: string };
+  openLightbox: (index: number) => void;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
 }
 
 const Lightbox: React.FC<LightboxProps> = ({
-  images,
-  currentImageData,
-  currentIndex,
+  // images,
+  currentImage,
+  openLightbox,
   onClose,
   onPrev,
   onNext,
@@ -34,28 +33,34 @@ const Lightbox: React.FC<LightboxProps> = ({
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
+  useEffect(() => {
+    // prevent scrolling up and down while the lightbox is open
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-      <button onClick={onClose} className="absolute top-4 right-4 text-white text-2xl">
+      <button onClick={onClose} className="absolute top-4 right-4 text-white text-5xl">
         &times;
       </button>
-      <button onClick={onPrev} className="absolute left-4 text-white text-4xl">
+      <button onClick={onPrev} className="absolute bottom-4 left-4 md:left-4 text-white text-4xl">
         &larr;
       </button>
-      <button onClick={onNext} className="absolute right-4 text-white text-4xl">
+      <button onClick={onNext} className="absolute bottom-4 right-4 md:right-4 text-white text-4xl">
         &rarr;
       </button>
-      <div className="flex items-center justify-center w-full h-full">
-        {currentImageData && (
-          <Image
-            src={currentImageData.url}
-            alt={`Image ${currentIndex + 1}`}
-            width={currentImageData.width}
-            height={currentImageData.height}
-            className={`w-[90%] lg:w-1/2 shadow-lg`}
-            objectFit="contain"
-          />
-        )}
+      <div className="flex items-center justify-center">
+        <B2Image
+          imageName={currentImage.imageName}
+          index={currentImage.index}
+          alt={`Lightbox image - ${currentImage.imageName}`}
+          onClick={openLightbox}
+          isPriority={true}
+          isLightboxOpen={true}
+        />
       </div>
     </div>
   );
