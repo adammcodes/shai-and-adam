@@ -22,7 +22,7 @@ export default function PhotoWall({
   handleLoadMore: () => void;
 }) {
   return (
-    <div className="container mx-auto p-4 max-w-[1200px] flex flex-col justify-center">
+    <div className="container mx-auto md:p-2 lg:p-4 max-w-[1200px] flex flex-col justify-center">
       <h1 className="text-2xl font-bold mb-4 mt-4 text-center">{title}</h1>
       <Masonry
         breakpointCols={breakpointCols}

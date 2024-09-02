@@ -62,6 +62,18 @@ a:hover {
   margin-bottom: 16px;
 }
 
+@media screen and (max-width: 500px) {
+  .my-masonry-grid {
+    margin-left: 0px;
+  }
+  .my-masonry-grid_column {
+    padding-left: 5px;
+  }
+  .my-masonry-grid_column > div {
+    margin-bottom: 5px;
+  }
+}
+
 .bg-gradient-img {
   background-image: url("https://email-builder-c70fb.appspot.com.storage.googleapis.com/orgs/adam/projects/thank-you-email-photo-gallery-link-6mme-ms_1/images/gradient-bg-pUJDAw-.png");
   background-size: cover;

@@ -73,7 +73,7 @@ export default function B2Image({
   }
 
   return (
-    <div className={`relative ${!isImageLoaded ? "h-96" : ""}`}>
+    <div className={`relative ${!isImageLoaded ? "h-36 md:h-48 lg:h-96" : ""}`}>
       {!isImageLoaded && (
         <div className="absolute inset-0 bg-gray-300 border border-1 border-silver shadow-lg animate-pulse rounded-md" />
       )}
@@ -85,7 +85,7 @@ export default function B2Image({
             width={imageData.width}
             height={imageData.height}
             priority={isPriority}
-            className={`object-cover w-full rounded-md shadow-lg ${
+            className={`object-cover w-full lg:rounded-md shadow-lg ${
               isImageLoaded ? "opacity-100 transition-opacity duration-300" : "opacity-0"
             }`}
             onLoad={() => setIsImageLoaded(true)}
@@ -93,11 +93,11 @@ export default function B2Image({
           {showDownloadButton && isImageLoaded && (
             <button
               onClick={downloadImage}
-              className="absolute top-2 right-2 bg-white bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-200"
+              className="hidden lg:block absolute top-2 right-2 bg-white bg-opacity-75 p-2 rounded-full shadow-md hover:bg-opacity-100 transition-all duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

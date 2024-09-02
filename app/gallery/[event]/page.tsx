@@ -6,7 +6,7 @@ import Link from "next/link";
 import PhotoWall from "../_components/PhotoWall";
 
 // You can't export constants from a page file, so we have to define it here
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 60;
 
 // Sub-folders of "personal" photos that have people's camera photos in different categories
 const subfolders: GalleryEvent[] = [

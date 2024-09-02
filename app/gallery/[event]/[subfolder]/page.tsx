@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import PasswordProtection from "../../_components/PasswordProtection";
 import PhotoWall from "../../_components/PhotoWall";
 
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 60;
 
 export default function PersonalSubfolder({
   params,
@@ -75,8 +75,9 @@ export default function PersonalSubfolder({
 
   const breakpointColumnsObj = {
     default: 3,
-    1100: 2,
-    700: 1,
+    1100: 3,
+    700: 3,
+    500: 3,
   };
 
   if (error) {
