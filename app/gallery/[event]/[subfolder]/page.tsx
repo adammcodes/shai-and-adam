@@ -3,8 +3,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import PasswordProtection from "../../_components/PasswordProtection";
 import PhotoWall from "../../_components/PhotoWall";
 import { PAGE_SIZE } from "../../_constants/pageSize";
-import { subfolders } from "../../_constants/links";
-import Link from "next/link";
 
 export default function PersonalSubfolder({
   params,
@@ -96,10 +94,15 @@ export default function PersonalSubfolder({
     );
   }
 
+  const title =
+    params.subfolder === "pre-events"
+      ? "Pre-Wedding Events"
+      : params.subfolder.charAt(0).toUpperCase() + params.subfolder.slice(1);
+
   return (
     <PasswordProtection>
       <PhotoWall
-        title={params.subfolder.charAt(0).toUpperCase() + params.subfolder.slice(1)}
+        title={title}
         breakpointCols={breakpointColumnsObj}
         images={images}
         eventName={params.subfolder}

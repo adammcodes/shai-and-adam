@@ -10,7 +10,7 @@ export default function GalleryNav({ eventName }: { eventName: string }) {
         if (currentPage) {
           return (
             <span key={event.name} className="text-gray-500">
-              {event.name}
+              {event.label || event.name}
             </span>
           );
         }
@@ -21,7 +21,7 @@ export default function GalleryNav({ eventName }: { eventName: string }) {
             href={event.route}
             className={`text-blue-500 hover:text-blue-700 hover:underline transition`}
           >
-            {event.name}
+            {event.label || event.name}
           </Link>
         );
       })}

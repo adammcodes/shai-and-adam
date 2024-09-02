@@ -4,7 +4,7 @@ import PasswordProtection from "../_components/PasswordProtection";
 import Link from "next/link";
 import PhotoWall from "../_components/PhotoWall";
 import GalleryNav from "../_components/GalleryNav";
-import { subfolders } from "../_constants/links";
+import { subfolders, events } from "../_constants/links";
 import { PAGE_SIZE } from "../_constants/pageSize";
 
 export default function EventGallery({ params }: { params: { event: string } }) {
@@ -17,6 +17,7 @@ export default function EventGallery({ params }: { params: { event: string } }) 
   const initialFetchDone = useRef(false);
 
   const eventName = params.event;
+  const photoWallTitle = events.find(event => event.name.toLowerCase() === eventName)?.label;
 
   const fetchImages = useCallback(
     async (token: string | null) => {
@@ -104,7 +105,7 @@ export default function EventGallery({ params }: { params: { event: string } }) 
                     />
                   </div>
                   <div className="p-4">
-                    <h2 className="text-xl font-semibold">{subfolder.name}</h2>
+                    <h2 className="text-xl font-semibold">{subfolder.label || subfolder.name}</h2>
                   </div>
                 </div>
               </Link>
@@ -118,7 +119,7 @@ export default function EventGallery({ params }: { params: { event: string } }) 
   return (
     <PasswordProtection>
       <PhotoWall
-        title={params.event.charAt(0).toUpperCase() + params.event.slice(1)}
+        title={photoWallTitle || params.event.charAt(0).toUpperCase() + params.event.slice(1)}
         breakpointCols={breakpointColumnsObj}
         eventName={params.event}
         images={images}

@@ -23,7 +23,7 @@ export default function GalleryLanding() {
                   />
                 </div>
                 <div className="p-4">
-                  <h2 className="text-xl font-semibold">{event.name}</h2>
+                  <h2 className="text-xl font-semibold">{event.label || event.name}</h2>
                 </div>
               </div>
             </Link>

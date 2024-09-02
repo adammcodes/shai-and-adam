@@ -1,5 +1,6 @@
 export type GalleryEvent = {
   name: string;
+  label?: string;
   route: string;
   coverImage: string;
 };
@@ -7,7 +8,12 @@ export type GalleryEvent = {
 export const events: GalleryEvent[] = [
   { name: "Ceremony", route: "/gallery/ceremony", coverImage: "/images/ceremony-1.webp" },
   { name: "Mehndi", route: "/gallery/mehndi", coverImage: "/images/Mehndi-3.webp" },
-  { name: "Reception", route: "/gallery/reception", coverImage: "/images/reception-1.webp" },
+  {
+    name: "Reception",
+    label: "Wedding & Reception",
+    route: "/gallery/reception",
+    coverImage: "/images/reception-1.webp",
+  },
   { name: "Personal Photos", route: "/gallery/personal", coverImage: "/images/personal-1.webp" },
 ];
 
@@ -15,6 +21,7 @@ export const events: GalleryEvent[] = [
 export const subfolders: GalleryEvent[] = [
   {
     name: "Pre-Events",
+    label: "Pre-Wedding Events",
     route: "/gallery/personal/pre-events",
     coverImage: "/images/pre-events.webp",
   },
