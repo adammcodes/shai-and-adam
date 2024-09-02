@@ -4,31 +4,41 @@ import { useState, useEffect } from "react";
 import styles from "./PasswordProtection.module.css";
 
 export default function PasswordProtection({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const storedPassword = localStorage.getItem("password");
-    if (storedPassword) {
-      setPassword(storedPassword);
-      handleAuthentication(storedPassword);
-    }
+    const checkAuthentication = async () => {
+      const storedPassword = localStorage.getItem("password");
+      if (storedPassword) {
+        await handleAuthentication(storedPassword);
+      } else {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuthentication();
   }, []);
 
   const handleAuthentication = async (pwd: string) => {
     setError("");
-    const response = await fetch("/api/validate-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: pwd }),
-    });
-    const { isValid } = await response.json();
-    setIsAuthenticated(isValid);
-    if (isValid) {
-      localStorage.setItem("password", pwd);
-    } else {
-      setError("Invalid password. Please try again.");
+    try {
+      const response = await fetch("/api/validate-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: pwd }),
+      });
+      const { isValid } = await response.json();
+      setIsAuthenticated(isValid);
+      if (isValid) {
+        localStorage.setItem("password", pwd);
+      } else {
+        setError("Invalid password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -36,6 +46,11 @@ export default function PasswordProtection({ children }: { children: React.React
     e.preventDefault();
     await handleAuthentication(password);
   };
+
+  if (isAuthenticated === null) {
+    // Show a loading state or return null
+    return null; // or return <LoadingSpinner />
+  }
 
   if (isAuthenticated) {
     return <>{children}</>;
