@@ -58,20 +58,31 @@ export default function GuestList() {
         const response = await fetch("/api/notion", {
           cache: "no-store",
         });
+
+        if (!response.ok) {
+          // Try to get error message from response
+          const errorText = await response.text();
+          throw new Error(errorText || `HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         const { guests } = data;
         setGuests(guests);
       } catch (e: unknown) {
+        console.error("Error fetching guests:", e);
+
         if (e instanceof Error) {
-          console.error(e.message);
-          if (e.message && typeof e.message === "string") {
-            setErrorMessage(e.message);
-          }
+          setErrorMessage(e.message);
+        } else if (typeof e === "string") {
+          setErrorMessage(e);
+        } else {
+          setErrorMessage("An unknown error occurred");
         }
       } finally {
         setLoading(false);
       }
     };
+
     getGuests();
   }, []);
 
