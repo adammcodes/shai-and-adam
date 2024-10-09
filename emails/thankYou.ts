@@ -5,7 +5,7 @@ export default function thankYouEmail({
   names: string[];
   customMessage?: string;
 }) {
-  const greeting = `Dear ${names.join(", ")}:<br><br>`;
+  const greeting = `Dear ${names.filter(name => name !== "Guest").join(", ")}:<br><br>`;
 
   const messageBody = customMessage
     ? customMessage
