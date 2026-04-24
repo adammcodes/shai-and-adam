@@ -2,6 +2,10 @@
   "name": "shai-and-adam",
   "version": "1.0.0",
   "private": true,
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
   "scripts": {
     "dev": "npm run open-browser && next dev",
     "open-browser": "open http://localhost:3000",
@@ -20,7 +24,7 @@
     "@react-google-maps/api": "^2.19.2",
     "autoprefixer": "10.4.15",
     "encoding": "^0.1.13",
-    "eslint": "8.47.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "^15.5.15",
     "framer-motion": "^12.38.0",
     "next": "^15.5.15",

@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import hero from "@/public/images/600px.webp";
 import DonationModal from "@/components/DonationModal";
 
 export default function Nav() {
@@ -13,26 +11,16 @@ export default function Nav() {
   };
 
   return (
-    <nav className="flex flex-row sm:items-start justify-between">
-      <div className="flex flex-col sm:flex-row sm:items-start">
-        <div className="h-[200px] w-[200px] hidden lg:block">
-          <Image
-            src={hero}
-            alt="Shai and Adam"
-            style={{
-              borderRadius: "0px 0px 50% 0px",
-              boxShadow: "0px 0px 10px 0px #6f6a91",
-            }}
-            width={200}
-            height={200}
-            priority
-            loading="eager"
-          />
-        </div>
+    <nav className="flex items-center justify-between px-4 py-3 lg:px-6">
+      <div className="flex items-center gap-4">
+        <Link href="/" className="text-3xl hidden lg:block" aria-label="Home">
+          🥭
+        </Link>
+
         {/* Hamburger Icon */}
-        <button className="sm:hidden p-5" onClick={toggleMenu} aria-label="Toggle menu">
+        <button className="sm:hidden p-2 rounded-lg hover:bg-white/20 transition-colors" onClick={toggleMenu} aria-label="Toggle menu">
           <svg
-            className="w-10 h-10"
+            className="w-7 h-7"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -42,40 +30,47 @@ export default function Nav() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
+              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
             />
           </svg>
         </button>
+
         {/* Menu Items */}
         <ul
           className={`${
             isMenuOpen ? "flex" : "hidden"
-          } flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-blue p-5 text-xl sm:flex`}
+          } absolute sm:relative top-14 sm:top-auto left-0 sm:left-auto w-full sm:w-auto flex-col sm:flex-row items-start sm:items-center bg-white/90 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none shadow-lg sm:shadow-none rounded-b-2xl sm:rounded-none px-6 py-4 sm:p-0 gap-3 sm:gap-1 z-50 sm:flex`}
         >
-          <li>
-            <Link href="/">Us</Link>
-          </li>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/mehndi">Mehndi</Link>
-          </li>
-          <li>
-            <Link href="/grenada">Grenada</Link>
-          </li>
-          <li>
-            <Link href="/gallery">Gallery</Link>
-          </li>
+          {[
+            { href: "/", label: "Us" },
+            { href: "/about", label: "About" },
+            { href: "/mehndi", label: "Mehndi" },
+            { href: "/grenada", label: "Grenada" },
+            { href: "/gallery", label: "Gallery" },
+          ].map(item => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="px-3 py-1.5 rounded-full text-[#002F6C] hover:bg-white/30 transition-colors duration-200 text-base font-medium"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
           {process.env.NODE_ENV === "development" && (
             <li>
-              <a href="/api/auth/logout">Logout</a>
+              <a
+                href="/api/auth/logout"
+                className="px-3 py-1.5 rounded-full text-[#002F6C] hover:bg-white/30 transition-colors duration-200 text-base font-medium"
+              >
+                Logout
+              </a>
             </li>
           )}
         </ul>
       </div>
 
-      <div className="mx-5 my-3">
+      <div>
         <DonationModal />
       </div>
     </nav>

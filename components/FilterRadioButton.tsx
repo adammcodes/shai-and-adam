@@ -10,15 +10,15 @@ type MapFilterProps = MapFilter & {
 
 const FilterRadioButton: React.FC<MapFilterProps> = ({ id, label, selected, setSelected }) => {
   const isSelected = selected === id;
-  const selectedStyles = `text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none `;
-  const defaultStyles = "text-[#002F6C] border border-[#002F6C]";
+  const selectedStyles = `text-white bg-[#002F6C] shadow-lg ring-2 ring-[#002F6C] ring-offset-2`;
+  const defaultStyles = "text-[#002F6C] bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-[#002F6C]";
   return (
-    <div className="flex flex-row m-3 justify-center items-center drop-shadow-lg">
+    <div className="flex flex-row m-2 justify-center items-center">
       <input
         type="radio"
         name="filter"
         id={id}
-        className="invisible"
+        className="invisible absolute"
         checked={isSelected}
         onChange={e => {
           setSelected(e.target.id);
@@ -28,7 +28,7 @@ const FilterRadioButton: React.FC<MapFilterProps> = ({ id, label, selected, setS
         htmlFor={id}
         className={`${
           isSelected ? selectedStyles : defaultStyles
-        } rounded-[20px] p-10 cursor-pointer hover:bg-[#002F6C] hover:text-white transition-all`}
+        } rounded-full px-6 py-3 cursor-pointer transition-all duration-200 text-base font-medium`}
       >
         {label}
       </label>

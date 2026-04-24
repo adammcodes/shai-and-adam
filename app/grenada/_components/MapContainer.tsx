@@ -63,8 +63,8 @@ export default function MapContainer({
   return (
     <>
       {/* Filters for markers: "Places to stay", "Things to do", "Where the couple will be" */}
-      <div className="my-10 w-full flex justify-center">
-        <div className="flex flex-col lg:flex-row justify-center items-center text-[1.2rem]">
+      <div className="my-10 w-full flex justify-center px-4">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 bg-gray-50 rounded-full p-2 shadow-inner">
           {mapFilters.map((filter, index) => (
             <FilterRadioButton
               key={index}
@@ -76,82 +76,76 @@ export default function MapContainer({
         </div>
       </div>
 
-      <div className="lg:w-full flex flex-col-reverse lg:flex-row justify-center items-center">
+      <div className="lg:w-full flex flex-col-reverse lg:flex-row justify-center items-start px-4 pb-10 gap-5">
         {/* Render list of markers beside the map */}
-        <div className="drop-shadow-lg lg:border-[1px] lg:border-[#002F6C] rounded-[20px] overflow-scroll flex flex-col w-[90vw] lg:mr-5 lg:max-w-[400px] lg:h-[600px] pt-5">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col w-[90vw] lg:max-w-[400px] lg:h-[600px]">
           {selectedFilter === "stay" && (
-            <div className="text-[#3f83f8] flex justify-center items-center pb-5">
-              Sort By:
+            <div className="text-sm text-gray-500 flex justify-center items-center py-4 px-4 border-b border-gray-100">
+              Sort by
               <select
-                className="ml-2 text-white bg-gradient-to-tl from-blue-500 to-cyan-500 focus:ring-4 focus:outline-none rounded-[20px] px-3 py-2 cursor-pointer"
+                className="ml-2 text-[#002F6C] bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 cursor-pointer text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#002F6C] focus:ring-offset-1"
                 value={selectedSort}
                 onChange={e => {
                   setSelectedSort(e.target.value);
                 }}
               >
-                <option style={{ backgroundColor: "#3f83f8" }} value="distanceFromVenue">
-                  Distance from Venue
-                </option>
-                <option style={{ backgroundColor: "#3f83f8" }} value="distanceFromCouple">
-                  Distance from Couple
-                </option>
+                <option value="distanceFromVenue">Distance from Venue</option>
+                <option value="distanceFromCouple">Distance from Couple</option>
               </select>
             </div>
           )}
-          {filteredMarkers.sort(sortMarkers).map(marker => (
-            <div key={marker.id} className="flex flex-col mb-10">
-              <div className="flex items-center">
-                <div
-                  className="w-10 h-10 m-3 rounded-full bg-[#FFF] flex justify-center items-center cursor-pointer"
-                  onClick={() => {
-                    openInfoWindow(marker.id);
-                  }}
-                >
-                  {/* Render the marker svg here: parse svg string into Next Image component */}
-                  {marker.svg && (
-                    <Image
-                      src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(marker.svg)}`}
-                      alt={marker.title}
-                      width={20}
-                      height={20}
-                    />
-                  )}
-                  {(marker.png === 0 || marker.png) && (
-                    <Image
-                      src={selectedFilter === "do" ? pngs[marker.png] : dates[marker.png]}
-                      alt={marker.title}
-                      width={25}
-                      height={25}
-                    />
-                  )}
-                </div>
-                <p
-                  className="text-[#002F6C] cursor-pointer max-w-[300px]"
-                  onClick={() => {
-                    openInfoWindow(marker.id);
-                  }}
-                >
-                  {marker.title}
-                  {selectedFilter === "stay" && (
-                    <>
-                      <br />
-                      <span className="text-[#3f83f8]">
+          <div className="overflow-y-auto flex-1">
+            {filteredMarkers.sort(sortMarkers).map((marker, index) => (
+              <div
+                key={marker.id}
+                className={`flex flex-col px-4 py-4 cursor-pointer hover:bg-gray-50 transition-colors duration-150 ${
+                  index !== filteredMarkers.length - 1 ? "border-b border-gray-100" : ""
+                }`}
+                onClick={() => openInfoWindow(marker.id)}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex-shrink-0 flex justify-center items-center">
+                    {marker.svg && (
+                      <Image
+                        src={`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(marker.svg)}`}
+                        alt={marker.title}
+                        width={20}
+                        height={20}
+                      />
+                    )}
+                    {(marker.png === 0 || marker.png) && (
+                      <Image
+                        src={selectedFilter === "do" ? pngs[marker.png] : dates[marker.png]}
+                        alt={marker.title}
+                        width={22}
+                        height={22}
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-[#002F6C] font-medium text-base leading-snug">
+                      {marker.title}
+                    </p>
+                    {selectedFilter === "stay" && (
+                      <p className="text-sm text-gray-400 mt-0.5">
                         {selectedSort === "distanceFromVenue"
                           ? marker.distanceFromVenue
                           : marker.distanceFromCouple}{" "}
                         km
-                      </span>
-                    </>
-                  )}
-                </p>
+                      </p>
+                    )}
+                  </div>
+                </div>
+                {marker.desc && (
+                  <p className="ml-[52px] text-sm text-gray-500 mt-1">{marker.desc}</p>
+                )}
               </div>
-              {marker.desc && <p className="ml-5 text-blue-500">{marker.desc}</p>}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Render the map */}
-        <div className={styles.map}>
+        <div className={`${styles.map} rounded-2xl overflow-hidden shadow-lg`}>
           <Map
             selectedFilter={selectedFilter}
             filteredMarkers={filteredMarkers}
