@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 
 const s3Client = new S3Client({
@@ -43,36 +42,16 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Empty image buffer" }, { status: 500 });
     }
 
-    // Use Sharp to automatically rotate the image based on EXIF orientation
+    // Rotate based on EXIF orientation and serve directly as the response
     const rotatedImage = await sharp(imageBuffer)
-      .rotate() // This will automatically rotate based on EXIF orientation
+      .rotate()
+      .webp({ quality: 80 })
       .toBuffer();
 
-    // Get metadata from the rotated image
     const metadata = await sharp(rotatedImage).metadata();
 
-    // Generate a new signed URL for the rotated image
-    const rotatedImageKey = `rotated-${imageName}`;
-    await s3Client.send(
-      new PutObjectCommand({
-        Bucket: process.env.B2_BUCKET_NAME!,
-        Key: rotatedImageKey,
-        Body: rotatedImage,
-        ContentType: "image/webp", // Set content type to WebP
-      })
-    );
-
-    const rotatedSignedUrl = await getSignedUrl(
-      s3Client,
-      new GetObjectCommand({
-        Bucket: process.env.B2_BUCKET_NAME!,
-        Key: rotatedImageKey,
-      }),
-      { expiresIn: 3600 }
-    );
-
     return NextResponse.json({
-      url: rotatedSignedUrl,
+      url: `data:image/webp;base64,${rotatedImage.toString("base64")}`,
       width: metadata.width,
       height: metadata.height,
     });
