@@ -3,8 +3,8 @@ import { NextRequest } from "next/server";
 
 // This route updates a guest's RSVP status
 // It is called from the RSVP form on the client page /guest/[id]?group=[number]
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
   if (!request.body || !id) {
     return new Response(`Bad Request`, {

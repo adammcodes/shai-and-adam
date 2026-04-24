@@ -6,19 +6,16 @@ import { GuestData } from "@/helpers/guestData";
 // import components
 import Guest from "../_components/Guest";
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+export default async function Page(props: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   let guests: any;
   let error;
   // get the id from the URL in the request params
-  const { id } = params;
+  const { id } = await props.params;
   // get the group number from the URL in the request search params // e.g. /guest/123?group=1
-  const { group } = searchParams;
+  const { group } = await props.searchParams;
 
   // if there is no id or group number, return an error
   if (!id || !group) {

@@ -1,14 +1,13 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { use, useCallback, useEffect, useRef, useState } from "react";
 import PasswordProtection from "../../_components/PasswordProtection";
 import PhotoWall from "../../_components/PhotoWall";
 import { PAGE_SIZE } from "../../_constants/pageSize";
 
-export default function PersonalSubfolder({
-  params,
-}: {
-  params: { event: string; subfolder: string };
+export default function PersonalSubfolder(props: {
+  params: Promise<{ event: string; subfolder: string }>;
 }) {
+  const params = use(props.params);
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

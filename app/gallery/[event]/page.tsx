@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { use, useEffect, useState, useCallback, useRef } from "react";
 import PasswordProtection from "../_components/PasswordProtection";
 import Link from "next/link";
 import PhotoWall from "../_components/PhotoWall";
@@ -7,7 +7,8 @@ import GalleryNav from "../_components/GalleryNav";
 import { subfolders, events } from "../_constants/links";
 import { PAGE_SIZE } from "../_constants/pageSize";
 
-export default function EventGallery({ params }: { params: { event: string } }) {
+export default function EventGallery(props: { params: Promise<{ event: string }> }) {
+  const params = use(props.params);
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

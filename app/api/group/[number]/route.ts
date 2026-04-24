@@ -4,8 +4,8 @@ import guestData from "@/helpers/guestData";
 
 // route that handles group requests by the number parameter
 // returns the list of guests in the group
-export async function GET(request: Request, { params }: { params: { number: string } }) {
-  const { number } = params;
+export async function GET(request: Request, { params }: { params: Promise<{ number: string }> }) {
+  const { number } = await params;
 
   // query the database for the group number
   const group = await notion.databases.query({

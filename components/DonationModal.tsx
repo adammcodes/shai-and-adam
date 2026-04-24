@@ -28,13 +28,15 @@ const GiftSVG = () => (
 );
 
 export default function DonationModal() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean | null>(null);
 
   useEffect(() => {
     // Check if the user has seen the modal before
     const modalSeen = localStorage.getItem("donationModalSeen") === "true";
     setIsModalOpen(!modalSeen);
   }, []);
+
+  if (isModalOpen === null) return null;
 
   const closeModal = () => {
     // Store the user's preference in localStorage
